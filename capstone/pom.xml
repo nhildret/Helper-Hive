@@ -33,7 +33,15 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency> 
+
+<!-- This is the dependency specifically for the Helper Hive Database connection on pom.xml -->
+		<dependency>
+    		<groupId>org.postgresql</groupId>
+   			<artifactId>postgresql</artifactId>
+    		<version>42.5.1</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
