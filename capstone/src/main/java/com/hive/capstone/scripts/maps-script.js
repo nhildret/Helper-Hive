@@ -23,7 +23,7 @@ function initMap() {
       -79.79303636984241,
       "../static/marker_icons/queenbee_marker.PNG",
       38,
-      31,
+      38,
     ],
     [
       // The Green Team Helping Hands: 36.07426431307997, -79.78966365152392
@@ -32,7 +32,7 @@ function initMap() {
       -79.78966365152392,
       "../static/marker_icons/queenbee_marker.PNG",
       38,
-      31,
+      38,
     ],
     [
       // Greensboro Urban Ministry - Food Distribution Center: 36.063884680754484, -79.79415791197987
@@ -41,7 +41,7 @@ function initMap() {
       -79.79415791197987,
       "../static/marker_icons/cutebee_marker.PNG",
       38,
-      31,
+      38,
     ],
   ];
 

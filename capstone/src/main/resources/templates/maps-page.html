@@ -7,10 +7,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../templates/styles/maps-style.css">
+    <link rel="stylesheet" href="/static/css/maps-style.css">
     
   </head>
   <body>
+
+    <header>
+       <div th:replace="~{/fragments/header :: header}"></div>
+    </header>
+
     <h1>Helper Hive Map</h1>
 
     <div id="map"></div>

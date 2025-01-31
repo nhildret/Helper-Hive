@@ -30,30 +30,40 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency> 
 
-<!-- This is the dependency specifically for the Helper Hive Database connection on pom.xml -->
+	<!-- This is the dependency specifically for the Helper Hive Database connection on pom.xml -->
 		<dependency>
     		<groupId>org.postgresql</groupId>
    			<artifactId>postgresql</artifactId>
     		<version>42.5.1</version>
 		</dependency>
 
+	<!-- Reuqired for @GetMapping -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
+    <!-- Spring Boot DevTools (for live reload) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+	<!-- Spring Boot Testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
