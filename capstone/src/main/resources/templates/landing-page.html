@@ -1,28 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Static Page</title>
-    <link rel="stylesheet" href="../templates/styles/landing-page.css">
-    <link href="https://fonts.googleapis.com/css2?family=American+Typewriter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/landing-page.css">
 
-</head>
-<body>
-<header>
-    <nav>
-        <ul>
-            <li><a href="#">Leaderboards</a></li>
-            <li><a href="#">Search</a></li>
-        </ul>
-        <img src="../static/bee_logo.png" alt="Placeholder Image">
-        <ul>
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-</header>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Header Fragment -->
+    <header th:replace="~{/fragments/header :: header}"></header>
 
     <!--<nav>
         <ul>
@@ -34,28 +25,30 @@
         </ul>
     </nav>-->
 
-<main>
-    <section class="button-section">
+    <main>
+      <section class="button-section">
         <div class="text-container">
-            <h1>Welcome to Helper Hive!</h1>
-            <p> Helper Hive is an application that makes connecting volunteers and organizations simple. </p>
-            <br>
-            <div class="buttons">
-                <a href="destination.html">
-                <button class="small-btn gold-btn">Sign Up</button>
-                </a>
-                <a href="destination.html">
-                <button class="small-btn gold-otln"> Our Work</button>
-                </a>
-            </div>
-            <div class="large-button-container">
-                <a href="destination.html">
-                <button class="large-btn"><span>Log In</span></button>
-                </a>
-            </div>
+          <h1>Welcome to Helper Hive!</h1>
+          <p>
+            Helper Hive is an application that makes connecting volunteers and
+            organizations simple.
+          </p>
+          <br />
+          <div class="buttons">
+            <a href="destination.html">
+              <button class="small-btn gold-btn">Sign Up</button>
+            </a>
+            <a href="destination.html">
+              <button class="small-btn gold-otln">Our Work</button>
+            </a>
+          </div>
+          <div class="large-button-container">
+            <a href="destination.html">
+              <button class="large-btn"><span>Log In</span></button>
+            </a>
+          </div>
         </div>
-    </section>
-</main>
-
-</body>
+      </section>
+    </main>
+  </body>
 </html>

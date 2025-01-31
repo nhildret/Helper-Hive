@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +7,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../templates/styles/maps-style.css">
+    <link rel="stylesheet" href="/css/maps-style.css">
     
   </head>
   <body>
+
+    <!-- Header Fragment -->
+    <header th:replace="~{/fragments/header :: header}"></header>
+    
+    <h3>&nbsp;</h3>
     <h1>Helper Hive Map</h1>
 
     <div id="map"></div>
 
-    <script src="../../java/com/hive/capstone/scripts/maps-script.js"></script>
+    <script src="/js/maps-script.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZjUdpI48aTp9oQbMHfHEVdG1ih8ghyo0&map_ids=dd4a1b0fa633e4e&callback=initMap">
 </script>
 </body>
