@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class HiveController {
-    
     @GetMapping("/")
     public String home() {
         return "landing-page"; // This looks for src/main/resources/templates/landing-page.html
