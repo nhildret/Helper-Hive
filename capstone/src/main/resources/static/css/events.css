@@ -1,0 +1,32 @@
+.event-container {
+
+    display:flex;
+    flex-direction: column;
+
+    margin-inline:auto;
+    margin-block: 1rem;
+    max-height: contain;
+    max-width: 80%;
+    border: 2px solid;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.event-img {
+    max-width: 275px;
+    
+}
+.event-details {
+    width:100%;
+    text-overflow:clip;
+}
+
+.event-details p {
+    display:inline-block
+}
+
+.signup {
+    width: 60px;
+    height:30px;
+    align-self: flex-end;
+}

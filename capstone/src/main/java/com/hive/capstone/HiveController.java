@@ -20,4 +20,9 @@ public class HiveController {
     public String user() {
         return "user-page"; // Serves user-page.html
     }
+
+    @GetMapping("/events")
+    public String events() {
+        return "event-page"; // Serves event-page.html
+    }
 }

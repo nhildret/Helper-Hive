@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Events</title>
+        <link rel="stylesheet" href="/css/events.css">
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
+            rel="stylesheet"
+        />
+        
+    </head>
+    <body>
+        <!-- Header Fragment -->
+        <header th:replace="~{/fragments/header :: header}"></header>
+
+        <main>
+            <div class="event-container">
+                <h2>Event Name</h2>
+                <div class="event-details">
+                    <img class="event-img" src="../static/honeycomb_bg_light.gif"/>
+                    <p>EVENT DETAILS lorem ipsum sit dolor amet</p>
+                </div>
+                <button class="signup">Sign up</button>
+            </div>
+        </main>
+    </body>
+</html>

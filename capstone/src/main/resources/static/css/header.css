@@ -1,6 +1,6 @@
 header {
-    background-color: #ffd18b;
-    color: #736e68;
+    background-color: var(--header);
+    color: var(--text);
     padding: 0.5rem 0;
     text-align: center;
     font-family: "Cutive", serif;
@@ -43,7 +43,7 @@ nav ul li a::after {
     left: 0;
     width: 0%;
     height: 2px; /* Line thickness */
-    background-color: #736e68;
+    background-color: var(--text);
     transition: width 0.3s; /* Transition for the line */
 }
 
