@@ -1,5 +1,5 @@
 package com.hive.capstone.repositories;
 
-public class VolunteerRepository {
+public class UserRepository {
     
 }

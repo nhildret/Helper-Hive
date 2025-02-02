@@ -1,5 +1,5 @@
 package com.hive.capstone.services;
 
-public class VolunteerService {
+public class UserService {
     
 }
