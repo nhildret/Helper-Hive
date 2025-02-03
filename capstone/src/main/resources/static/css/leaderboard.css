@@ -1,0 +1,9 @@
+.image-container {
+        display: flex;
+        gap: 10px; /* Adjust spacing between images */
+    }
+
+    .image-container img {
+        max-width: 100%; /* Ensures responsiveness */
+        height: auto;
+    }
