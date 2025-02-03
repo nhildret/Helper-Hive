@@ -1,8 +1,8 @@
 package com.hive.capstone.scripts;
 
 import javax.script.*;
-import org.graalvm.polyglot.*;
-import org.graalvm.polyglot.proxy.*;
+//import org.graalvm.polyglot.*;
+//import org.graalvm.polyglot.proxy.*;
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -27,7 +27,7 @@ public class CallScripts {
     }
 
     //can call regular client-side JS, but not server-side nodeJS
-    public static void callJS() throws Exception {
+    /*public static void callJS() throws Exception {
         //Reading scripts
         FileInputStream stream = new FileInputStream("capstone/src/main/java/com/hive/capstone/scripts/GMapsAPI.js");
         System.out.println("script acquired");
@@ -44,7 +44,7 @@ public class CallScripts {
             value.execute();
         }
         jsReader.close();
-    }
+    }*/
 
 }
 
