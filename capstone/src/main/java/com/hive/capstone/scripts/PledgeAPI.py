@@ -1,16 +1,10 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[17]:
-
-
 import sys
 import requests
 
-lat = sys.argv[1]
-lon = sys.argv[2]
-cause_id = sys.argv[3]
-api_key = sys.argv[4]
+lat = 36.098104
+lon = -79.784872
+cause_id = 91
+api_key = ""
 
 
 url = 'https://api.pledge.to/v1/organizations?per_page=100&lat=' + str(lat) + '&lon=' + str(lon) + '&cause_id=' + str(cause_id)
