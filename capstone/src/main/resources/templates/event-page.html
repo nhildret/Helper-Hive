@@ -9,6 +9,7 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="/css/events.css">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>
         <script src = "/js/popup.js" defer></script>
     </head>
     <body>
@@ -16,6 +17,14 @@
         <header th:replace="~{/fragments/header :: header}"></header>
 
         <main>
+            <section class="button-section">
+                <div class="text-container">
+                    <p class="message">
+                        Need help locating events? Search using the map <a th:href="@{/maps}">here</a>!
+                    </p>
+                </div>
+            </section>
+
             <div class="event-container">
                 <div class="event">
                     <img class="event-img" src="/images/demo_images/event_demo.png"/> <!-- Either flyers/posters or organization's logo -->
@@ -56,4 +65,5 @@
             </section>
         </main>
     </body>
+    <!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
 </html>

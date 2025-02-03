@@ -46,6 +46,11 @@ p {
     text-overflow: ellipsis;
 }
 
+.message {
+overflow:visible;
+font-size: larger;
+}
+
 #modal-space {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

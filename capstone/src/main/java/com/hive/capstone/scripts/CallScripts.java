@@ -1,3 +1,4 @@
+/*
 package com.hive.capstone.scripts;
 
 import javax.script.*;
@@ -44,10 +45,9 @@ public class CallScripts {
             value.execute();
         }
         jsReader.close();
+    }
+
     }*/
-
-}
-
 
 
 
