@@ -1,72 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Static Page</title>
-    <link rel="stylesheet" href="../static/css/landing-page.css">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Landing Page</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>
+  <link
+          href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
+          rel="stylesheet"
+  />
+</head>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+<body>
+<header th:replace="~{/fragments/header :: header}"></header>
+<!--<header>
+  <nav>
+    <ul>
+      <li><a th:href="@{/leaderboard}">Leaderboards</a></li>
+      <li><a th:href="@{/event-page}">Events</a></li>
+    </ul>
+    <a href="https://www.youtube.com/watch?v=J7PFwHVYVUU">
+      <img th:src="@{/static/images/bee_logo.png}" alt="Placeholder Image" />
+    </a>
+    <ul>
+      <li><a th:href="@{/about-us}">Contact</a></li>
+      <li><a th:href="@{/user-page}">Account</a></li>
+    </ul>
+  </nav>
+</header>-->
 
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#">Leaderboards</a></li>
-        <li><a href="#">Search</a></li>
-      </ul>
-      <a href="https://www.youtube.com/watch?v=J7PFwHVYVUU">
-      <img src="../static/images/bee_logo.png" alt="Placeholder Image">
-      </a>
-      <ul>
-        <li><a href="#">Events</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  <body>
-    <!-- Header Fragment -->
-<!--
-    <header th:replace="~{/fragments/header :: header}"></header>
--->
-
-    <!--<nav>
-        <ul>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-            <li><a href="#">Link 4</a></li>
-            <li><a href="#">Link 5</a></li>
-        </ul>
-    </nav>-->
-
-    <main>
-      <section class="button-section">
-        <div class="text-container">
-          <h1>Welcome to Helper Hive!</h1>
-          <p>
-            Helper Hive is an application that makes connecting volunteers and
-            organizations simple.
-          </p>
-          <br />
-          <div class="buttons">
-            <a href="destination.html">
-              <button class="small-btn gold-btn">Sign Up</button>
-            </a>
-            <a href="destination.html">
-              <button class="small-btn gold-otln">Our Work</button>
-            </a>
-          </div>
-          <div class="large-button-container">
-            <a href="destination.html">
-              <button class="large-btn"><span>Log In</span></button>
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
-  </body>
+<main>
+  <section class="button-section">
+    <div class="text-container">
+      <h1>Welcome to Helper Hive!</h1>
+      <p>
+        Helper Hive is an application that makes connecting volunteers and
+        organizations simple.
+      </p>
+      <br />
+      <div class="buttons">
+        <a th:href="@{/destination}">
+          <button class="small-btn gold-btn">Sign Up</button>
+        </a>
+        <a th:href="@{/destination}">
+          <button class="small-btn gold-otln">Our Work</button>
+        </a>
+      </div>
+      <div class="large-button-container">
+        <a th:href="@{/destination}">
+          <button class="large-btn"><span>Log In</span></button>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
 </html>

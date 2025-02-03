@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>About Us</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/about-us.css}"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
+            rel="stylesheet"
+    />
+</head>
+
+<body>
+
+<header th:replace="~{/fragments/header :: header}"></header>
+
+<!-- Header Fragment -->
+<!--
+    <header th:replace="~{/fragments/header :: header}"></header>
+-->
+
+<h1>About Us</h1>
+
+<div class="box-container">
+    <div class="box left" id="box1">
+        <p>Hi this is a capstone project.</p>
+    </div>
+    <div class="box center-box right" id="box2">
+        <div class="content">
+            <img src="https://media.tenor.com/7-NOxO0LKs0AAAAM/minecraft-bee.gif" alt="Placeholder Image">
+            <p>Woah what is that. Where am I.</p>
+        </div>
+    </div>
+    <div class="box left" id="box3">
+        <p>Is this thing on.</p>
+    </div>
+</div>
+
+<script>
+    // Function to check if an element is in the viewport
+    function isInView(element) {
+        const rect = element.getBoundingClientRect();
+        return rect.top <= window.innerHeight && rect.bottom >= 0;
+    }
+
+    // Add fade-in effect when elements are in view
+    const boxes = document.querySelectorAll('.box');
+
+    function checkBoxes() {
+        boxes.forEach(box => {
+            if (isInView(box)) {
+                box.classList.add('in-view');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkBoxes);
+    window.addEventListener('load', checkBoxes);
+</script>
+
+</body>
+</html>

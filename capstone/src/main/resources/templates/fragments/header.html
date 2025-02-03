@@ -1,16 +1,24 @@
-<!-- header.html -->
 <header th:fragment="header">
-    <link rel="stylesheet" href="/css/general.css"/>
-    <link rel="stylesheet" href="/css/header.css"/>
+    <!-- Use th:href to link CSS files properly -->
+    <link rel="stylesheet" th:href="@{/css/general.css}" />
+    <link rel="stylesheet" th:href="@{/css/header.css}" />
+
     <nav>
         <ul>
-            <li><a href="#">Leaderboards</a></li>
-            <li><a href="#">Search</a></li>
+            <!-- Update links to use th:href for Thymeleaf resolution -->
+            <li><a th:href="@{/leaderboard}">Leaderboards</a></li>
+            <li><a th:href="@{/events}">Events</a></li>
         </ul>
-        <img src="/images/bee_logo.png" alt="Queen Bee Logo">
+
+        <!-- Use th:src to link the logo image properly -->
+        <a href="https://www.youtube.com/watch?v=J7PFwHVYVUU">
+            <img th:src="@{/images/bee_logo.png}" alt="Placeholder Image" />
+        </a>
+
         <ul>
-            <li><a href="./events">Events</a></li>
-            <li><a href="#">Contact</a></li>
+            <!-- Update links for Contact and Account pages -->
+            <li><a th:href="@{/about}">Contact</a></li>
+            <li><a th:href="@{/user}">Account</a></li>
         </ul>
     </nav>
 </header>

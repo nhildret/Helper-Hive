@@ -25,4 +25,14 @@ public class HiveController {
     public String events() {
         return "event-page"; // Serves event-page.html
     }
+
+    @GetMapping("/about")
+    public String aboutus() {
+        return "about-us"; // Serves event-page.html
+    }
+
+    @GetMapping("/leaderboard")
+    public String leaderboard() {
+        return "leaderboard"; // Serves event-page.html
+    }
 }

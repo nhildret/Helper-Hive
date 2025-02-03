@@ -1,27 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Page</title>
-    <link rel="stylesheet" href="../static/css/users.css">
-    <link href="https://fonts.googleapis.com/css2?family=American+Typewriter&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Account</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/users.css}"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
+            rel="stylesheet"
+    />
 </head>
 <body>
-<header>
-    <nav>
-        <div>
-            <a href="#"> Leaderboards</a> 
-            <a href="#"> Search</a>
-        </div>
-        <img src="../static/images/bee_logo.png" alt="Placeholder Image">
-        <div>
-            <a href="#"> Events</a>
-            <a href="#"> Contact</a>
-        </div>
-    </nav>
+
+<header th:replace="~{/fragments/header :: header}"></header>
+
     <!--<nav>
         <ul>
             <li><a href="#">Link 1</a></li>
@@ -31,7 +23,7 @@
             <li><a href="#">Link 5</a></li>
         </ul>
     </nav>-->
-</header>
+
 
 <main>
     <section class="button-section">

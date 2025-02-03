@@ -13,7 +13,7 @@ body {
 }
 
 body{
-    background-image:url('../static/images/background_gifs/honeycomb_bg_light.gif');
+    background-image:url('/images/background_gifs/honeycomb_bg_dark.gif');
     background-attachment:fixed;
     background-repeat: no-repeat;
     background-size: cover;
