@@ -1,0 +1,42 @@
+html, body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+
+footer {
+  padding: 40px 0;
+  color: white;
+  background: #000000;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:60px;
+}
+
+footer li {
+  float: left;
+  padding: 0 10px;
+  list-style: none;
+}
+
+footer a {
+  color: white;
+}
+
+footer p {
+  float: right;
+}
+
+#container {
+   min-height:100%;
+   position:relative;
+}
+#header {
+   background:#ff0;
+   padding:10px;
+}
+#body {
+   padding:10px;
+   padding-bottom:60px;
+}

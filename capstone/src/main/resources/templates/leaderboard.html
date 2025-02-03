@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Static Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>
-    <link href="https://fonts.googleapis.com/css2?family=American+Typewriter&display=swap" rel="stylesheet">
-
+    <link
+          href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
+          rel="stylesheet"
+    />
 </head>
 <body>
 
@@ -20,8 +22,11 @@
             <h1>Leaderboards</h1>
             <p> Here you will be able to find our Leaderboards! </p> 
                 </div>
-                 <img src="../static/images/demo_images/volunteer_leaderboard_demo.PNG" alt="Placeholder Image">
+                 <img src="/images/demo_images/volunteer_leaderboard_demo.PNG" alt="Placeholder Image">
             <div>
+                <div>
+                <img src="/images/demo_images/donation_leaderboard_demo.PNG" alt="Placeholder Image">
+            </div>
             <!-- <br>
             <div class="buttons">
                 <button class="small-btn gold-btn">Sign Up</button>
@@ -35,4 +40,5 @@
 </main>
 
 </body>
+<!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
 </html>
