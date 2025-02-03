@@ -1,29 +1,53 @@
 package com.hive.capstone.scripts;
+
 import javax.script.*;
+import org.graalvm.polyglot.*;
+import org.graalvm.polyglot.proxy.*;
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
-// haven't tested this guy yet, but hopefully should work. theoretically at least
-// if running the file causes errors, check file directory string passed to gMaps
+
 public class CallScripts {
     public static void main(String[] args) throws Exception{
-        //Initializing engine(s) to run script languages
+        callPy(36.098104, -79.784872, 91);
+    }
+
+    //straight-up doesn't work
+    public static void callPy(double lat, double lon, int causeID) throws Exception {
+        String args = "dict(lat = " + lat + ", lon = " + lon + ", cause_id = " + causeID + ")";
         ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine jsEngine = manager.getEngineByName("JavaScript");
+        ScriptEngine engine = manager.getEngineByName("python");
+        InputStreamReader reader = new InputStreamReader(new FileInputStream("capstone/src/main/java/com/hive/capstone/scripts/PledgeAPI.py"), StandardCharsets.UTF_8);
 
+        engine.eval(reader);
+    }
+
+    //can call regular client-side JS, but not server-side nodeJS
+    public static void callJS() throws Exception {
         //Reading scripts
-        FileInputStream gMaps = new FileInputStream("./GMapsAPI");
-        System.out.println("gmaps acquired");
-        BufferedReader gMapsReader = new BufferedReader(new InputStreamReader(gMaps));
+        FileInputStream stream = new FileInputStream("capstone/src/main/java/com/hive/capstone/scripts/GMapsAPI.js");
+        System.out.println("script acquired");
+        BufferedReader jsReader = new BufferedReader(new InputStreamReader(stream));
+        String jsCode = jsReader.readLine();
+        while (jsReader.ready()) {
+            jsCode += jsReader.readLine();
+        }
+        System.out.println(jsCode);
 
-        //Evaluate and invoke method (run script)
-        jsEngine.eval(gMapsReader);
-        Invocable mapsInvoke = (Invocable)jsEngine;
-
-        //Print results
-        System.out.println("MapsAPI called. Results:\n" + mapsInvoke);
+        //Execute scripts
+        try(Context context = Context.create()) {
+            Value value = context.eval("js", jsCode);
+            value.execute();
+        }
+        jsReader.close();
     }
 
 }
+
+
+
 

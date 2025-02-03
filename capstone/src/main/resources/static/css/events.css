@@ -1,22 +1,29 @@
-
+/* holds cards */
 .event-container {
+    width: 80%;
+    margin-inline: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/* event cards */
+.event {
     display:flex;
     flex-direction: column;
     align-content:center;
     text-align: center;
     margin-inline:auto;
     margin-block: 1rem;
-    width: 350px;
-    height: 375px;
+    width: 300px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 3px 3px 6px var(--text);
     background-color: var(--card);
-    position: relative;
 }
-.event-container h2 {
+.event h2 {
     font-family: "Cutive", serif;
-    font-size: 35px;
+    font-size: 30px;
 }
 .event-img {
     margin: auto;
@@ -31,31 +38,61 @@
 p {
     font-size: larger;
     display: block;
-    width: 310px;
+    width: 100%;
     padding-right:10px;
-    line-height: 25px;
-    max-height: 100px;
+    line-height: 20px;
+    max-height: 80px;
     overflow:hidden;
     text-overflow: ellipsis;
 }
-.event-hover {
-    /*display: none;*/
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: white;
-    inset:0;
+
+#modal-space {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+#modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 5%;
+    top: 5%;
+    width: 90%;
+    height: 90%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: var(--body);
     border-radius: 10px;
-    padding: 1.5rem;
-    font-size: 1.5rem;
-    overflow: scroll;
-    z-index: 1;
+    padding:1rem;
+
+    display: flex;
+    flex-direction: column;
 }
-.event-container > .event-overview, .event-container > .event-hover {
-    transition: 200ms ease-in-out;
+#modal h1 {
+    font-family: "Cutive", serif;
+    font-size: 40px;
+    text-align: center;
 }
-.event-container > .event-hover{
-    opacity: 0;
+#modal p {
+    font-size: larger;
 }
-.event-container:hover > .event-hover{
-    opacity: 1;
+#modal button {
+    width: 120px;
+    height:50px;
+    font-size: large;
+    border-radius: 10px;
+    border-color: var(--header);
+    background-color: var(--header);
+    font-weight: bold;
+    padding:15px;
+    float: right;
+    align-self: center;
+}
+
+#header a {
+    float: right;
 }

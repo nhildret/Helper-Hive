@@ -9,15 +9,15 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="/css/events.css">
+        <script src = "/js/popup.js" defer></script>
     </head>
     <body>
         <!-- Header Fragment -->
         <header th:replace="~{/fragments/header :: header}"></header>
 
         <main>
-            
             <div class="event-container">
-                <div class="event-overview">
+                <div class="event">
                     <img class="event-img" src="/images/demo_images/event_demo.png"/> <!-- Either flyers/posters or organization's logo -->
                     <h2>Event Name</h2>
                     <p>
@@ -29,16 +29,29 @@
                         officia deserunt mollit anim id est laborum. 
                     </p>
                 </div>
-                <div class="event-hover">
-                    This is event detail text. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam, 
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                    officia deserunt mollit anim id est laborum. 
-                </div>
             </div>
-            
+            <aside id="modal-space">
+                <div id="modal">
+                    <section id="header">
+                        <a>X</a>
+                    </section>
+                    <h1>Title</h1>
+                    <p>
+                        This is event detail text. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam, 
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+                        officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam, 
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+                        officia deserunt mollit anim id est laborum.
+                    </p>
+                    <button>Sign up</button>
+                </div>
+            </section>
         </main>
     </body>
 </html>
