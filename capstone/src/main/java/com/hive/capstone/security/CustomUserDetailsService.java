@@ -1,5 +1,5 @@
 package com.hive.capstone.security;
 
-public class UserDetailServiceImpl {
+public class CustomUserDetailsService {
     
 }

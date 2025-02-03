@@ -1,4 +1,4 @@
-package com.hive.capstone.models;
+package com.hive.capstone.users;
 
 import java.sql.Date;
 
@@ -13,7 +13,8 @@ public class User {
     private Date registeredAt;
     private int totalHours;
 
-    // Constructor with all fields
+    // Constructors
+
     public User(int userId, String username, String name, String role, String email, Date registeredAt, String password,
             int totalHours) {
         this.userId = userId;
@@ -26,7 +27,6 @@ public class User {
         this.totalHours = totalHours;
     }
 
-    // Constructor without userId
     public User(String username, String name, String role, String email, Date registeredAt, String password,
             int totalHours) {
         this.username = username;

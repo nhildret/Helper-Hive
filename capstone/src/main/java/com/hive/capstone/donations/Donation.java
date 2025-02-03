@@ -1,4 +1,4 @@
-package com.hive.capstone.models;
+package com.hive.capstone.donations;
 
 import java.sql.Date;
 
@@ -12,7 +12,7 @@ public class Donation {
     private Date donatedAt;
 
     // Constructors
-    
+
     public Donation(String donationName, String organizationName, double amount, int userId, Date donatedAt) {
         this.donationName = donationName;
         this.organizationName = organizationName;

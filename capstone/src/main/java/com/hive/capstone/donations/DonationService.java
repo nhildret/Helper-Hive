@@ -1,4 +1,4 @@
-package com.hive.capstone.services;
+package com.hive.capstone.donations;
 
 public class DonationService {
     

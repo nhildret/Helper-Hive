@@ -1,4 +1,4 @@
-package com.hive.capstone.controllers;
+package com.hive.capstone.events;
 
 public class EventController {
     

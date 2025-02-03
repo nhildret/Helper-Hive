@@ -1,4 +1,4 @@
-package com.hive.capstone.models;
+package com.hive.capstone.organizations;
 
 import java.sql.Date;
 

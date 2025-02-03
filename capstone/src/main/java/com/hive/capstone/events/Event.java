@@ -1,4 +1,4 @@
-package com.hive.capstone.models;
+package com.hive.capstone.events;
 
 import java.sql.Date;
 
@@ -12,7 +12,7 @@ public class Event {
     private int volunteerHours; // Hours earned
 
     // Constructors
-    
+
     public Event(String eventName, String location, Date eventDate, int organizationId, int volunteerHours) {
         this.eventName = eventName;
         this.location = location;
