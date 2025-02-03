@@ -5,7 +5,7 @@ header {
     text-align: center;
     font-family: "Cutive", serif;
     display: flex;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 6px var(--shadow);
 }
 
 nav {
@@ -52,6 +52,6 @@ nav ul li a:hover::after {
 }
 
 
-img {
+nav img {
     margin: 0 2rem;
 }
