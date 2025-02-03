@@ -5,6 +5,10 @@
     display: flex;
     flex-wrap: wrap;
 }
+/* p {
+    font-family: "Playpen Sans", sans-serif;
+    font-size: large;
+} */
 
 
 /* event cards */
@@ -18,7 +22,7 @@
     width: 300px;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 3px 3px 6px var(--text);
+    box-shadow: 4px 4px 6px var(--shadow);
     background-color: var(--card);
 }
 .event h2 {
@@ -35,7 +39,7 @@
     object-fit: cover;
     object-position: center;
 }
-p {
+.event p {
     font-size: larger;
     display: block;
     width: 100%;
@@ -63,27 +67,45 @@ font-size: larger;
     background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
 }
 #modal {
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 5%;
+    /* positioning and sizing */
+    position: fixed;
+    z-index: 1;
+    left: 10%;
     top: 5%;
-    width: 90%;
+    width: 80%;
     height: 90%;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: var(--body);
-    border-radius: 10px;
-    padding:1rem;
 
+    /* layout */
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+
+    /* aesthetic */
+    border-radius: 10px;
+    background-color: var(--body);
+    padding:1rem 3rem;
+    overflow: auto;
 }
 #modal h1 {
     font-family: "Cutive", serif;
     font-size: 40px;
     text-align: center;
 }
+#modal img {
+    margin: auto;
+    align-self: center;
+    border-radius: 10px;
+    margin:0 18px 10px 0;
+    object-fit: cover;
+    object-position: center;
+    float:left;
+}
 #modal p {
+    float:right;
     font-size: larger;
+    /* font-size: 22px;
+    line-height: 32px; */
 }
 #modal button {
     width: 120px;
@@ -94,10 +116,6 @@ font-size: larger;
     background-color: var(--header);
     font-weight: bold;
     padding:15px;
-    float: right;
     align-self: center;
-}
-
-#header a {
-    float: right;
+    font-family: "Cutive", serif;
 }
