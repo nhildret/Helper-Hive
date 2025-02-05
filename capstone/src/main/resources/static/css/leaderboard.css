@@ -1,9 +1,36 @@
 .image-container {
         display: flex;
         gap: 10px; /* Adjust spacing between images */
-    }
+}
 
-    .image-container img {
+.image-container img {
         max-width: 100%; /* Ensures responsiveness */
         height: auto;
-    }
+}
+
+/* Button section */
+.button-section {
+    text-align: center;
+    margin: 2rem 0; /* Adjusted margin to reduce space between buttons and header */
+}
+
+
+.text-container {
+    background-color: #fdead1;
+    padding: 2rem;
+    width: 45%;
+    margin: 0 auto 2rem auto;
+    border-radius: 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 26px;
+    font-family: "American Typewriter", serif;
+}
+
+h1 {
+    font-family: "American Typewriter", serif;
+    color: #f6b852; /* Text color */
+    text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.701566px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.558831px 0px;
+    margin: 1rem 0;
+    text-align: center;
+    font-size: 72px;
+}
