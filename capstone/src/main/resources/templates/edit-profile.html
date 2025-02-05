@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Account</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/users.css}"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
+            rel="stylesheet"
+    />
+</head>
+<body>
+
+<header th:replace="~{/fragments/header :: header}"></header>
+
+<!--<nav>
+    <ul>
+        <li><a href="#">Link 1</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+        <li><a href="#">Link 4</a></li>
+        <li><a href="#">Link 5</a></li>
+    </ul>
+</nav>-->
+
+<main>
+    <section class="button-section">
+        <div class="text-container">
+            <h1>Welcome!</h1>
+            <!-- <p> Helper Hive is an application that makes connecting volunteers and organizations simple. </p> -->
+            <div class="user-card">
+                <img src="/images/demo_images/user-profile.jpg" alt="User Profile">
+                <h2>John Doe</h2>
+                <p>Volunteer since 2023</p>
+                <button class="button">Connect</button>
+            </div>
+            <div class="user-card">
+                <img src="/images/demo_images/user-profile2.jpg" alt="User Profile">
+                <h2>Bruce Wayne</h2>
+                <p>Volunteer since 2025</p>
+                <button class="button">Connect</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+</body>
+<!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
+</html>
