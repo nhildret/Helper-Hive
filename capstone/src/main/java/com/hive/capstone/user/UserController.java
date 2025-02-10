@@ -1,4 +1,4 @@
-package com.hive.capstone.users;
+package com.hive.capstone.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,26 +6,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     // Create new User
-    @PostMapping("/users/new")
+    @PostMapping("/new")
     public String addNewUser(@ModelAttribute User user) {
         userService.addNewUser(user);
         return "redirect:/users/all";
     }
 
     // Show user creation form
-    @GetMapping("/users/createForm")
+    @GetMapping("/createForm")
     public String showCreateForm() {
         return "signup";
     }
 
     // Get all users
-    @GetMapping("/users/all")
+    @GetMapping("/all")
     public String getAllUsers(Model model) {
         model.addAttribute("userList", userService.getAllUsers());
         model.addAttribute("title", "All Users");
@@ -33,7 +34,7 @@ public class UserController {
     }
 
     // Get users by role
-    @GetMapping("/users/byRole")
+    @GetMapping("/byRole")
     public String findByRole(@RequestParam(name = "role", defaultValue = "Volunteer") String role, Model model) {
         model.addAttribute("userList", userService.getUsersByRole(role));
         model.addAttribute("title", "Users with Role: " + role);
@@ -41,7 +42,7 @@ public class UserController {
     }
 
     // Get single user by ID
-    @GetMapping("/users/{userId}")
+    @GetMapping("/{userId}")
     public String getUser(@PathVariable int userId, Model model) {
         User user = userService.getUserById(userId);
         model.addAttribute("user", user);
@@ -49,7 +50,7 @@ public class UserController {
     }
 
     // Show delete confirmation
-    @GetMapping("/users/delete/{userId}")
+    @GetMapping("/delete/{userId}")
     public String confirmDelete(@PathVariable int userId, Model model) {
         User user = userService.getUserById(userId);
         model.addAttribute("user", user);
@@ -57,14 +58,14 @@ public class UserController {
     }
 
     // Delete user
-    @PostMapping("/users/delete/{userId}")
+    @PostMapping("/delete/{userId}")
     public String deleteUser(@PathVariable int userId) {
         userService.deleteUser(userId);
         return "redirect:/users/all";
     }
 
     // Show edit form
-    @GetMapping("/users/edit/{userId}")
+    @GetMapping("/edit/{userId}")
     public String showEditForm(@PathVariable int userId, Model model) {
         User user = userService.getUserById(userId);
         model.addAttribute("user", user);
@@ -72,7 +73,7 @@ public class UserController {
     }
 
     // Update user
-    @PostMapping("/users/update/{userId}")
+    @PostMapping("/update/{userId}")
     public String updateUser(@PathVariable int userId, @ModelAttribute User user, Model model) {
         userService.updateUser(userId, user);
         model.addAttribute("user", userService.getUserById(userId));

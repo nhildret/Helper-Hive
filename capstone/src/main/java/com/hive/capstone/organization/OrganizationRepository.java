@@ -1,4 +1,4 @@
-package com.hive.capstone.organizations;
+package com.hive.capstone.organization;
 
 public class OrganizationRepository {
     

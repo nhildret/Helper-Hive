@@ -1,4 +1,4 @@
-package com.hive.capstone.events;
+package com.hive.capstone.event;
 
 public class EventService {
     
