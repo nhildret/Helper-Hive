@@ -3,7 +3,12 @@ package com.hive.capstone.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/users")
@@ -34,11 +39,20 @@ public class UserController {
     }
 
     // Get users by role
+    // @GetMapping("/byRole")
+    // public String findByRole(@RequestParam(name = "role", defaultValue = "Volunteer") String role, Model model) {
+    //     model.addAttribute("userList", userService.getUsersByRole(role));
+    //     model.addAttribute("title", "Users with Role: " + role);
+    //     return "/User/user-list";
+    // }
     @GetMapping("/byRole")
-    public String findByRole(@RequestParam(name = "role", defaultValue = "Volunteer") String role, Model model) {
+    public String findByRole(
+        @RequestParam(name = "role", defaultValue = "Volunteer") String role, 
+        Model model
+    ) {
         model.addAttribute("userList", userService.getUsersByRole(role));
         model.addAttribute("title", "Users with Role: " + role);
-        return "/User/user-list";
+        return "User/user-list";
     }
 
     // Get single user by ID

@@ -1,11 +1,11 @@
 package com.hive.capstone.user;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -39,17 +39,39 @@ public class UserService {
     }
 
     public void addNewUser(User user) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addNewUser'");
+        // Encode password before saving
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // Set registration date
+        user.setRegisteredAt(new Date());
+        userRepository.save(user);
     }
 
     public void updateUser(int userId, User user) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
+        User existing = userRepository.findById(userId)
+            .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+
+        existing.setUsername(user.getUsername());
+        existing.setEmail(user.getEmail());
+        existing.setName(user.getName());
+        existing.setRole(user.getRole());
+        existing.setTotalHours(user.getTotalHours());
+        
+        // Only update password if a new one is provided
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            existing.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        
+        userRepository.save(existing);
     }
 
-    public Object getUsersByRole(String role) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUsersByRole'");
+    public List<User> getUsersByRole(String role) {
+        return userRepository.findByRole(role);
+    }
+
+    public void updateUserRole(int userId, String role) {
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setRole(role);
+        userRepository.save(user);
     }
 }

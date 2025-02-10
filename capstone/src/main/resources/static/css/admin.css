@@ -1,0 +1,47 @@
+.admin-table {
+    width: 100%;
+    margin: 2rem 0;
+    border-collapse: collapse;
+}
+
+.admin-table th, .admin-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.role-select {
+    padding: 0.3rem;
+    border-radius: 4px;
+}
+
+.admin-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 50%;
+    margin: 5% auto;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}

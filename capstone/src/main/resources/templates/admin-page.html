@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}"/>
+</head>
+
+<body>
+<header th:replace="~{/fragments/header :: header}"></header>
+
+<main class="admin-main">
+  <section class="button-section">
+    <div class="text-container">
+      <h1>Admin Dashboard</h1>
+      
+      <!-- Add User Form -->
+      <div class="admin-section">
+        <h2>Create New User</h2>
+        <form th:action="@{/admin/users}" method="post">
+          <div class="form-group">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <select name="role" required>
+              <option value="Volunteer">Volunteer</option>
+              <option value="Organization">Organization</option>
+              <option value="Admin">Admin</option>
+            </select>
+            <button type="submit" class="small-btn gold-btn">Create User</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Users Table -->
+      <div class="admin-section">
+        <h2>Manage Users</h2>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="user : ${users}">
+              <td th:text="${user.username}"></td>
+              <td th:text="${user.email}"></td>
+              <td>
+                <select class="role-select" th:data-id="${user.userId}">
+                  <option th:each="role : ${roles}" 
+                         th:value="${role}" 
+                         th:text="${role}"
+                         th:selected="${role == user.role}"></option>
+                </select>
+              </td>
+              <td class="admin-actions">
+                <button class="small-btn gold-btn" 
+                        onclick="openEditModal(this)"
+                        th:data-id="${user.userId}"
+                        th:data-username="${user.username}"
+                        th:data-email="${user.email}"
+                        th:data-role="${user.role}">Edit</button>
+                <form th:action="@{/admin/users/{id}(id=${user.userId})}" method="post">
+                  <input type="hidden" name="_method" value="delete">
+                  <button type="submit" class="small-btn gold-otln">Delete</button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Edit User Modal -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeEditModal()">&times;</span>
+    <form id="editForm" method="post">
+      <input type="hidden" name="_method" value="put">
+      <input type="hidden" name="userId" id="editUserId">
+      
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" id="editUsername" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" id="editEmail" required>
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <select name="role" id="editRole" required>
+          <option th:each="role : ${roles}" 
+                 th:value="${role}" 
+                 th:text="${role}"></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="small-btn gold-btn">Save Changes</button>
+        <button type="button" class="small-btn gold-otln" onclick="closeEditModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Modal handling
+  function openEditModal(button) {
+    const modal = document.getElementById('editModal');
+    const form = document.getElementById('editForm');
+    
+    form.action = `/admin/users/${button.dataset.id}`;
+    document.getElementById('editUserId').value = button.dataset.id;
+    document.getElementById('editUsername').value = button.dataset.username;
+    document.getElementById('editEmail').value = button.dataset.email;
+    document.getElementById('editRole').value = button.dataset.role;
+    
+    modal.style.display = 'block';
+  }
+
+  function closeEditModal() {
+    document.getElementById('editModal').style.display = 'none';
+  }
+
+  // Role change handler
+  document.querySelectorAll('.role-select').forEach(select => {
+    select.addEventListener('change', async (e) => {
+      const userId = e.target.dataset.id;
+      const newRole = e.target.value;
+      
+      try {
+        const response = await fetch(`/admin/users/${userId}/role`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ role: newRole })
+        });
+        
+        if (!response.ok) throw new Error('Role update failed');
+        location.reload(); // Refresh to show changes
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+  });
+</script>
+</body>
+</html>
