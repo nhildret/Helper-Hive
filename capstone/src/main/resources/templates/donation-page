@@ -21,9 +21,6 @@
             <section class="button-section">
                 <div class="text-container">
                     <p id="lat-lon"></p>
-                    <p class="message">
-                        Need help locating events? Search using the map <a th:href="@{/maps}">here</a>!
-                    </p>
                 </div>
             </section>
 
@@ -86,7 +83,7 @@
         
         function getEvents(position) {
             document.getElementById("lat-lon").innerHTML =  
-            "Searching for events near lat: " + position.coords.latitude +
+            "Searching for organizations near lat: " + position.coords.latitude +
             " & lon: " + position.coords.longitude;
 
             //call controller function that calls python method for pledgeAPI
