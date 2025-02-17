@@ -75,7 +75,7 @@ padding:2rem;
     font-size:19px;
     font-weight:bold;
 }
-.ladder-nav--resutls-col, .results-col{
+.ladder-nav--results-col, .results-col{
     flex:1;
 }
 
