@@ -34,3 +34,21 @@ h1 {
     text-align: center;
     font-size: 72px;
 }
+
+#scrims-ladder--container{
+padding:2rem;
+}
+
+.ladder-nav{
+    display:flex;
+    flex-wrap:wrap;
+    align-items: center;
+    background: #5055CB;
+    padding: 10px 25 px;
+    border-radius:10px;
+    border:1px solid #686EF9
+}
+
+.ladder-title{
+    flex:2;
+}
