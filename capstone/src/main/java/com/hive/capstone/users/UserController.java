@@ -1,54 +1,96 @@
-package com.hive.capstone.users;
+package com.hive.capstone.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequestMapping("/users")
 public class UserController {
 
-    private final UserService userService;
-
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    private UserService userService;
+
+    // Create new User
+    @PostMapping("/new")
+    public String addNewUser(@ModelAttribute User user) {
+        userService.addNewUser(user);
+        return "redirect:/users/all";
     }
 
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    // Show user creation form
+    @GetMapping("/createForm")
+    public String showCreateForm() {
+        return "signup";
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable int id) {
-        User user = userService.getUserById(id);
-        return user != null
-                ? new ResponseEntity<>(user, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    // Get all users
+    @GetMapping("/all")
+    public String getAllUsers(Model model) {
+        model.addAttribute("userList", userService.getAllUsers());
+        model.addAttribute("title", "All Users");
+        return "/User/user-list";
     }
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User newUser = userService.createUser(user);
-        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+    // Get users by role
+    // @GetMapping("/byRole")
+    // public String findByRole(@RequestParam(name = "role", defaultValue =
+    // "Volunteer") String role, Model model) {
+    // model.addAttribute("userList", userService.getUsersByRole(role));
+    // model.addAttribute("title", "Users with Role: " + role);
+    // return "/User/user-list";
+    // }
+    @GetMapping("/byRole")
+    public String findByRole(
+            @RequestParam(name = "role", defaultValue = "Volunteer") String role,
+            Model model) {
+        model.addAttribute("userList", userService.getUsersByRole(role));
+        model.addAttribute("title", "Users with Role: " + role);
+        return "User/user-list";
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user) {
-        User updatedUser = userService.updateUser(id, user);
-        return updatedUser != null
-                ? new ResponseEntity<>(updatedUser, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    // Get single user by ID
+    @GetMapping("/{userId}")
+    public String getUser(@PathVariable int userId, Model model) {
+        User user = userService.getUserById(userId);
+        model.addAttribute("user", user);
+        return "/User/user-details";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable int id) {
-        userService.deleteUser(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // Show delete confirmation
+    @GetMapping("/delete/{userId}")
+    public String confirmDelete(@PathVariable int userId, Model model) {
+        User user = userService.getUserById(userId);
+        model.addAttribute("user", user);
+        return "/User/user-delete";
+    }
+
+    // Delete user
+    @PostMapping("/delete/{userId}")
+    public String deleteUser(@PathVariable int userId) {
+        userService.deleteUser(userId);
+        return "redirect:/users/all";
+    }
+
+    // Show edit form
+    @GetMapping("/edit/{userId}")
+    public String showEditForm(@PathVariable int userId, Model model) {
+        User user = userService.getUserById(userId);
+        model.addAttribute("user", user);
+        return "/User/user-edit";
+    }
+
+    // Update user
+    @PostMapping("/update/{userId}")
+    public String updateUser(@PathVariable int userId, @ModelAttribute User user, Model model) {
+        userService.updateUser(userId, user);
+        model.addAttribute("user", userService.getUserById(userId));
+        return "/User/user-details";
     }
 }
