@@ -50,4 +50,9 @@ public class HiveController {
         //model.addAttribute("orgs", orgsList);
         return "donation-page";
     }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin-page"; // Serves admin-page.html
+    }
 }
