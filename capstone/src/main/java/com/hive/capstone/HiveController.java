@@ -35,4 +35,9 @@ public class HiveController {
     public String leaderboard() {
         return "leaderboard"; // Serves event-page.html
     }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin-page"; // Serves admin-page.html
+    }
 }
