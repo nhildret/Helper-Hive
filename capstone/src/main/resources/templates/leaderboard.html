@@ -27,27 +27,36 @@
 </main>
 
     <section id="scrims-ladder--container" class="scrimms-ladder">
-        <div class="ladder-nav--col
-ladder-title">
-            <h1>Leaderboards</h1>
-        </div>
         <div class="ladder-nav">
-            <div class='ladder-nav--col'>
-                <input type="text" class="ladder-search" placeholder="search user, user..."/>
+            <div class="ladder-nav--col ladder-title">
+                <h1>Leaderboard Standings</h1>
+        </div>
+            <div class='ladder-nav--col'><input type="text" class="ladder-search" placeholder="search user, user..."/>
             </div>
         </div>
 
-        <div class="ladder-nav--results-col">
-            <label>Rank</label>
+        <div class="ladder-nav--results-col"><label>Rank</label></div>
+        <div class="ladder-nav--results-col"><label> User's Name</label></div>
+        <div class="ladder-nav--results-col"><label> Volunteer Hours</label></div>
         </div>
-        <div class="ladder-nav--results-col">
-            <label> User's Name</label>
-        </div>
-        <div class="ladder-nav--results-col">
-            <label> Volunteer Hours</label>
-        </div>
+
+        <div class = "ladder-nav--results-players">
+            <div th:each="player, iterStat : ${leaderboard}" class="results-row">
+                <div class="results-col">
+                    <span class="results-rank"><span class="positions">1</span></span>
+                </div>
+                <div class="results-col">
+                    <span class="results-name" th:text="${user.name}"></span>
+                </div>
+                <div class="results-col">
+                    <span class="results-hours" th:text="${user.hours}"></span>
+                </div>
+            </div>
         </div>
     </section>
+</body>
+<!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
+</html>
 
 <!--                </div>-->
 <!--                 <img src="/images/demo_images/volunteer_leaderboard_demo.PNG" alt="Placeholder Image">-->
@@ -64,7 +73,3 @@ ladder-title">
                 <button class="large-btn"><span>Log In</span></button>
             </div>
         </div> -->
-
-</body>
-<!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
-</html>
