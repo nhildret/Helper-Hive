@@ -7,7 +7,13 @@
         <ul>
             <!-- Update links to use th:href for Thymeleaf resolution -->
             <li><a th:href="@{/leaderboard}">Leaderboards</a></li>
-            <li><a th:href="@{/events}">Events</a></li>
+            <li class="dropdown">
+                <a class="dropdown-head">Services</a>
+                <div class="dropdown-content">
+                    <a th:href="@{/events}">Events</a>
+                    <a th:href="@{/donate}">Donations</a>
+                </div>
+            </li>
         </ul>
 
         <!-- Use th:src to link the logo image properly -->
