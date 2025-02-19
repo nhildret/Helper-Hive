@@ -8,6 +8,8 @@ import java.util.Date;
 @Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
     private String username;
@@ -55,6 +57,7 @@ public class User {
     public User() {
     }
     // toString Method
+    @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId + '}';
