@@ -1,12 +1,7 @@
 package com.hive.capstone;
 
 import org.springframework.web.bind.annotation.GetMapping;
-
-// import com.hive.capstone.events.EventService;
-// import com.hive.capstone.donations.DonationService;
-
 //import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -27,9 +22,7 @@ public class HiveController {
     }
 
     @GetMapping("/events")
-    public String events(Model model) {
-        //eventsList = EventService.getEvents();
-        //model.addAttribute("events", eventsList);
+    public String events() {
         return "event-page"; // Serves event-page.html
     }
 
@@ -41,14 +34,6 @@ public class HiveController {
     @GetMapping("/leaderboard")
     public String leaderboard() {
         return "leaderboard"; // Serves event-page.html
-    }
-
-    @GetMapping("/donate")
-    public String donate(Model model) {
-        // filters: local, location (state/country), cause, query
-        //DonationService.getOrgs();
-        //model.addAttribute("orgs", orgsList);
-        return "donation-page";
     }
 
     @GetMapping("/admin")

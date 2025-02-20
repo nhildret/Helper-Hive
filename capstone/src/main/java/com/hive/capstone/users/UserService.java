@@ -6,14 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-    //@Autowired
-    //private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -23,27 +25,27 @@ public class UserService {
         return userRepository.findById(userId).orElse(null);
     }
 
-    public void saveUser(User user) {
+    public User saveUser(User user) {
         // Encode password before saving
-        //user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
     }
 
     public void deleteUser(int userId) {
         userRepository.deleteById(userId);
     }
 
-    public List<User> findByUsername(String username) {
+    public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    public void addNewUser(User user) {
+/*    public void addNewUser(User user) {
         // Encode password before saving
-        //user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         // Set registration date
-        user.setRegisteredAt((java.sql.Date) new Date());
+        user.setRegisteredAt(new Date());
         userRepository.save(user);
-    }
+    }*/
 
     public void updateUser(int userId, User user) {
         User existing = userRepository.findById(userId)
@@ -54,11 +56,12 @@ public class UserService {
         existing.setName(user.getName());
         existing.setRole(user.getRole());
         existing.setTotalHours(user.getTotalHours());
-        existing.setPassword(user.getPassword());
+
         // Only update password if a new one is provided
-        // if (user.getPassword() != null && !user.getPassword().isEmpty()) {
-        //     existing.setPassword(passwordEncoder.encode(user.getPassword()));
-        // }
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            existing.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+
         userRepository.save(existing);
     }
 
@@ -66,8 +69,10 @@ public class UserService {
         return userRepository.findByRole(role);
     }
 
-    public User getUser(int userId) {
-        return userRepository.getReferenceById(userId);
+    public void updateUserRole(int userId, String role) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setRole(role);
+        userRepository.save(user);
     }
-
 }

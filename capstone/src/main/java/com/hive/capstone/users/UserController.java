@@ -9,44 +9,54 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     // Create new User
-    @PostMapping("/users/new")
+/*    @PostMapping("/new")
     public String addNewUser(@ModelAttribute User user) {
         userService.addNewUser(user);
         return "redirect:/users/all";
-    }
+    }*/
 
     // Show user creation form
-    @GetMapping("/users/createForm")
+    @GetMapping("/createForm")
     public String showCreateForm() {
         return "signup";
     }
 
-    // User Self Edit Function
-    
-
-
-    // Admin Functions for User Controller
-    
     // Get all users
-    @GetMapping("/admin/users/all")
+    @GetMapping("/all")
     public String getAllUsers(Model model) {
         model.addAttribute("userList", userService.getAllUsers());
         model.addAttribute("title", "All Users");
-        // where users will be displayed
-        return "/admin-page";
+        return "/User/user-list";
+    }
+
+    // Get users by role
+    // @GetMapping("/byRole")
+    // public String findByRole(@RequestParam(name = "role", defaultValue =
+    // "Volunteer") String role, Model model) {
+    // model.addAttribute("userList", userService.getUsersByRole(role));
+    // model.addAttribute("title", "Users with Role: " + role);
+    // return "/User/user-list";
+    // }
+    @GetMapping("/byRole")
+    public String findByRole(
+            @RequestParam(name = "role", defaultValue = "Volunteer") String role,
+            Model model) {
+        model.addAttribute("userList", userService.getUsersByRole(role));
+        model.addAttribute("title", "Users with Role: " + role);
+        return "User/user-list";
     }
 
     // Get single user by ID
-    @GetMapping("/admin/{userId}")
+    @GetMapping("/{userId}")
     public String getUser(@PathVariable int userId, Model model) {
         User user = userService.getUserById(userId);
         model.addAttribute("user", user);
@@ -54,7 +64,7 @@ public class UserController {
     }
 
     // Show delete confirmation
-    @GetMapping("/users/delete/{userId}")
+    @GetMapping("/delete/{userId}")
     public String confirmDelete(@PathVariable int userId, Model model) {
         User user = userService.getUserById(userId);
         model.addAttribute("user", user);
@@ -62,19 +72,20 @@ public class UserController {
     }
 
     // Delete user
-    @PostMapping("/users/delete/{userId}")
+    @PostMapping("/delete/{userId}")
     public String deleteUser(@PathVariable int userId) {
         userService.deleteUser(userId);
         return "redirect:/users/all";
     }
 
     // Show edit form
-    @GetMapping("/users/edit/{userId}")
+    @GetMapping("/edit/{userId}")
     public String showEditForm(@PathVariable int userId, Model model) {
         User user = userService.getUserById(userId);
         model.addAttribute("user", user);
         return "/User/user-edit";
     }
+
     // Update user
     @PostMapping("/update/{userId}")
     public String updateUser(@PathVariable int userId, @ModelAttribute User user, Model model) {

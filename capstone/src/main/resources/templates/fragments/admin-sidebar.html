@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/general.css}" />
+<link rel="stylesheet" th:href="@{/css/sidebar-style.css}" />
+
+
+<body>
+<div th:fragment="sidebar">
+    <div class="sidebar">
+        <ul>
+            <li><a th:href="@{/admin/home}">Home</a></li>
+            <li><a th:href="@{/admin/users}">Users</a></li>
+            <li><a th:href="@{/admin/events}">Events</a></li>
+            <li><a th:href="@{/admin/organizations}">Organizations</a></li>
+            
+        </ul>
+    </div>
+</div>
+</body>
+</html>
