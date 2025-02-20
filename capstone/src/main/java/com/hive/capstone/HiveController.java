@@ -55,4 +55,9 @@ public class HiveController {
     public String admin() {
         return "admin-page"; // Serves admin-page.html
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "log-in"; // Serves log-in.html
+    }
 }
