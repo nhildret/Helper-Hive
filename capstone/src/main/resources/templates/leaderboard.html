@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Leader Board</title>
+</head>
+<body>
+
+</body>
     <title>Static Page</title>
 <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/leaderboard.css}"/>
@@ -31,45 +36,48 @@
             <div class="ladder-nav--col ladder-title">
                 <h1>Leaderboard Standings</h1>
         </div>
-            <div class='ladder-nav--col'><input type="text" class="ladder-search" placeholder="search user, user..."/>
+            <div class='ladder-nav--col'>
+                <input type="text" class="ladder-search" placeholder="search user..."/>
             </div>
         </div>
 
-        <div class="ladder-nav--results-col"><label>Rank</label></div>
-        <div class="ladder-nav--results-col"><label> User's Name</label></div>
-        <div class="ladder-nav--results-col"><label> Volunteer Hours</label></div>
-        </div>
-
-        <div class = "ladder-nav--results-players">
-            <div th:each="player, iterStat : ${leaderboard}" class="results-row">
-                <div class="results-col">
-                    <span class="results-rank"><span class="positions">1</span></span>
-                </div>
-                <div class="results-col">
-                    <span class="results-name" th:text="${user.name}"></span>
-                </div>
-                <div class="results-col">
-                    <span class="results-hours" th:text="${user.hours}"></span>
-                </div>
-            </div>
-        </div>
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>User's Name</th>
+                    <th>Volunteer Hours</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user, iterStat : ${leaderboard}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td th:text="${username}"></td>
+                    <td th:text="${total.hours}"></td>
+                </tr>
+            </tbody>
+        </table>
     </section>
+
+<!--        <div class="ladder-nav&#45;&#45;results-col"><label>Rank</label></div>-->
+<!--        <div class="ladder-nav&#45;&#45;results-col"><label> User's Name</label></div>-->
+<!--        <div class="ladder-nav&#45;&#45;results-col"><label> Volunteer Hours</label></div>-->
+<!--        </div>-->
+
+<!--        <div class = "ladder-nav&#45;&#45;results-users">-->
+<!--            <div th:each="user, iterStat : ${leaderboard}" class="results-row">-->
+<!--                <div class="results-col">-->
+<!--                    <span class="results-rank"><span class="positions">1</span></span>-->
+<!--                </div>-->
+<!--                <div class="results-col">-->
+<!--                    <span class="results-name" th:text="${user.name}"></span>-->
+<!--                </div>-->
+<!--                <div class="results-col">-->
+<!--                    <span class="results-hours" th:text="${user.hours}"></span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
 </body>
 <!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
 </html>
-
-<!--                </div>-->
-<!--                 <img src="/images/demo_images/volunteer_leaderboard_demo.PNG" alt="Placeholder Image">-->
-<!--            <div>-->
-<!--                <div>-->
-<!--                <img src="/images/demo_images/donation_leaderboard_demo.PNG" alt="Placeholder Image">-->
-<!--            </div>-->
-            <!-- <br>
-            <div class="buttons">
-                <button class="small-btn gold-btn">Sign Up</button>
-                <button class="small-btn gold-otln"> Our Work</button>
-            </div>
-            <div class="large-button-container">
-                <button class="large-btn"><span>Log In</span></button>
-            </div>
-        </div> -->

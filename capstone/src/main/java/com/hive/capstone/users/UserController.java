@@ -81,4 +81,9 @@ public class UserController {
         model.addAttribute("user", userService.getUserById(user_id));
         return "User/user-details";
     }
+//    @GetMapping("/leaderboard")
+//    public String showLeaderboard(Model model){
+//        model.addAttribute("users", userService.getLeaderBoard());
+//        return "leaderboard";
+//    }
 }
