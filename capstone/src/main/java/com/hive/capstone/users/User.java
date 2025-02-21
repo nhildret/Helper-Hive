@@ -2,25 +2,33 @@ package com.hive.capstone.users;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
-@Table(name="users")
-
+@Table(name = "users")
 public class User {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
     private String username;
+
     private String password;
+
     private String role; // For Volunteers, Admins, and OrganizationRepresentatives
+    
     private String name;
+
     private String email;
+
     private Date registeredAt;
+    
     private int totalHours;
 
+    // -----------------------
     // Constructors
+    // -----------------------
 
     public User(int userId, String username, String name, String role, String email, Date registeredAt, String password,
             int totalHours) {
@@ -49,6 +57,7 @@ public class User {
     public User() {
     }
     // toString Method
+    @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId + '}';
