@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Donation {
 
     private int donorId;
-    private int userId; // links to User table
+    private int user_id; // links to User table
     private String donationName;
     private String organizationName;
     private double amount;
@@ -13,21 +13,21 @@ public class Donation {
 
     // Constructors
 
-    public Donation(String donationName, String organizationName, double amount, int userId, Date donatedAt) {
+    public Donation(String donationName, String organizationName, double amount, int user_id, Date donatedAt) {
         this.donationName = donationName;
         this.organizationName = organizationName;
         this.amount = amount;
-        this.userId = userId;
+        this.user_id = user_id;
         this.donatedAt = donatedAt;
     }
 
-    public Donation(int donorId, String donationName, String organizationName, double amount, int userId,
+    public Donation(int donorId, String donationName, String organizationName, double amount, int user_id,
             Date donatedAt) {
         this.donorId = donorId;
         this.donationName = donationName;
         this.organizationName = organizationName;
         this.amount = amount;
-        this.userId = userId;
+        this.user_id = user_id;
         this.donatedAt = donatedAt;
     }
 
@@ -42,8 +42,8 @@ public class Donation {
         return donorId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getuser_id() {
+        return user_id;
     }
 
     public String getDonationName() {
@@ -70,8 +70,8 @@ public class Donation {
         this.donorId = donorId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setuser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public void setDonationName(String donationName) {
@@ -98,7 +98,7 @@ public class Donation {
     public String toString() {
         return "Donation{" +
                 "donorId=" + donorId +
-                ", userId=" + userId +
+                ", user_id=" + user_id +
                 ", donationName='" + donationName + '\'' +
                 ", organizationName='" + organizationName + '\'' +
                 ", amount=" + amount +

@@ -51,7 +51,7 @@
                    class="btn btn-sm btn-outline-secondary">View</a>
                 <a data-th-href="@{/organizations/edit/{organizationId} (organizationId=${organizations.organizationId})}"
                    class="btn btn-sm btn-outline-warning">Edit</a>
-                <a data-th-href="@{/admin/delete/{adminId}/{userId} (userId=${users.userId}, adminId = ${admin.adminId})}"
+                <a data-th-href="@{/admin/delete/{adminId}/{user_id} (user_id=${users.user_id}, adminId = ${admin.adminId})}"
                    class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this organization?');" >Delete</a>
 
             </td>

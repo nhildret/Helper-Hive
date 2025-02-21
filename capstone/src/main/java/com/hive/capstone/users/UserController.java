@@ -38,7 +38,7 @@ public class UserController {
     // Get all users
     @GetMapping("/admin/users/all")
     public String getAllUsers(Model model) {
-        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("userList", userService.getAllUsers());
         model.addAttribute("title", "All Users");
         // where users will be displayed
         return "admin-page";

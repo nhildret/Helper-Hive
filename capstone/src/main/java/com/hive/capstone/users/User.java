@@ -1,11 +1,13 @@
 package com.hive.capstone.users;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "users")
+@Getter
 public class User {
 
     @Id
