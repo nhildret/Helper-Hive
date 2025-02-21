@@ -46,40 +46,40 @@ public class UserController {
     }
 
     // Get single user by ID
-    @GetMapping("/admin/{userId}")
-    public String getUser(@PathVariable int userId, Model model) {
-        User user = userService.getUserById(userId);
+    @GetMapping("/admin/{user_id}")
+    public String getUser(@PathVariable int user_id, Model model) {
+        User user = userService.getUserById(user_id);
         model.addAttribute("user", user);
         return "/User/user-details";
     }
 
     // Show delete confirmation
-    @GetMapping("/users/delete/{userId}")
-    public String confirmDelete(@PathVariable int userId, Model model) {
-        User user = userService.getUserById(userId);
+    @GetMapping("/users/delete/{user_id}")
+    public String confirmDelete(@PathVariable int user_id, Model model) {
+        User user = userService.getUserById(user_id);
         model.addAttribute("user", user);
         return "/User/user-delete";
     }
 
     // Delete user
-    @PostMapping("/users/delete/{userId}")
-    public String deleteUser(@PathVariable int userId) {
-        userService.deleteUser(userId);
+    @PostMapping("/users/delete/{user_id}")
+    public String deleteUser(@PathVariable int user_id) {
+        userService.deleteUser(user_id);
         return "redirect:/users/all";
     }
 
     // Show edit form
-    @GetMapping("/users/edit/{userId}")
-    public String showEditForm(@PathVariable int userId, Model model) {
-        User user = userService.getUserById(userId);
+    @GetMapping("/users/edit/{user_id}")
+    public String showEditForm(@PathVariable int user_id, Model model) {
+        User user = userService.getUserById(user_id);
         model.addAttribute("user", user);
         return "/User/user-edit";
     }
     // Update user
-    @PostMapping("/update/{userId}")
-    public String updateUser(@PathVariable int userId, @ModelAttribute User user, Model model) {
-        userService.updateUser(userId, user);
-        model.addAttribute("user", userService.getUserById(userId));
+    @PostMapping("/update/{user_id}")
+    public String updateUser(@PathVariable int user_id, @ModelAttribute User user, Model model) {
+        userService.updateUser(user_id, user);
+        model.addAttribute("user", userService.getUserById(user_id));
         return "/User/user-details";
     }
 }

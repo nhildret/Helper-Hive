@@ -10,7 +10,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private int user_id;
 
     private String username;
 
@@ -22,35 +22,35 @@ public class User {
 
     private String email;
 
-    private Date registeredAt;
+    private Date registered_at;
     
-    private int totalHours;
+    private int total_hours;
 
     // -----------------------
     // Constructors
     // -----------------------
 
-    public User(int userId, String username, String name, String role, String email, Date registeredAt, String password,
-            int totalHours) {
-        this.userId = userId;
+    public User(int user_id, String username, String name, String role, String email, Date registered_at, String password,
+            int total_hours) {
+        this.user_id = user_id;
         this.username = username;
         this.name = name;
         this.role = role;
         this.email = email;
-        this.registeredAt = registeredAt;
+        this.registered_at = registered_at;
         this.password = password;
-        this.totalHours = totalHours;
+        this.total_hours = total_hours;
     }
 
-    public User(String username, String name, String role, String email, Date registeredAt, String password,
-            int totalHours) {
+    public User(String username, String name, String role, String email, Date registered_at, String password,
+            int total_hours) {
         this.username = username;
         this.name = name;
         this.role = role;
         this.email = email;
-        this.registeredAt = registeredAt;
+        this.registered_at = registered_at;
         this.password = password;
-        this.totalHours = totalHours;
+        this.total_hours = total_hours;
     }
 
     // Default constructor
@@ -60,7 +60,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId + '}';
+                "user_id=" + user_id + '}';
     }
 
     // -----------------------
@@ -68,7 +68,7 @@ public class User {
     // -----------------------
 
     public int getId() {
-        return userId;
+        return user_id;
     }
 
     public String getUsername() {
@@ -92,19 +92,19 @@ public class User {
     }
 
     public Date getRegisteredAt() {
-        return registeredAt;
+        return registered_at;
     }
 
     public int getTotalHours() {
-        return totalHours;
+        return total_hours;
     }
 
     // -----------------------
     // Setters
     // -----------------------
 
-    public void setId(int userId) {
-        this.userId = userId;
+    public void setId(int user_id) {
+        this.user_id = user_id;
     }
 
     public void setUsername(String username) {
@@ -127,12 +127,12 @@ public class User {
         this.email = email;
     }
 
-    public void setRegisteredAt(Date registeredAt) {
-        this.registeredAt = registeredAt;
+    public void setRegisteredAt(Date registered_at) {
+        this.registered_at = registered_at;
     }
 
-    public void setTotalHours(int totalHours) {
-        this.totalHours = totalHours;
+    public void setTotalHours(int total_hours) {
+        this.total_hours = total_hours;
     }
 
 }

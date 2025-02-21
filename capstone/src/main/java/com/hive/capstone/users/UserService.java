@@ -19,8 +19,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(int userId) {
-        return userRepository.findById(userId).orElse(null);
+    public User getUserById(int user_id) {
+        return userRepository.findById(user_id).orElse(null);
     }
 
     public void saveUser(User user) {
@@ -29,8 +29,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void deleteUser(int userId) {
-        userRepository.deleteById(userId);
+    public void deleteUser(int user_id) {
+        userRepository.deleteById(user_id);
     }
 
     public List<User> findByUsername(String username) {
@@ -45,9 +45,10 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser(int userId, User user) {
-        User existing = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+    public void updateUser(int user_id, User user) {
+        User existing = userRepository.findById(
+                user_id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + user_id));
 
         existing.setUsername(user.getUsername());
         existing.setEmail(user.getEmail());
@@ -66,8 +67,8 @@ public class UserService {
         return userRepository.findByRole(role);
     }
 
-    public User getUser(int userId) {
-        return userRepository.getReferenceById(userId);
+    public User getUser(int user_id) {
+        return userRepository.getReferenceById(user_id);
     }
 
 }
