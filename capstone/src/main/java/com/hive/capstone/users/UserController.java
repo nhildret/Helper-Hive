@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class UserController {
 
     @Autowired
@@ -39,10 +38,10 @@ public class UserController {
     // Get all users
     @GetMapping("/admin/users/all")
     public String getAllUsers(Model model) {
-        model.addAttribute("userList", userService.getAllUsers());
+        model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("title", "All Users");
         // where users will be displayed
-        return "/admin-page";
+        return "admin-page";
     }
 
     // Get single user by ID
@@ -50,7 +49,7 @@ public class UserController {
     public String getUser(@PathVariable int user_id, Model model) {
         User user = userService.getUserById(user_id);
         model.addAttribute("user", user);
-        return "/User/user-details";
+        return "User/user-details";
     }
 
     // Show delete confirmation
@@ -58,7 +57,7 @@ public class UserController {
     public String confirmDelete(@PathVariable int user_id, Model model) {
         User user = userService.getUserById(user_id);
         model.addAttribute("user", user);
-        return "/User/user-delete";
+        return "User/user-delete";
     }
 
     // Delete user
@@ -73,13 +72,13 @@ public class UserController {
     public String showEditForm(@PathVariable int user_id, Model model) {
         User user = userService.getUserById(user_id);
         model.addAttribute("user", user);
-        return "/User/user-edit";
+        return "User/user-edit";
     }
     // Update user
     @PostMapping("/update/{user_id}")
     public String updateUser(@PathVariable int user_id, @ModelAttribute User user, Model model) {
         userService.updateUser(user_id, user);
         model.addAttribute("user", userService.getUserById(user_id));
-        return "/User/user-details";
+        return "User/user-details";
     }
 }
