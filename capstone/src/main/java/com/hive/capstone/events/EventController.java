@@ -47,8 +47,5 @@ public class EventController {
         model.addAttribute("title", "Event # " + id + " Details");
         return "/Event/event-details";
     }
-    
-    
-
 
 }

@@ -1,19 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Event Details</title>
-</head>
-<body>
-    <h1> Event Details</h1>
-    <div>
-        <p><strong> Event Name:</strong> Community Cleanup</p>
-        <p><strong>Location:</strong> Park</p>
-        <p><strong>Date:</strong> 2025-04-22</p>
-        <p><strong>Organization ID</strong> 123</p>
-        <p><strong>Volunteer Hours:</strong> 5</p>
-    </div>
-    <a href="edit-event.html">Edit Event</a>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Events</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
+            rel="stylesheet"
+        />
+        <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/events.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>
+        <script src = "/js/popup.js" defer></script>
+    </head>
+    <body>
+        <!-- Header Fragment -->
+        <header th:replace="~{/fragments/header :: header}"></header>
 
-</body>
+        <h1> Event Details</h1>
+        <div>
+            <p><strong> Event Name:</strong> Community Cleanup</p>
+            <p><strong>Location:</strong> Park</p>
+            <p><strong>Date:</strong> 2025-04-22</p>
+            <p><strong>Organization ID</strong> 123</p>
+            <p><strong>Volunteer Hours:</strong> 5</p>
+        </div>
+        <a href="edit-event.html">Edit Event</a>
+    </body>
 </html>
