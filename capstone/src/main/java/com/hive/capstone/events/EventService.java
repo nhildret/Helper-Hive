@@ -19,18 +19,18 @@ public class EventService {
     }
 
     // Fetch an event by id
-    public Event getEventById(int event_id) {
-        return eventRepository.findById(event_id).orElse(null);
+    public Event getEventById(int eventId) {
+        return eventRepository.findById(eventId).orElse(null);
     }
 
-    // Fetch events by organization_id
-    public List<Event> getEventsByOrganizationId(Organization organization) {
-        return eventRepository.getEventsByOrganizationId(organization);
+    // Fetch events by organizationNd
+    public List<Event> getEventsByOrganizationId(int organizationId) {
+        return eventRepository.findByOrganizationId(organizationId);
     }
 
-    // Fetch events by part of an event_name
-    public List<Event> getEventsByNameContains(String event_name) {
-        return eventRepository.findByTitleContainingIgnoreCase(event_name);
+    // Fetch events by part of an eventName
+    public List<Event> getEventsByNameContains(String eventName) {
+        return eventRepository.findByTitleContainingIgnoreCase(eventName);
     }
 
     // Add Event
@@ -39,17 +39,17 @@ public class EventService {
     }
 
     // Delete event
-    public String deleteEventById(int event_id) {
-        eventRepository.deleteById(event_id);
-        return "Event Removed " + event_id;
+    public String deleteEventById(int eventId) {
+        eventRepository.deleteById(eventId);
+        return "Event Removed " + eventId;
     }
 
     public void saveEvent(Event event, User user) {
         eventRepository.save(event);
     }
 
-    public List<Event> getEventsByOrganization(Organization organization) {
-        return eventRepository.findByOrganizationId(organization);
+    public List<Event> getEventsByOrganization(int organizationId) {
+        return eventRepository.findByOrganizationId(organizationId);
     }
 
 

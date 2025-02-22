@@ -12,13 +12,21 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int event_id;
+    @Column(name = "event_id")
+    private int eventId;
 
-    private String event_name;
+    @Column(name = "event_name")
+    private String eventName;
+
+    @Column(name = "location")
     private String location;
-    private Date event_date;
-    private int volunteer_hours; // Hours earned
-   
+
+    @Column(name = "event_date")
+    private Date eventDate;
+
+    @Column(name = "volunteer_hours")
+    private int volunteerHours;
+
     @ManyToOne
     @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
@@ -26,22 +34,22 @@ public class Event {
 
     // Constructors
 
-    public Event(String event_name, String location, Date event_date, Organization organization, int volunteer_hours) {
-        this.event_name = event_name;
+    public Event(String eventName, String location, Date eventDate, Organization organization, int volunteerHours) {
+        this.eventName = eventName;
         this.location = location;
-        this.event_date = event_date;
+        this.eventDate = eventDate;
         this.organization = organization;
-        this.volunteer_hours = volunteer_hours;
+        this.volunteerHours = volunteerHours;
     }
 
-    public Event(int event_id, String event_name, String location, Date event_date, Organization organization,
-            int volunteer_hours) {
-        this.event_id = event_id;
-        this.event_name = event_name;
+    public Event(int eventId, String eventName, String location, Date eventDate, Organization organization,
+            int volunteerHours) {
+        this.eventId = eventId;
+        this.eventName = eventName;
         this.location = location;
-        this.event_date = event_date;
+        this.eventDate = eventDate;
         this.organization = organization;
-        this.volunteer_hours = volunteer_hours;
+        this.volunteerHours = volunteerHours;
     }
 
     public Event() {
@@ -52,11 +60,11 @@ public class Event {
     // -----------------------
 
     public int getEventId() {
-        return event_id;
+        return eventId;
     }
 
     public String getEventName() {
-        return event_name;
+        return eventName;
     }
 
     public String getLocation() {
@@ -64,7 +72,7 @@ public class Event {
     }
 
     public Date getEventDate() {
-        return event_date;
+        return eventDate;
     }
 
     public Organization getOrganizationId() {
@@ -72,35 +80,35 @@ public class Event {
     }
 
     public int getVolunteerHours() {
-        return volunteer_hours;
+        return volunteerHours;
     }
 
     // -----------------------
     // Setters
     // -----------------------
 
-    public void setEventId(int event_id) {
-        this.event_id = event_id;
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 
-    public void setEventName(String event_name) {
-        this.event_name = event_name;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     public void setLocation(String location) {
         this.location = location;
     }
 
-    public void setEventDate(Date event_date) {
-        this.event_date = event_date;
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
     }
 
     public void setOrganizationId(Organization organization) {
         this.organization = organization;
     }
 
-    public void setVolunteerHours(int volunteer_hours) {
-        this.volunteer_hours = volunteer_hours;
+    public void setVolunteerHours(int volunteerHours) {
+        this.volunteerHours = volunteerHours;
     }
 
     // -----------------------
@@ -110,12 +118,12 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-                "event_id=" + event_id +
-                ", event_name='" + event_name + '\'' +
+                "eventId=" + eventId +
+                ", eventName='" + eventName + '\'' +
                 ", location='" + location + '\'' +
-                ", event_date=" + event_date +
+                ", eventDate=" + eventDate +
                 ", organization=" + (organization != null ? organization.getOrganizationName() : "null") +
-                ", volunteer_hours=" + volunteer_hours +
+                ", volunteerHours=" + volunteerHours +
                 '}';
     }
 }
