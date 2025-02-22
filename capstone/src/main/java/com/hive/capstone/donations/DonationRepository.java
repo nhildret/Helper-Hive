@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface DonationRepository extends JpaRepository <Donation, Integer> {
 
-    List<Donation> findByUserId(int user_id);
+    List<Donation> findByUserId(int userId);
 
     List<Donation> findByOrganizationName(String organizationName);
 
