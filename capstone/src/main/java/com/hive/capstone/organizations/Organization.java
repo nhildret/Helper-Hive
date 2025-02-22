@@ -14,7 +14,7 @@ public class Organization {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int organization_id;
+    private int id;
 
     private String organization_name;
     private String password;
@@ -30,9 +30,9 @@ public class Organization {
         this.address = address;
     }
 
-    public Organization(int organization_id, String organization_name, String password, Date registered_at,
+    public Organization(int id, String organization_name, String password, Date registered_at,
             String address) {
-        this.organization_id = organization_id;
+        this.id = id;
         this.organization_name = organization_name;
         this.password = password;
         this.registered_at = registered_at;
@@ -47,7 +47,7 @@ public class Organization {
     // -----------------------
 
     public int getOrganizationId() {
-        return organization_id;
+        return id;
     }
 
     public String getOrganizationName() {
@@ -70,8 +70,8 @@ public class Organization {
     // Setters
     // -----------------------
 
-    public void setOrganizationId(int organization_id) {
-        this.organization_id = organization_id;
+    public void setOrganizationId(int id) {
+        this.id = id;
     }
 
     public void setOrganizationName(String organization_name) {
@@ -97,7 +97,7 @@ public class Organization {
     @Override
     public String toString() {
         return "Organization{" +
-                "organization_id=" + organization_id +
+                "id=" + id +
                 ", organization_name='" + organization_name + '\'' +
                 ", address='" + address + '\'' +
                 '}';

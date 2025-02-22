@@ -24,9 +24,9 @@ public class Admin {
 
         // Constructors
 
-        public User(int user_id, String username, String name, String role, String email, Date registeredAt, String password,
+        public User(int id, String username, String name, String role, String email, Date registeredAt, String password,
                     int totalHours) {
-            this.user_id = user_id;
+            this.id = id;
             this.username = username;
             this.name = name;
             this.role = role;
@@ -53,7 +53,7 @@ public class Admin {
         // toString Method
         public String toString() {
             return "User{" +
-                    "user_id=" + user_id + '}';
+                    "id=" + id + '}';
         }
 
         // -----------------------
@@ -61,7 +61,7 @@ public class Admin {
         // -----------------------
 
         public int getId() {
-            return user_id;
+            return id;
         }
 
         public String getUsername() {
@@ -96,8 +96,8 @@ public class Admin {
         // Setters
         // -----------------------
 
-        public void setId(int user_id) {
-            this.user_id = user_id;
+        public void setId(int id) {
+            this.id = id;
         }
 
         public void setUsername(String username) {

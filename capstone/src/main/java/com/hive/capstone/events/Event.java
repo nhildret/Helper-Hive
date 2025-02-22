@@ -12,9 +12,9 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int event_id;
+    private int id;
 
-    private String event_name;
+    private String title;
     private String location;
     private Date event_date;
     private int volunteer_hours; // Hours earned
@@ -26,18 +26,18 @@ public class Event {
 
     // Constructors
 
-    public Event(String event_name, String location, Date event_date, Organization organization, int volunteer_hours) {
-        this.event_name = event_name;
+    public Event(String title, String location, Date event_date, Organization organization, int volunteer_hours) {
+        this.title = title;
         this.location = location;
         this.event_date = event_date;
         this.organization = organization;
         this.volunteer_hours = volunteer_hours;
     }
 
-    public Event(int event_id, String event_name, String location, Date event_date, Organization organization,
+    public Event(int id, String title, String location, Date event_date, Organization organization,
             int volunteer_hours) {
-        this.event_id = event_id;
-        this.event_name = event_name;
+        this.id = id;
+        this.title = title;
         this.location = location;
         this.event_date = event_date;
         this.organization = organization;
@@ -52,11 +52,11 @@ public class Event {
     // -----------------------
 
     public int getEventId() {
-        return event_id;
+        return id;
     }
 
     public String getEventName() {
-        return event_name;
+        return title;
     }
 
     public String getLocation() {
@@ -79,12 +79,12 @@ public class Event {
     // Setters
     // -----------------------
 
-    public void setEventId(int event_id) {
-        this.event_id = event_id;
+    public void setEventId(int id) {
+        this.id = id;
     }
 
-    public void setEventName(String event_name) {
-        this.event_name = event_name;
+    public void setEventName(String title) {
+        this.title = title;
     }
 
     public void setLocation(String location) {
@@ -110,8 +110,8 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-                "event_id=" + event_id +
-                ", event_name='" + event_name + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", location='" + location + '\'' +
                 ", event_date=" + event_date +
                 ", organization=" + (organization != null ? organization.getOrganizationName() : "null") +

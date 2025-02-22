@@ -25,26 +25,26 @@ public class EventController {
     UserService userService;
 
     // Get All Events
-    @GetMapping("/all")
+    @GetMapping({"/all", "", "/"})
     public String getAllEvents(Model model) {
         model.addAttribute("event_list", eventService.getAllEvents());
-        model.addAttribute("event_name", "All Events");
+        model.addAttribute("title", "All Events");
         return "/Event/event-page";
     }
 
     // Event By ID
-    @GetMapping("/{event_id}")
-    public String getEventsById(@PathVariable int event_id, Model model) {
+    @GetMapping("/{id}")
+    public String getEventsById(@PathVariable int id, Model model) {
         // getting authentication will be put here
 
-        Event event = eventService.getEventById(event_id);
+        Event event = eventService.getEventById(id);
         //model.addAttribute("isOwner", event.getOrganizationId().getId() == currentUserId);
 
         // Fetch Event Details
-        model.addAttribute("event", eventService.getEventById(event_id));
+        model.addAttribute("event", eventService.getEventById(id));
 
         // Set page title
-        model.addAttribute("title", "Event # " + event_id + " Details");
+        model.addAttribute("title", "Event # " + id + " Details");
         return "/Event/event-details";
     }
     

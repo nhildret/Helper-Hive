@@ -12,7 +12,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int user_id;
+    private int id;
 
     private String username;
 
@@ -32,9 +32,9 @@ public class User {
     // Constructors
     // -----------------------
 
-    public User(int user_id, String username, String name, String role, String email, Date registered_at, String password,
+    public User(int id, String username, String name, String role, String email, Date registered_at, String password,
             int total_hours) {
-        this.user_id = user_id;
+        this.id = id;
         this.username = username;
         this.name = name;
         this.role = role;
@@ -62,7 +62,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "user_id=" + user_id + '}';
+                "id=" + id + '}';
     }
 
     // -----------------------
@@ -70,7 +70,7 @@ public class User {
     // -----------------------
 
     public int getId() {
-        return user_id;
+        return id;
     }
 
     public String getUsername() {
@@ -105,8 +105,8 @@ public class User {
     // Setters
     // -----------------------
 
-    public void setId(int user_id) {
-        this.user_id = user_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setUsername(String username) {
