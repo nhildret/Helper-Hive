@@ -26,7 +26,7 @@ public class DonationService {
         return donationRepository.findByOrganizationName(organizationName);
     }
     //Get donations by donation name
-    public List<Donation> getDonationsbyDonationName(String donationName){
+    public List<Donation> getDonationsByDonationName(String donationName){
         return donationRepository.findByDonationName(donationName);
     }
     //Get donations by amount
@@ -37,6 +37,4 @@ public class DonationService {
     public List<Donation> getDonationsByDate(Date donatedAt){
         return donationRepository.findByDonatedAt(donatedAt);
     }
-
-
 }
