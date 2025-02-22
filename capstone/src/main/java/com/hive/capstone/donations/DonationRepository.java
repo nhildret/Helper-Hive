@@ -14,9 +14,9 @@ public interface DonationRepository extends JpaRepository <Donation, Integer> {
 
     List<Donation> findByOrganizationName(String organizationName);
 
-    List<Donation> findDonationName(String donationName);
+    List<Donation> findByDonationName(String donationName);
 
     List<Donation> findByAmount(double amount);
 
-    List<Donation> findByDonateAt(Date donatedAt);
+    List<Donation> findByDonatedAt(Date donatedAt);
 }
