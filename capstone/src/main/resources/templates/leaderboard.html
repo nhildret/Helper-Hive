@@ -52,15 +52,16 @@
             </thead>
             <tbody>
                 <tr th:each="user, iterStat : ${leaderboard}">
-                    <td th:text="${iterStat.count}"></td>
-                    <td th:text="${username}"></td>
-                    <td th:text="${total.hours}"></td>
+                    <td th:text="${iterStat.count}"></td> <!--Ranking-->
+                    <td th:text="${username}"></td> <!--Users Name -->
+                    <td th:text="${user.totalHours}"></td> <!--Volunteer Hours-->
                 </tr>
             </tbody>
         </table>
     </section>
 
-<!--This is a static version of the leaderboards-->
+<!--This is our static version of the leaderboards-->
+
 <!--        <div class="ladder-nav&#45;&#45;results-col"><label>Rank</label></div>-->
 <!--        <div class="ladder-nav&#45;&#45;results-col"><label> User's Name</label></div>-->
 <!--        <div class="ladder-nav&#45;&#45;results-col"><label> Volunteer Hours</label></div>-->

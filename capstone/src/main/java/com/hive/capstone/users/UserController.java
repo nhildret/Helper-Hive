@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class UserController {
 
@@ -81,9 +83,12 @@ public class UserController {
         model.addAttribute("user", userService.getUserById(user_id));
         return "User/user-details";
     }
+
+
 //    @GetMapping("/leaderboard")
 //    public String showLeaderboard(Model model){
-//        model.addAttribute("users", userService.getLeaderBoard());
+//        List<User> leaderboard = userService.getLeaderboard();
+//        model.addAttribute("leaderboard", leaderboard);
 //        return "leaderboard";
 //    }
 }

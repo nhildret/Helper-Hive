@@ -72,8 +72,7 @@ public class UserService {
     }
 
 //LeaderBoard implementation to get users:
-//    public List<User> getLeaderBoard(){
+//    public List<User> getLeaderboard(){
 //        return userRepository.findAllByOrderByTotalHoursDesc();
-//    }
 
 }
