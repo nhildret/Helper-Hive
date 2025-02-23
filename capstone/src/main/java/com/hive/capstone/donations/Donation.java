@@ -1,7 +1,6 @@
 package com.hive.capstone.donations;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.sql.Date;
 
@@ -9,8 +8,12 @@ import java.sql.Date;
 @Table(name = "donations")
 public class Donation {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int donorId;
-    private int user_id; // links to User table
+
+    @Column(name = "user_id")
+    private int userId; // links to User table
     private String donationName;
     private String organizationName;
     private double amount;
@@ -22,7 +25,7 @@ public class Donation {
         this.donationName = donationName;
         this.organizationName = organizationName;
         this.amount = amount;
-        this.user_id = user_id;
+        this.userId = userId;
         this.donatedAt = donatedAt;
     }
 
@@ -32,7 +35,7 @@ public class Donation {
         this.donationName = donationName;
         this.organizationName = organizationName;
         this.amount = amount;
-        this.user_id = user_id;
+        this.userId = userId;
         this.donatedAt = donatedAt;
     }
 
@@ -48,7 +51,7 @@ public class Donation {
     }
 
     public int getuser_id() {
-        return user_id;
+        return userId;
     }
 
     public String getDonationName() {
@@ -75,8 +78,8 @@ public class Donation {
         this.donorId = donorId;
     }
 
-    public void setuser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void setDonationName(String donationName) {
@@ -103,7 +106,7 @@ public class Donation {
     public String toString() {
         return "Donation{" +
                 "donorId=" + donorId +
-                ", user_id=" + user_id +
+                ", user_id=" + userId +
                 ", donationName='" + donationName + '\'' +
                 ", organizationName='" + organizationName + '\'' +
                 ", amount=" + amount +
