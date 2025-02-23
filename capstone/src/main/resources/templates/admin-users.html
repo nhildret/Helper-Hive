@@ -7,24 +7,35 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>-->
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/leaderboard.css}"/>
     <link
             href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
             rel="stylesheet"
     />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sidebar-style.css}">
 
 </head>
 <body>
-
-<header th:replace="~{/fragments/header :: header}"></header>
-<title>Admin Page</title>
+<!--<body style="background-color:#ff9800;">-->
+<div class="sidebar">
+    <div class="logo">
+        <a th:href="@{/admin}">
+            <img th:src="@{/images/bee_logo.png}" alt="Placeholder Image" />
+        </a>
+    </div>
+    <ul>
+        <li><a th:href="@{/admin}">Home</a></li>
+        <li><a th:href="@{/admin/users/all}">Users</a></li>
+        <li><a th:href="@{/admin/organizations/all}">Organizations</a></li>
+        <li><a th:href="@{/admin/events/all}">Events</a></li>
+        <li><a th:href="@{/admin/donations/all}">Donations</a></li>
+    </ul>
+</div>
+<!--header th:replace="~{fragments/sidebar :: sidebar}"></header-->
+<title>Admin Homepage</title>
 
 <div class="container">
     <a href="profile.html"></a>
@@ -38,11 +49,12 @@
             <th>Name</th>
             <th>Total Hours</th>
             <th>Ban Status</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr data-th-each="users : ${userList}">
-            <td data-th-text="${users.user_id}"></a></td>
+            <td data-th-text="${users.user_id}"></td>
             <td data-th-text="${users.email}"></td>
             <td data-th-text="${users.name}"></td>
             <td data-th-text="${users.totalHours}"></td>

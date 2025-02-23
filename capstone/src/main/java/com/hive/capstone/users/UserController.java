@@ -43,7 +43,7 @@ public class UserController {
         model.addAttribute("userList", userService.getAllUsers());
         model.addAttribute("title", "All Users");
         // where users will be displayed
-        return "admin-page";
+        return "admin-users";
     }
 
     // Get single user by ID
