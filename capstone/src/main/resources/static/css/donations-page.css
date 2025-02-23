@@ -60,7 +60,7 @@ h1 {
     margin-bottom:0px;
     line-height:1;
 }
-/* This is for the yellow header that states "Leaderboard Standings"*/
+/* This is for the yellow header that states "Donations Standings"*/
 .ladder-nav h1, .bracket-title{
     font-size:20px;
     color:/* This is comment for later since I need to find the hex code:)*/
@@ -69,16 +69,16 @@ h1 {
     letter-spacing: 2px;
 }
 /* Table Styling*/
-.leaderboard-table{
-    width:100%
+.donations-table{
+    width:50%;
     border-collapse: collapse;
     margin: 20px 0;
-    background color:
+    background-color:#fdead1;
     border-radius:10px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-.leaderboard-table th{
+.donations-table th{
     padding: 15px;
     text-align: center;
     font-size: 18px;
@@ -86,26 +86,26 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-.leaderboard-table tbody tr{
+.donations-table tbody tr{
     border-bottom: 1px solid #f1f1f1;
 }
-.leaderboard-table tbody tr:last child{
+.donations-table tbody tr:last child{
     border-bottom: none;
 }
-.leaderboard-table tbody tr:hover{
+.donations-table tbody tr:hover{
     background-color: #fdead1;
 }
-.leaderboard-table td{
+.donations-table td{
     padding: 15px;
     font-size: 16px;
     color: #333;
 }
-.leaderboard-table td:first-child{
+.donations-table td:first-child{
     font-weight: bold;
 }
-.leaderboard-table td:nth-child(2){
+.donations-table td:nth-child(2){
     color #f59E02;
 }
-.leaderboard-table td:nth-child(3){
+.donations-table td:nth-child(3){
     text-align: right;
 }
