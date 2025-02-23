@@ -11,13 +11,24 @@ import jakarta.persistence.*;
 public class Event {
 
     @Id
+    @Column(name = "event_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "location")
     private String location;
-    private Date event_date;
-    private int volunteer_hours; // Hours earned
+
+    @Column(name = "event_date")
+    private Date eventDate;
+
+    @Column(name = "volunteer_hours")
+    private int volunteerHours; // Hours earned
+
+    @Column(name = "cause_id")
+    private int causeId;
    
     @ManyToOne
     @JoinColumn(name = "organization_id", nullable = false)
@@ -26,22 +37,24 @@ public class Event {
 
     // Constructors
 
-    public Event(String title, String location, Date event_date, Organization organization, int volunteer_hours) {
+    public Event(String title, String location, Date eventDate, Organization organization, int volunteerHours, int causeId) {
         this.title = title;
         this.location = location;
-        this.event_date = event_date;
+        this.eventDate = eventDate;
         this.organization = organization;
-        this.volunteer_hours = volunteer_hours;
+        this.volunteerHours = volunteerHours;
+        this.causeId = causeId;
     }
 
-    public Event(int id, String title, String location, Date event_date, Organization organization,
-            int volunteer_hours) {
+    public Event(int id, String title, String location, Date eventDate, Organization organization,
+            int volunteerHours, int causeId) {
         this.id = id;
         this.title = title;
         this.location = location;
-        this.event_date = event_date;
+        this.eventDate = eventDate;
         this.organization = organization;
-        this.volunteer_hours = volunteer_hours;
+        this.volunteerHours = volunteerHours;
+        this.causeId = causeId;
     }
 
     public Event() {
@@ -64,15 +77,19 @@ public class Event {
     }
 
     public Date getEventDate() {
-        return event_date;
+        return eventDate;
     }
 
-    public Organization getOrganizationId() {
-        return organization;
+    public int getOrganizationId() {
+        return organization.getOrganizationId();
     }
 
     public int getVolunteerHours() {
-        return volunteer_hours;
+        return volunteerHours;
+    }
+
+    public int getCauseId() {
+        return causeId;
     }
 
     // -----------------------
@@ -91,16 +108,20 @@ public class Event {
         this.location = location;
     }
 
-    public void setEventDate(Date event_date) {
-        this.event_date = event_date;
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
     }
 
     public void setOrganizationId(Organization organization) {
         this.organization = organization;
     }
 
-    public void setVolunteerHours(int volunteer_hours) {
-        this.volunteer_hours = volunteer_hours;
+    public void setVolunteerHours(int volunteerHours) {
+        this.volunteerHours = volunteerHours;
+    }
+
+    public void setCauseId(int causeId) {
+        this.causeId = causeId;
     }
 
     // -----------------------
@@ -113,9 +134,10 @@ public class Event {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", location='" + location + '\'' +
-                ", event_date=" + event_date +
+                ", eventDate=" + eventDate +
                 ", organization=" + (organization != null ? organization.getOrganizationName() : "null") +
-                ", volunteer_hours=" + volunteer_hours +
+                ", causeId=" + causeId +
+                ", volunteerHours=" + volunteerHours +
                 '}';
     }
 }

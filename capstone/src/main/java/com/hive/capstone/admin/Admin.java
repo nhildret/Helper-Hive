@@ -11,15 +11,20 @@ import java.sql.Date;
 public class Admin {
 
         @Id
+        @Column(name = "admin_id")
         @GeneratedValue(strategy= GenerationType.AUTO)
-        private int admin_id;
+        private int id;
 
         private String username;
         private String password;
         private String role; // For Volunteers, Admins, and OrganizationRepresentatives
         private String name;
         private String email;
+
+        @Column(name = "registered_at")
         private Date registeredAt;
+
+        @Column(name = "total_hours")
         private int totalHours;
 
         // Constructors

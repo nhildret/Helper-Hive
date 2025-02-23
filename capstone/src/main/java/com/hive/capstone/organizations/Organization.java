@@ -2,10 +2,6 @@ package com.hive.capstone.organizations;
 
 import java.sql.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,29 +9,37 @@ import jakarta.persistence.*;
 public class Organization {
 
     @Id
+    @Column(name = "organization_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String organization_name;
+    @Column(name = "organization_name")
+    private String organizationName;
+
+    @Column(name = "password")
     private String password;
-    private Date registered_at;
+
+    @Column(name = "registered_at")
+    private Date registeredAt;
+
+    @Column(name = "address")
     private String address;
 
     // Constructors
 
-    public Organization(String organization_name, String password, Date registered_at, String address) {
-        this.organization_name = organization_name;
+    public Organization(String organizationName, String password, Date registeredAt, String address) {
+        this.organizationName = organizationName;
         this.password = password;
-        this.registered_at = registered_at;
+        this.registeredAt = registeredAt;
         this.address = address;
     }
 
-    public Organization(int id, String organization_name, String password, Date registered_at,
+    public Organization(int id, String organizationName, String password, Date registeredAt,
             String address) {
         this.id = id;
-        this.organization_name = organization_name;
+        this.organizationName = organizationName;
         this.password = password;
-        this.registered_at = registered_at;
+        this.registeredAt = registeredAt;
         this.address = address;
     }
 
@@ -51,7 +55,7 @@ public class Organization {
     }
 
     public String getOrganizationName() {
-        return organization_name;
+        return organizationName;
     }
 
     public String getPassword() {
@@ -59,7 +63,7 @@ public class Organization {
     }
 
     public Date getRegisteredAt() {
-        return registered_at;
+        return registeredAt;
     }
 
     public String getAddress() {
@@ -74,16 +78,16 @@ public class Organization {
         this.id = id;
     }
 
-    public void setOrganizationName(String organization_name) {
-        this.organization_name = organization_name;
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setRegisteredAt(Date registered_at) {
-        this.registered_at = registered_at;
+    public void setRegisteredAt(Date registeredAt) {
+        this.registeredAt = registeredAt;
     }
 
     public void setAddress(String address) {
@@ -98,7 +102,7 @@ public class Organization {
     public String toString() {
         return "Organization{" +
                 "id=" + id +
-                ", organization_name='" + organization_name + '\'' +
+                ", organizationName='" + organizationName + '\'' +
                 ", address='" + address + '\'' +
                 '}';
     }

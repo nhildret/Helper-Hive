@@ -37,7 +37,7 @@ public class EventController {
     public String getEventsById(@PathVariable int id, Model model) {
         // getting authentication will be put here
 
-        Event event = eventService.getEventById(id);
+        // Event event = eventService.getEventById(id);
         //model.addAttribute("isOwner", event.getOrganizationId().getId() == currentUserId);
 
         // Fetch Event Details
@@ -45,7 +45,7 @@ public class EventController {
 
         // Set page title
         model.addAttribute("title", "Event # " + id + " Details");
-        return "/Event/event-details";
+        return "Event/event-details";
     }
 
     // Get a list of Events based on name
@@ -53,21 +53,21 @@ public class EventController {
     public String getEventsByName(@RequestParam(name = "title", defaultValue = "event") String title, Model model) {
         model.addAttribute("eventList", eventService.getEventsByTitle(title));
         model.addAttribute("title", "Event Name: " + title);
-        return "/Event/event-page";
+        return "Event/event-page";
     }
 
     @GetMapping("")
     public String getEventsByTitleContains(@RequestParam(name = "title", required = false) String title, Model model) {
         model.addAttribute("classList", eventService.getEventsByTitleContains(title));
         model.addAttribute("title", "Event Name: " + title);
-        return "/Event/event-page";
+        return "Event/event-page";
     }
 
     // Update Event
     @GetMapping("/update/{eventId}")
     public String showUpdateForm(@PathVariable int eventId, Model model) {
         model.addAttribute("event", eventService.getEventById(eventId));
-        return "/Event/event-update";
+        return "Event/event-update";
     }
     // Post Updated Event
     @PostMapping("/event/update")

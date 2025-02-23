@@ -19,11 +19,11 @@
 
         <h1> Event Details</h1>
         <div>
-            <p><strong> Event Name:</strong> Community Cleanup</p>
-            <p><strong>Location:</strong> Park</p>
-            <p><strong>Date:</strong> 2025-04-22</p>
-            <p><strong>Organization ID</strong> 123</p>
-            <p><strong>Volunteer Hours:</strong> 5</p>
+            <p><strong>Event Name:</strong> <span data-th-text="${event.getEventName()}"></span></p>
+            <p><strong>Location:</strong> <span data-th-text="${event.getLocation()}"></span></p>
+            <p><strong>Date:</strong> <span data-th-text="${event.getEventDate()}"></span></p>
+            <p><strong>Organization ID</strong> <span data-th-text="${event.getOrganizationId()}"></span></p>
+            <p><strong>Volunteer Hours:</strong> <span data-th-text="${event.getVolunteerHours()}"></span></p>
         </div>
         <a href="edit-event.html">Edit Event</a>
     </body>

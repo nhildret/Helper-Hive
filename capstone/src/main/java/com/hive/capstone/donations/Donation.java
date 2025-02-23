@@ -14,29 +14,42 @@ public class Donation {
 
     @Column(name = "user_id")
     private int userId; // links to User table
+
+    @Column(name = "donation_name")
     private String donationName;
+
+    @Column(name = "organization_name")
     private String organizationName;
+
+    @Column(name = "cause_id")
+    private int causeId;
+
+    @Column(name = "amount")
     private double amount;
+
+    @Column(name = "donated_at")
     private Date donatedAt;
 
     // Constructors
 
-    public Donation(String donationName, String organizationName, double amount, int user_id, Date donatedAt) {
+    public Donation(String donationName, String organizationName, double amount, int userId, Date donatedAt, int causeId) {
         this.donationName = donationName;
         this.organizationName = organizationName;
         this.amount = amount;
         this.userId = userId;
         this.donatedAt = donatedAt;
+        this.causeId = causeId;
     }
 
-    public Donation(int donorId, String donationName, String organizationName, double amount, int user_id,
-            Date donatedAt) {
+    public Donation(int donorId, String donationName, String organizationName, double amount, int userId,
+            Date donatedAt, int causeId) {
         this.donorId = donorId;
         this.donationName = donationName;
         this.organizationName = organizationName;
         this.amount = amount;
         this.userId = userId;
         this.donatedAt = donatedAt;
+        this.causeId = causeId;
     }
 
     public Donation() {
@@ -50,7 +63,7 @@ public class Donation {
         return donorId;
     }
 
-    public int getuser_id() {
+    public int getuserId() {
         return userId;
     }
 
@@ -68,6 +81,10 @@ public class Donation {
 
     public Date getDonatedAt() {
         return donatedAt;
+    }
+
+    public int getCauseId() {
+        return causeId;
     }
 
     // -----------------------
@@ -98,6 +115,10 @@ public class Donation {
         this.donatedAt = donatedAt;
     }
 
+    public void setCauseId(int causeId) {
+        this.causeId = causeId;
+    }
+
     // -----------------------
     // toString Method
     // -----------------------
@@ -106,9 +127,10 @@ public class Donation {
     public String toString() {
         return "Donation{" +
                 "donorId=" + donorId +
-                ", user_id=" + userId +
+                ", userId=" + userId +
                 ", donationName='" + donationName + '\'' +
                 ", organizationName='" + organizationName + '\'' +
+                ", causeId=" + causeId +
                 ", amount=" + amount +
                 ", donatedAt=" + donatedAt +
                 '}';

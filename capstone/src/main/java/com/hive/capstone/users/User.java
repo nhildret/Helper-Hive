@@ -11,48 +11,56 @@ import java.util.Date;
 public class User {
 
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "username")
     private String username;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
     private String role; // For Volunteers, Admins, and OrganizationRepresentatives
     
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "email")
     private String email;
 
-    private Date registered_at;
+    @Column(name = "registered_at")
+    private Date registeredAt;
     
-    private int total_hours;
+    @Column(name = "total_hours")
+    private int totalHours;
 
     // -----------------------
     // Constructors
     // -----------------------
 
-    public User(int id, String username, String name, String role, String email, Date registered_at, String password,
-            int total_hours) {
+    public User(int id, String username, String name, String role, String email, Date registeredAt, String password,
+            int totalHours) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.role = role;
         this.email = email;
-        this.registered_at = registered_at;
+        this.registeredAt = registeredAt;
         this.password = password;
-        this.total_hours = total_hours;
+        this.totalHours = totalHours;
     }
 
-    public User(String username, String name, String role, String email, Date registered_at, String password,
-            int total_hours) {
+    public User(String username, String name, String role, String email, Date registeredAt, String password,
+            int totalHours) {
         this.username = username;
         this.name = name;
         this.role = role;
         this.email = email;
-        this.registered_at = registered_at;
+        this.registeredAt = registeredAt;
         this.password = password;
-        this.total_hours = total_hours;
+        this.totalHours = totalHours;
     }
 
     // Default constructor
@@ -94,11 +102,11 @@ public class User {
     }
 
     public Date getRegisteredAt() {
-        return registered_at;
+        return registeredAt;
     }
 
     public int getTotalHours() {
-        return total_hours;
+        return totalHours;
     }
 
     // -----------------------
@@ -129,12 +137,12 @@ public class User {
         this.email = email;
     }
 
-    public void setRegisteredAt(Date registered_at) {
-        this.registered_at = registered_at;
+    public void setRegisteredAt(Date registeredAt) {
+        this.registeredAt = registeredAt;
     }
 
-    public void setTotalHours(int total_hours) {
-        this.total_hours = total_hours;
+    public void setTotalHours(int totalHours) {
+        this.totalHours = totalHours;
     }
 
 }
