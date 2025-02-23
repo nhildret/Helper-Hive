@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 public class HiveController {
     @GetMapping("/")
     public String home() {
-        return "landing-page"; // This looks for src/main/resources/templates/landing-page.html
+        return "landing-page"; // Serves landing-page.html
     }
 
     @GetMapping("/maps")
@@ -21,20 +21,15 @@ public class HiveController {
         return "user-page"; // Serves user-page.html
     }
 
-    // @GetMapping("/events")
-    // public String events() {
-    //     return "event-page"; // Serves event-page.html
-    // }
-
     @GetMapping("/about")
     public String aboutus() {
-        return "about-us"; // Serves event-page.html
+        return "about-us"; // Serves about-us.html
     }
 
-    @GetMapping("/leaderboard")
-    public String leaderboard() {
-        return "leaderboard"; // Serves event-page.html
-    }
+    // @GetMapping("/leaderboard")
+    // public String leaderboard() {
+    //     return "leaderboard"; // Serves leaderboard.html
+    // }
 
     @GetMapping("/admin")
     public String admin() {

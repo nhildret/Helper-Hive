@@ -85,10 +85,10 @@ public class UserController {
     }
 
 
-//    @GetMapping("/leaderboard")
-//    public String showLeaderboard(Model model){
-//        List<User> leaderboard = userService.getLeaderboard();
-//        model.addAttribute("leaderboard", leaderboard);
-//        return "leaderboard";
-//    }
+   @GetMapping("/leaderboard")
+   public String showLeaderboard(Model model){
+       List<User> leaderboard = userService.getLeaderboard();
+       model.addAttribute("leaderboard", leaderboard);
+       return "leaderboard";
+   }
 }

@@ -25,7 +25,7 @@
 <main>
     <section class="button-section">
         <div class="text-container">
-            <h1>Leaderboards</h1>
+            <h1>Leaderboard</h1>
             <p> Here you will be able to see the latest standings of our leaderboard. We would like to congratulate
             everyone, especially the top three users for your time and commitment!</p>
         </div>
@@ -52,37 +52,11 @@
                 </tr>
             </thead>
             <tbody>
-<!--                <tr th:each="user, iterStat : ${leaderboard}">-->
-<!--                    <td th:text="${iterStat.count}"></td> &lt;!&ndash;Ranking&ndash;&gt;-->
-<!--                    <td th:text="${username}"></td> &lt;!&ndash;Users Name &ndash;&gt;-->
-<!--                    <td th:text="${user.totalHours}"></td> &lt;!&ndash;Volunteer Hours&ndash;&gt; -->
-<!--                    -->
-<!--                   Static Demonstration of leaderboard-->
-                    <tr>
-                        <td> 1</td>
-                        <td> John Doe</td>
-                        <td> 5 </td>
+                <tr th:each="i : ${#numbers.sequence(1, leaderboard.size())}">
+                    <td data-th-text="${i}"> </td>
+                    <td data-th-text="${leaderboard.get(i-1).name}"></td>
+                    <td data-th-text="${leaderboard.get(i-1).totalHours}"></td>
                 </tr>
-                    <tr>
-                        <td> 2</td>
-                        <td> Johnny AppleSeed</td>
-                        <td> 2 </td>
-                    </tr>
-                    <tr>
-                        <td> 3</td>
-                        <td> Fancy Nancy</td>
-                        <td> 1 </td>
-                    </tr>
-                    <tr>
-                        <td> 4</td>
-                        <td> Chris Cross</td>
-                        <td> 0 </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td> John Wayne</td>
-                        <td> 0 </td>
-                    </tr>
             </tbody>
         </table>
     </section>

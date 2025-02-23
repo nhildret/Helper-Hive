@@ -71,8 +71,9 @@ public class UserService {
         return userRepository.getReferenceById(user_id);
     }
 
-//LeaderBoard implementation to get users:
-//    public List<User> getLeaderboard(){
-//        return userRepository.findAllByOrderByTotalHoursDesc();
+    //LeaderBoard implementation to get users:
+    public List<User> getLeaderboard(){
+        return userRepository.findAllByOrderByTotalHoursDesc();
+    }
 
 }
