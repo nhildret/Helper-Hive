@@ -37,4 +37,8 @@ public class DonationService {
     public List<Donation> getDonationsByDate(Date donatedAt){
         return donationRepository.findByDonatedAt(donatedAt);
     }
+    // Donation Leaderboard Implementation to get Amount
+//    public List<Donation> getTopDonors(){
+//        return donationRepository.findAllByOrderByAmountDesc();
+//    }
 }

@@ -19,4 +19,6 @@ public interface DonationRepository extends JpaRepository <Donation, Integer> {
     List<Donation> findByAmount(double amount);
 
     List<Donation> findByDonatedAt(Date donatedAt);
+
+//    List<Donation> findAllByOrderByAmountDesc();
 }
