@@ -1,0 +1,111 @@
+.image-container {
+        display: flex;
+        gap: 10px; /* Adjust spacing between images */
+}
+
+.image-container img {
+        max-width: 100%; /* Ensures responsiveness */
+        height: auto;
+}
+
+/* Button section */
+.button-section {
+    text-align: center;
+    margin: 2rem 0; /* Adjusted margin to reduce space between buttons and header */
+}
+
+
+.text-container {
+    background-color: #fdead1;
+    padding: 2rem;
+    width: 45%;
+    margin: 0 auto 2rem auto;
+    border-radius: 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 26px;
+    font-family: "American Typewriter", serif;
+}
+
+h1 {
+    font-family: "American Typewriter", serif;
+    color: #fdead1; /* Text color */
+    text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.701566px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.558831px 0px;
+    margin: 1rem 0;
+    text-align: center;
+    font-size: 72px;
+}
+
+#scrims-ladder--container{
+    place-items: center;
+    margin:0;
+    padding:0px;
+    box-sizing: border-box;
+    font-family: American Typewriter
+}
+
+.ladder-nav{
+    display:flex;
+    flex-wrap:wrap;
+    align-items: center;
+    background: #F59E02;
+    padding: 10px 25 px;
+    border-radius:10px;
+    border:1px solid #F79101
+}
+
+.ladder-title{
+    flex:2;
+}
+.ladder-nav h1{
+    margin-bottom:0px;
+    line-height:1;
+}
+/* This is for the yellow header that states "Leaderboard Standings"*/
+.ladder-nav h1, .bracket-title{
+    font-size:20px;
+    color:/* This is comment for later since I need to find the hex code:)*/
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing: 2px;
+}
+/* Table Styling*/
+.leaderboard-table{
+    width:100%
+    border-collapse: collapse;
+    margin: 20px 0;
+    background color:
+    border-radius:10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.leaderboard-table th{
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.leaderboard-table tbody tr{
+    border-bottom: 1px solid #f1f1f1;
+}
+.leaderboard-table tbody tr:last child{
+    border-bottom: none;
+}
+.leaderboard-table tbody tr:hover{
+    background-color: #fdead1;
+}
+.leaderboard-table td{
+    padding: 15px;
+    font-size: 16px;
+    color: #333;
+}
+.leaderboard-table td:first-child{
+    font-weight: bold;
+}
+.leaderboard-table td:nth-child(2){
+    color #f59E02;
+}
+.leaderboard-table td:nth-child(3){
+    text-align: right;
+}
