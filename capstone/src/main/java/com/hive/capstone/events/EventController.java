@@ -48,4 +48,46 @@ public class EventController {
         return "/Event/event-details";
     }
 
+    // Get a list of Events based on name
+    @GetMapping("/search")
+    public String getEventsByName(@RequestParam(name = "title", defaultValue = "event") String title, Model model) {
+        model.addAttribute("eventList", eventService.getEventsByTitle(title));
+        model.addAttribute("title", "Event Name: " + title);
+        return "/Event/event-page";
+    }
+
+    @GetMapping("")
+    public String getEventsByTitleContains(@RequestParam(name = "title", required = false) String title, Model model) {
+        model.addAttribute("classList", eventService.getEventsByTitleContains(title));
+        model.addAttribute("title", "Event Name: " + title);
+        return "/Event/event-page";
+    }
+
+    // Update Event
+    @GetMapping("/update/{eventId}")
+    public String showUpdateForm(@PathVariable int eventId, Model model) {
+        model.addAttribute("event", eventService.getEventById(eventId));
+        return "/Event/event-update";
+    }
+    // Post Updated Event
+    @PostMapping("/event/update")
+    public String updateClass(Event event) {
+        eventService.saveEvent(event);
+        return "redirect:/event/" + event.getEventId();
+    }
+
+    // Delete Event
+    @GetMapping("/delete/{eventId}")
+    public String deleteEventById(@PathVariable int eventId) {
+        eventService.deleteEventById(eventId);
+        return "redirect:/event/all";
+    }
+
+    // Create New Event
+    @PostMapping("/new")
+    public String addNewEvent(Event event) {
+        eventService.saveEvent(event);
+        return "redirect:/event/all";
+    }
+
 }

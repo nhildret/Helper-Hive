@@ -28,6 +28,11 @@ public class EventService {
         return eventRepository.getEventsByOrganization_Id(organization.getOrganizationId());
     }
 
+    // Fetch events by title
+    public List<Event> getEventsByTitle(String title) {
+        return eventRepository.getEventsByTitle(title);
+    }
+
     // Fetch events by part of a title
     public List<Event> getEventsByTitleContains(String title) {
         return eventRepository.findByTitleContainingIgnoreCase(title);
