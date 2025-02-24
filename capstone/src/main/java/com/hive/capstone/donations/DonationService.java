@@ -1,6 +1,5 @@
 package com.hive.capstone.donations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.hive.capstone.users.User;
 import com.hive.capstone.organizations.Organization;
@@ -38,8 +37,8 @@ public class DonationService {
     public List<Donation> getDonationsByDate(Date donatedAt){
         return donationRepository.findByDonatedAt(donatedAt);
     }
-//     Donation Leaderboard Implementation to get Amount
+    // Donation Leaderboard Implementation to get Amount
 //    public List<Donation> getTopDonors(){
-//        return donationRepository.findAll(Sort.by(Sort.Direction.DESC, "amount"));
+//        return donationRepository.findAllByOrderByAmountDesc();
 //    }
 }

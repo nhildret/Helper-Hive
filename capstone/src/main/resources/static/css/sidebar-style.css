@@ -24,9 +24,9 @@ body {
 
 .sidebar {
     background-color: var(--sidebar-bg);
-    width: 280px;
+    width: 250px;
     height: 100vh;
-    padding: 2rem;
+    padding: 1rem;
     box-shadow: 6px 0 6px var(--shadow);
 }
 

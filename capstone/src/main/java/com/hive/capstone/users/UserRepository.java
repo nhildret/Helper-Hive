@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findAll();
-
+    
     List<User> findByUsername(String username);
 
     Optional<User> findById(int user_id);

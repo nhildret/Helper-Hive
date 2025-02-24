@@ -10,9 +10,6 @@ import java.util.List;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
 
-    //Returns all events
-    List<Event> findAll();
-
     // Returns Event with name
     List<Event> getEventsByTitle(String title);
 

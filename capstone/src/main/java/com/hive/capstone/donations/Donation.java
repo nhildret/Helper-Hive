@@ -12,7 +12,7 @@ public class Donation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int donorId;
+    private int donorId;
 
     @Column(name = "user_id")
     private int userId; // links to User table
