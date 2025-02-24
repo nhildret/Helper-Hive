@@ -48,7 +48,8 @@
                 <th>Name</th>
                 <th>Registration Date</th>
                 <th>Address</th>
-                <th>Member Total</th>
+                <th>Actions</th>
+                <!--<th>Member Total</th>-->
             </tr>
             </thead>
             <tbody>
@@ -57,11 +58,12 @@
                 <td data-th-text="${organizations.organizationName}"></td>
                 <td data-th-text="${organizations.registeredAt}"></td>
                 <td data-th-text="${organizations.address}"></td>
+                <!--<td data-th-text="${organizations.memberTotal}"></td>-->
 
                 <td><a data-th-href="@{/organizations/{id} (organizationId=${organizations.id})}"
                        class="btn btn-sm btn-outline-secondary">View</a>
-                    <a data-th-href="@{/organizations/edit/{id} (id=${organizations.id})}"
-                       class="btn btn-sm btn-outline-warning">Edit</a>
+<!--                    <a data-th-href="@{/organizations/edit/{id} (id=${organizations.id})}"
+                       class="btn btn-sm btn-outline-warning">Edit</a>-->
                     <!--
                                     <a data-th-href="@{/admin/delete/{adminId}/{user_id} (user_id=${users.user_id}, adminId = ${admin.adminId})}"
                                        class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this organization?');" >Delete</a>

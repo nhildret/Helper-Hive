@@ -44,26 +44,28 @@
         <table class="table table-striped rounded-3 overflow-hidden">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Email</th>
-                <th>Name</th>
-                <th>Total Hours</th>
-                <!-- <th>Ban Status</th>-->
-                <th>Actions</th>
+                <th>Donor ID</th>
+                <!--<th>User ID</th>-->
+                <th>Donation Name</th>
+                <th>Organization Name</th>
+                <th>Cause ID</th>
+                <th>Amount</th>
+                <th>Donated At</th>
+               <!-- <th>Actions</th>-->
             </tr>
             </thead>
             <tbody>
-            <tr data-th-each="users : ${userList}">
-                <td data-th-text="${users.id}"></td>
-                <td data-th-text="${users.email}"></td>
-                <td data-th-text="${users.name}"></td>
-                <td data-th-text="${users.totalHours}"></td>
-                <!--<td data-th-text="${users.ban}"></td>-->
+            <tr data-th-each="donations : ${donationList}">
+                <td data-th-text="${donations.donorId}"></td>
+                <!--<td data-th-text="${donations.userId}"></td>-->
+                <td data-th-text="${donations.donationName}"></td>
+                <td data-th-text="${donations.organizationName}"></td>
+                <td data-th-text="${donations.causeId}"></td>
+                <td data-th-text="${donations.amount}"></td>
+                <td data-th-text="${donations.donatedAt}"></td>
 
-                <td><a data-th-href="@{/users/{id} (userId=${users.id})}"
-                       class="btn btn-sm btn-outline-secondary">View</a>
-                    <a data-th-href="@{/users/ban/{id} (user_id=${users.id})}"
-                       class="btn btn-sm btn-outline-warning">Ban</a>
+ <!--               <td><a data-th-href="@{/users/ban/{id} (user_id=${users.id})}"
+                       class="btn btn-sm btn-outline-warning">Refund</a>-->
                     <!--
                                     <a data-th-href="@{/admin/delete/{adminId}/{id} (userId=${users.id}, adminId = ${admin.adminId})}"
                                        class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');" >Delete</a>
