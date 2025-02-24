@@ -7,8 +7,10 @@ import com.hive.capstone.organizations.Organization;
 //import java.util.List;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 @Table(name = "events")
 public class Event {
 
