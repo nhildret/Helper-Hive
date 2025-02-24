@@ -23,7 +23,7 @@
 
 </head>
 <body>
-<!--<body style="background-color:#ff9800;">-->
+<!--<body style="background-color:#6B6361">-->
 <div class="sidebar">
     <div class="logo">
         <a th:href="@{/admin}">
@@ -49,108 +49,5 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
-
-<style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .container {
-      width: 80%;
-      height: 80%;
-    }
-
-    canvas {
-      max-width: 100%;
-      max-height: 100%;
-    }
-</style>
-
-<script>
-// server.js
-const express = require('express');
-const { Pool } = require('pg');
-const cors = require('cors');
-const app = express();
-const port = 3000;
-
-// Create a new pool instance for connecting to Neon database
-const pool = new Pool({
-connectionString: 'postgresql://hive-db_owner:npg_w8ZXxHq2BnLh@ep-frosty-hall-a8sbeosf-pooler.eastus2.azure.neon.tech/hive-db?sslmode=require',
-});
-
-app.use(cors());
-
-app.get('/get-signups', async (req, res) => {
-try {
-const result = await pool.query(
-`SELECT DATE(registered_at) AS signup_date, COUNT(*) AS user_count
-FROM users
-GROUP BY signup_date
-ORDER BY signup_date`
-);
-res.json(result.rows);
-} catch (err) {
-console.error(err);
-res.status(500).send('Server error');
-}
-});
-
-app.listen(port, () => {
-console.log(`Server running at http://localhost:${port}`);
-});
-
-<script>
-    document.addEventListener("DOMContentLoaded", async () => {
-      const response = await fetch('http://localhost:3000/get-signups');
-      const data = await response.json();
-
-      const dates = data.map(entry => entry.signup_date);
-      const userCounts = data.map(entry => entry.user_count);
-
-      const ctx = document.getElementById('userSignupChart').getContext('2d');
-      const userSignupChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: dates,
-          datasets: [{
-            label: 'Number of Users Signed Up',
-            data: userCounts,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            fill: true,
-          }],
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'top',
-            },
-          },
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: 'Date',
-              },
-            },
-            y: {
-              title: {
-                display: true,
-                text: 'Number of Signups',
-              },
-              beginAtZero: true,
-            },
-          },
-        },
-      });
-    });
-</script>
 
 </html>
