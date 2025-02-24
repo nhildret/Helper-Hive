@@ -4,6 +4,7 @@
     <title> Leader Board</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/leaderboard.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bg.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/donations-page.css}"/>
     <link
           href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
@@ -45,12 +46,12 @@
                     <th>Amount</th>
                 </tr>
                 </thead>
-<!--                    <tbody>-->
-<!--                    <tr th:each="i : ${#numbers.sequence(1, leaderboard.size())}">-->
-<!--                        <td data-th-text="${i}"> </td>-->
-<!--                        <td data-th-text="${leaderboard.get(i-1).name}"></td>-->
-<!--                        <td data-th-text="${leaderboard.get(i-1).totalHours}"></td>-->
-<!--                    </tr>-->
-<!--                    </tbody>-->
-<!--                </table>-->
-<!--            </section>-->
+<!--                    <tbody>
+                    <tr th:each="i : ${#numbers.sequence(1, leaderboard.size())}">
+                        <td data-th-text="${i}"> </td>
+                        <td data-th-text="${leaderboard.get(i-1).name}"></td>
+                        <td data-th-text="${leaderboard.get(i-1).amount}"></td>
+                    </tr>
+                    </tbody>-->
+                </table>
+            </section>

@@ -15,6 +15,7 @@ function initMap() {
   // Latitude, longitude
   // Image URL
   // scaledSize weidth, height
+  // Organization ID that directs to organization page
   const organizationMarkers = [
     [
       // Shepherd's Center of Greensboro: 36.073416798874106, -79.79303636984241
@@ -24,6 +25,7 @@ function initMap() {
       "/images/marker_icons/queenbee_marker.PNG",
       38,
       38,
+      3,
     ],
     [
       // The Green Team Helping Hands: 36.07426431307997, -79.78966365152392
@@ -33,6 +35,7 @@ function initMap() {
       "/images/marker_icons/queenbee_marker.PNG",
       38,
       38,
+      2,
     ],
     [
       // Greensboro Urban Ministry - Food Distribution Center: 36.063884680754484, -79.79415791197987
@@ -42,6 +45,7 @@ function initMap() {
       "/images/marker_icons/cutebee_marker.PNG",
       38,
       38,
+      1,
     ],
   ];
 
@@ -58,8 +62,16 @@ function initMap() {
       animation: google.maps.Animation.DROP,
     });
 
+    // Create the content for the info window
+    const infoWindowContent = `
+      <div class="info-window">
+        <h3>${currMarker[0]}</h3>
+        <button class="view-organization-btn" onclick="window.location.href='/organizations/view/${currMarker[6]}'">View Organization</button>
+      </div>
+    `;
+
     const infowindow = new google.maps.InfoWindow({
-      content: currMarker[0],
+      content: infoWindowContent,
     });
 
     marker.addListener("click", () => {

@@ -4,6 +4,7 @@ import java.sql.Date;
 import lombok.Getter;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
 @Getter
@@ -13,7 +14,7 @@ public class Organization {
     @Id
     @Column(name = "organization_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    public int id;
 
     @Column(name = "organization_name")
     private String organizationName;
