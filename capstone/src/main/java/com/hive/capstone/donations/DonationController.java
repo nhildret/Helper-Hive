@@ -12,11 +12,11 @@ import com.hive.capstone.donations.*;
 
 @Controller
 
-//@GetMapping("/leaderboard")
+//@GetMapping("/leaderboard-donations")
 //public String showDonationLeaderboard(Model model){
 //    List<Donation> leaderboard = donationService.getTopDonors();
 //    model.addAttribute("leaderboard", leaderboard);
-//    return "leaderboard";
+//    return "leaderboard-donations";
 //}
 
 @RequestMapping("/donate")

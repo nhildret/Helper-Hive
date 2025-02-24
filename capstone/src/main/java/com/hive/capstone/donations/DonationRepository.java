@@ -1,6 +1,7 @@
 package com.hive.capstone.donations;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -20,5 +21,6 @@ public interface DonationRepository extends JpaRepository <Donation, Integer> {
 
     List<Donation> findByDonatedAt(Date donatedAt);
 
+//    @Query("SELECT * FROM donations ORDER BY amount DESC")
 //    List<Donation> findAllByOrderByAmountDesc();
 }
