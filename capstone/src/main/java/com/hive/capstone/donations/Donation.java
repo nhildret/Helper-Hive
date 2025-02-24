@@ -1,10 +1,12 @@
 package com.hive.capstone.donations;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.sql.Date;
 
 @Entity
+@Getter
 @Table(name = "donations")
 public class Donation {
 

@@ -7,15 +7,17 @@ import com.hive.capstone.organizations.Organization;
 //import java.util.List;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 @Table(name = "events")
 public class Event {
 
     @Id
     @Column(name = "event_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    public int id;
 
     @Column(name = "title")
     private String title;

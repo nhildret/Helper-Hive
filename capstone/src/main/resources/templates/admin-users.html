@@ -19,6 +19,7 @@
 
 </head>
 <body>
+<div class="container-fluid d-flex">
 <!--<body style="background-color:#ff9800;">-->
 <div class="sidebar">
     <div class="logo">
@@ -30,15 +31,14 @@
         <li><a th:href="@{/admin}">Home</a></li>
         <li><a th:href="@{/admin/users/all}">Users</a></li>
         <li><a th:href="@{/admin/organizations/all}">Organizations</a></li>
-        <li><a th:href="@{/admin/events/all}">Events</a></li>
-        <li><a th:href="@{/admin/donations/all}">Donations</a></li>
+        <li><a th:href="@{/events/admin/events/all}">Events</a></li>
+        <li><a th:href="@{/donate/admin/donations/all}">Donations</a></li>
     </ul>
 </div>
 <!--header th:replace="~{fragments/sidebar :: sidebar}"></header-->
-<title>Admin Homepage</title>
+<title>All Users</title>
 
 <div class="container">
-    <a href="profile.html"></a>
     <h1 data-th-text="${title}"></h1>
 
     <table class="table table-striped rounded-3 overflow-hidden">
@@ -48,7 +48,7 @@
             <th>Email</th>
             <th>Name</th>
             <th>Total Hours</th>
-            <th>Ban Status</th>
+           <!-- <th>Ban Status</th>-->
             <th>Actions</th>
         </tr>
         </thead>
@@ -60,18 +60,20 @@
             <td data-th-text="${users.totalHours}"></td>
             <!--<td data-th-text="${users.ban}"></td>-->
 
-            <td><a data-th-href="@{/users/{user_id} (user_id=${users.user_id})}"
+            <td><a data-th-href="@{/users/{id} (userId=${users.id})}"
                    class="btn btn-sm btn-outline-secondary">View</a>
-                <a data-th-href="@{/users/ban/{user_id} (user_id=${users.user_id})}"
+                <a data-th-href="@{/users/ban/{id} (user_id=${users.id})}"
                    class="btn btn-sm btn-outline-warning">Ban</a>
-                <a data-th-href="@{/admin/delete/{adminId}/{user_id} (user_id=${users.user_id}, adminId = ${admin.adminId})}"
+<!--
+                <a data-th-href="@{/admin/delete/{adminId}/{id} (userId=${users.id}, adminId = ${admin.adminId})}"
                    class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');" >Delete</a>
+-->
 
             </td>
         </tr>
         </tbody>
     </table>
-
+</div>
 </div>
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 </body>

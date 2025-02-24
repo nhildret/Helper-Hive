@@ -3,6 +3,8 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: #fdead1;
+    background-image: url('bg_bottom.PNG');
+
 }
 
 /*.image-container {
