@@ -41,11 +41,61 @@
                 <!-- Sign Up Button -->
                 <button class="btn-sign-up">Sign Up</button>
 
+                <!-- Edit Event Button -->
+                <button class="btn-edit" onclick="openEditPopup()">Edit Event</button>
+
                 <!-- Delete Event Button -->
                 <button class="btn-delete" onclick="openDeletePopup()">Delete Event</button>
 
                 <!-- Back Button -->
                 <a class="btn-back" th:href="@{/events/all}">Back to Events</a>
+            </div>
+
+        <!-- Popup for Editing Event -->
+            <div id="edit-popup" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeEditPopup()">&times;</span>
+                    <h1>Edit Event</h1>
+                    <form th:action="@{/events/edit/{event_id}(event_id=${event.eventId})}" method="post" class="create-event-form">
+                        <div class="form-group">
+                            <label for="edit-title">Event Title</label>
+                            <input type="text" id="edit-title" name="title" class="form-input" th:value="${event.title}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-location">Location</label>
+                            <input type="text" id="edit-location" name="location" class="form-input" th:value="${event.location}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-eventDate">Event Date</label>
+                            <input type="date" id="edit-eventDate" name="eventDate" class="form-input" th:value="${event.eventDate}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-volunteerHours">Volunteer Hours</label>
+                            <input type="number" id="edit-volunteerHours" name="volunteerHours" class="form-input" th:value="${event.volunteerHours}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-causeId">Cause ID</label>
+                            <input type="number" id="edit-causeId" name="causeId" class="form-input" th:value="${event.causeId}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-organizationId">Organization</label>
+                            <select id="edit-organizationId" name="organizationId" class="form-input" required>
+                                <option value="">Select an organization</option>
+                                <!-- Loop through organizations and create dropdown options -->
+                                <option th:each="org : ${organizations}" 
+                                        th:value="${org.organizationId}" 
+                                        th:text="${org.organizationName}"
+                                        th:selected="${org.organizationId == event.organization.organizationId}">
+                                </option>
+                            </select>                
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-imagePath">Image Path (optional)</label>
+                            <input type="text" id="edit-imagePath" name="imagePath" class="form-input" th:value="${event.imagePath}">
+                        </div>
+                        <button type="submit" class="btn-create-event">Save Changes</button>
+                    </form>
+                </div>
             </div>
 
         </main>
@@ -123,6 +173,17 @@
         .catch(error => {
             console.error("Error:", error);
         });
+    }
+</script>
+<script>
+    // Function to open the edit popup
+    function openEditPopup() {
+        document.getElementById("edit-popup").style.display = "block";
+    }
+
+    // Function to close the edit popup
+    function closeEditPopup() {
+        document.getElementById("edit-popup").style.display = "none";
     }
 </script>
 </html>
