@@ -181,7 +181,8 @@ body {
 }
 
 /* Back Button */
-.btn-back {
+/* Common Button Styles */
+.btn-back, .btn-sign-up, .btn-delete {
     display: inline-block;
     padding: 10px 20px;
     background-color: #efa631;
@@ -192,10 +193,23 @@ body {
     font-size: 16px;
     text-align: center;
     transition: background-color 0.3s ease;
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Add pointer cursor for buttons */
+    margin: 5px 0; /* Add margin to stack buttons vertically */
+    width: 100%; /* Make buttons full width */
 }
 
-.btn-back:hover {
+.btn-back:hover, .btn-sign-up:hover, .btn-delete:hover {
     background-color: #a95e09;
+}
+
+/* Specific styles for the Delete button */
+.btn-delete {
+    background-color: #ff4d4d; /* Red color for delete button */
+}
+
+.btn-delete:hover {
+    background-color: #cc0000; /* Darker red on hover */
 }
 
 /* ------ Styles for Adding an Event ------ */
@@ -261,4 +275,59 @@ body {
 
 .btn-create-event:hover {
     background-color: #e0a042; /* Darker shade for hover effect */
+}
+
+/* ------ Deleting an Event Pop-up ------ */
+/* Modal (Popup) Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.btn-confirm-delete, .btn-cancel-delete {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-confirm-delete {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.btn-cancel-delete {
+    background-color: #ccc;
+    color: black;
 }

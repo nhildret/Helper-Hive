@@ -1,6 +1,7 @@
 package com.hive.capstone.events;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +55,12 @@ public class EventController {
         //model.addAttribute("isOwner", event.getOrganizationId().getId() == currentUserId);
 
         // Fetch Event Details
-        model.addAttribute("event", eventService.getEventById(eventId));
+        Event event = eventService.getEventById(eventId);
+        model.addAttribute("event", event);
+
+        // Fetch All Events for the "All Event Cards" section
+        List<Event> eventList = eventService.getAllEvents();
+        model.addAttribute("event_list", eventList);
 
         // Set page title
         model.addAttribute("title", "Event # " + eventId + " Details");
@@ -90,10 +96,10 @@ public class EventController {
     }
 
     // Delete Event
-    @GetMapping("/delete/{eventId}")
-    public String deleteEventById(@PathVariable int eventId) {
-        eventService.deleteEventById(eventId);
-        return "redirect:/event/all";
+    @DeleteMapping("/delete/{eventId}")
+    public ResponseEntity<Void> deleteEvent(@PathVariable int eventId) {
+        eventRepository.deleteById(eventId);
+        return ResponseEntity.ok().build();
     }
 
     // Creating an Event:
