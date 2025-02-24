@@ -42,16 +42,16 @@ body {
 
 /* Individual organization card */
 .organization {
+    /* Remove background-color: var(--card); */
     display: flex;
     flex-direction: column;
-    width: 325px; /* Fixed width for cards */
-    height: 475px; /* Fixed height for cards */
+    width: 325px;
+    height: 475px;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 4px 4px 6px var(--shadow);
-    background-color: var(--card);
-    position: relative; /* For positioning the button */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1); /* Use rgba for shadow */
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Hover effect for organization cards */
@@ -79,10 +79,12 @@ body {
 
 /* Organization Details */
 .organization-details {
-    flex-grow: 1; /* Allow details to take up remaining space */
+    flex-grow: 1;
     font-family: "Playpen Sans", sans-serif;
     font-size: 16px;
     line-height: 1.5;
+    word-wrap: break-word; /* Allow long words to break and wrap */
+    overflow-wrap: break-word; /* Ensure text wraps within the container */
 }
 
 .organization-details p {
@@ -306,4 +308,13 @@ body {
 
 .btn-edit:hover {
     background-color: #e0a042; /* Darker orange on hover */
+}
+
+.organization-image {
+    width: 100%;
+    height: 150px; /* Fixed height for the image */
+    border-radius: 10px 10px 0 0; /* Rounded corners at the top */
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 15px; /* Space between image and title */
 }
