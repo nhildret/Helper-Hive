@@ -54,11 +54,11 @@
         </thead>
         <tbody>
         <tr data-th-each="users : ${userList}">
-            <td data-th-text="${users.user_id}"></td>
+            <td data-th-text="${users.id}"></td>
             <td data-th-text="${users.email}"></td>
             <td data-th-text="${users.name}"></td>
             <td data-th-text="${users.totalHours}"></td>
-            <td data-th-text="${users.ban}"></td>
+            <!--<td data-th-text="${users.ban}"></td>-->
 
             <td><a data-th-href="@{/users/{user_id} (user_id=${users.user_id})}"
                    class="btn btn-sm btn-outline-secondary">View</a>
@@ -73,6 +73,6 @@
     </table>
 
 </div>
-
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 </body>
 </html>

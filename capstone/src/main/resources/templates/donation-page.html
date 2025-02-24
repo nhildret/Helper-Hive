@@ -14,6 +14,7 @@
         <link rel="stylesheet" type="text/css" th:href="@{/css/donations-page.css}"/>
         <script src = "/js/popup.js" defer></script>
     </head>
+    <header th:replace="~{/fragments/header :: header}"></header>
 
            <div class="event-container">
                <div class="event">
@@ -62,8 +63,8 @@
                    </div>
                    <button>Sign up</button>
                </div>
+            </div>
         </main>
-    </body>
     <script>
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(getEvents);
@@ -78,7 +79,9 @@
 
             //call controller function that calls python method for pledgeAPI
         } 
-        
+
     </script>
-    <!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
+
+    <footer th:replace="~{/fragments/footer :: footer}"></footer>
+    </body>
 </html>
