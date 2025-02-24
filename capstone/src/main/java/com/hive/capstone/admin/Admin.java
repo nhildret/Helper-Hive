@@ -2,10 +2,12 @@
 package com.hive.capstone.admin;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.sql.Date;
 
 @Entity
+@Getter
 @Table(name="admin")
 
 public class Admin {

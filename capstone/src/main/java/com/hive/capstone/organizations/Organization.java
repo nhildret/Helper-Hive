@@ -3,8 +3,10 @@ package com.hive.capstone.organizations;
 import java.sql.Date;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 @Table(name = "organizations")
 public class Organization {
 
