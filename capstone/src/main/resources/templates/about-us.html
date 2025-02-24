@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>About Us</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/about_us.css}"/>
-    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
     <link
             href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
             rel="stylesheet"
     />
 </head>
 <body>
+<header th:replace="~{/fragments/header :: header}"></header>
 <body style="background-color: #fdead1">
 
-<header th:replace="~{/fragments/header :: header}"></header>
 
 <h1>About Us</h1>
 
