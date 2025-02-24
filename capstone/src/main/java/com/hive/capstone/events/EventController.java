@@ -62,16 +62,16 @@ public class EventController {
     }
 
     // Get a list of Events based on name
-    @GetMapping("/search")
-    public String getEventsByName(@RequestParam(name = "title", defaultValue = "event") String title, Model model) {
-        model.addAttribute("eventList", eventService.getEventsByTitle(title));
-        model.addAttribute("title", "Event Name: " + title);
-        return "Event/event-page";
-    }
+    // @GetMapping("/search")
+    // public String getEventsByName(@RequestParam(name = "title", defaultValue = "event") String title, Model model) {
+    //     model.addAttribute("eventList", eventService.getEventsByTitle(title));
+    //     model.addAttribute("title", "Event Name: " + title);
+    //     return "Event/event-page";
+    // }
 
-    @GetMapping("")
+    @GetMapping("/search")
     public String getEventsByTitleContains(@RequestParam(name = "title", required = false) String title, Model model) {
-        model.addAttribute("classList", eventService.getEventsByTitleContains(title));
+        model.addAttribute("eventList", eventService.getEventsByTitleContains(title));
         model.addAttribute("title", "Event Name: " + title);
         return "Event/event-page";
     }

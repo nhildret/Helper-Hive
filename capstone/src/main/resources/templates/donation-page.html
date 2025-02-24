@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Events</title>
+        <title>Donate</title>
         <link
             href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
             rel="stylesheet"
@@ -14,100 +14,56 @@
         <link rel="stylesheet" type="text/css" th:href="@{/css/donations-page.css}"/>
         <script src = "/js/popup.js" defer></script>
     </head>
-    <body>
     <header th:replace="~{/fragments/header :: header}"></header>
-        <main>
-            <section class="button-section">
-                <div class="text-container">
-                    <p id="lat-lon"></p>
-                    <h1> Our Donations Programs</h1>
-                    <p class="message">
-                        We would like to thank everyone for such generous donations! With your help, we are able to
-                        make this service possible. Below you can find our donation leaderboard.
-                    </p>
-                </div>
-            </section>
 
-            <!-- This will connect to the  users and display the donations ranking-->
-            <section id="scrims-ladder--container" class="scrimms-ladder">
-                <div class="ladder-nav">
-                    <div class="ladder-nav--col ladder-title">
-                        <h1>Donations Standings</h1>
-                    </div>
-<!--                    <div class='ladder-nav&#45;&#45;col'>-->
-<!--                        <input type="text" class="ladder-search" placeholder="search user..."/>-->
-<!--                    </div>-->
-                </div>
-
-                <table class="donations-table">
-                    <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Donation Name</th>
-                        <th>Amount</th>
-                    </tr>
-                    </thead>
-<!--                    <tbody>-->
-<!--                    <tr th:each="i : ${#numbers.sequence(1, leaderboard.size())}">-->
-<!--                        <td data-th-text="${i}"> </td>-->
-<!--                        <td data-th-text="${leaderboard.get(i-1).name}"></td>-->
-<!--                        <td data-th-text="${leaderboard.get(i-1).totalHours}"></td>-->
-<!--                    </tr>-->
-<!--                    </tbody>-->
-                </table>
-            </section>
-
-
-
-            <!-- Commenting this out to start on donations page -->
-
-<!--            <div class="event-container">-->
-<!--                <div class="event">-->
-<!--                    <img class="event-img" src="/images/demo_images/event_demo.png"/> &lt;!&ndash; Either flyers/posters or organization's logo &ndash;&gt;-->
-<!--                    <h2 onclick="document.getElementById('modal-space').style.display='block'">Event Name</h2>-->
-<!--                    <p>-->
-<!--                        This is event detail text. Lorem ipsum dolor sit amet, consectetur adipiscing elit, -->
-<!--                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam, -->
-<!--                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
-<!--                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu -->
-<!--                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui -->
-<!--                        officia deserunt mollit anim id est laborum. -->
-<!--                    </p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div id="modal-space">-->
-<!--                <span onclick="document.getElementById('modal-space').style.display='none'" class="close" title="Close Modal">X</span>-->
-<!--                <div id="modal">-->
-<!--                    <div class="event-details">-->
-<!--                        <h1>Title</h1>-->
-<!--                        -->
-<!--                        <p>-->
-<!--                            <img src="/images/demo_images/event_demo.png"/>-->
-<!--                            This is event detail text. Lorem ipsum dolor sit amet, consectetur adipiscing elit, -->
-<!--                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam, -->
-<!--                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
-<!--                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu -->
-<!--                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui -->
-<!--                            officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, -->
-<!--                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam, -->
-<!--                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
-<!--                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu -->
-<!--                            fugiat nulla pariatur. -->
-<!--                            <br><br>-->
-<!--                            This is event detail text. Lorem ipsum dolor sit amet, consectetur adipiscing elit, -->
-<!--                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam, -->
-<!--                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
-<!--                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu -->
-<!--                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui -->
-<!--                            officia deserunt mollit anim id est laborum. Ut enim minim veniam, -->
-<!--                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
-<!--                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu -->
-<!--                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui -->
-<!--                            officia deserunt mollit anim id est laborum. -->
-<!--                        </p>-->
-<!--                    </div>-->
-<!--                    <button>Sign up</button>-->
-<!--                </div>-->
+           <div class="event-container">
+               <div class="event">
+                   <img class="event-img" src="/images/demo_images/event_demo.png"/> &lt;!&ndash; Either flyers/posters or organization's logo &ndash;&gt;
+                   <h2 onclick="document.getElementById('modal-space').style.display='block'">Event Name</h2>
+                   <p>
+                       This is event detail text. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam,
+                       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                       Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                       fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                       officia deserunt mollit anim id est laborum.
+                   </p>
+               </div>
+           </div>
+           <div id="modal-space">
+               <span onclick="document.getElementById('modal-space').style.display='none'" class="close" title="Close Modal">X</span>
+               <div id="modal">
+                   <div class="event-details">
+                       <h1>Title</h1>
+                      
+                       <p>
+                           <img src="/images/demo_images/event_demo.png"/>
+                           This is event detail text. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam,
+                           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                           fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                           officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam,
+                           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                           fugiat nulla pariatur.
+                           <br><br>
+                           This is event detail text. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam,
+                           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                           fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                           officia deserunt mollit anim id est laborum. Ut enim minim veniam,
+                           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                           fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                           officia deserunt mollit anim id est laborum.
+                       </p>
+                   </div>
+                   <button>Sign up</button>
+               </div>
+            </div>
         </main>
     <script>
         if (navigator.geolocation) {
