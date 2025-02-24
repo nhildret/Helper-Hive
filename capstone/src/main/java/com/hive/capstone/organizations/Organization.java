@@ -3,15 +3,17 @@ package com.hive.capstone.organizations;
 import java.sql.Date;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 @Table(name = "organizations")
 public class Organization {
 
     @Id
     @Column(name = "organization_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    public int id;
 
     @Column(name = "organization_name")
     private String organizationName;

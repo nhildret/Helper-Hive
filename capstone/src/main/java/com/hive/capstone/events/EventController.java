@@ -45,6 +45,13 @@ public class EventController {
         return "/Event/event-page";
     }
 
+    @GetMapping("/admin/events/all")
+    public String getAllEventsAdmin(Model model) {
+        model.addAttribute("eventList", eventService.getAllEventsAdmin());
+        model.addAttribute("title", "All Events");
+        return "admin-events";
+    }
+
     // Event By ID
     @GetMapping("/view/{eventId}")
     public String getEventsById(@PathVariable int eventId, Model model) {

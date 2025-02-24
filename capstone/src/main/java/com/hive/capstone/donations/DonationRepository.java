@@ -23,4 +23,6 @@ public interface DonationRepository extends JpaRepository <Donation, Integer> {
 
 //    @Query("SELECT * FROM donations ORDER BY amount DESC")
 //    List<Donation> findAllByOrderByAmountDesc();
+
+    List<Donation> findAll();
 }
