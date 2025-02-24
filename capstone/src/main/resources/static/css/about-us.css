@@ -17,7 +17,7 @@ body {
     padding: 0;
     position: relative;
     }
-}
+
 
 body{
     background-image:url('../static/images/background_gifs/infinite_bees.gif');
@@ -169,4 +169,16 @@ h1 {
 .box.in-view {
     opacity: 1;
     transform: translateY(0);
+}
+.info-container {
+    width: 75%;
+    margin-block:2rem;
+    margin-inline: auto;
+    border: solid 2px;
+    padding:1rem 5rem;
+    text-align:center;
+}
+.info-container img {
+    width:40rem;
+    margin-inline: auto;
 }
