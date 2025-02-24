@@ -17,14 +17,19 @@
         <!-- Header Fragment -->
         <header th:replace="~{/fragments/header :: header}"></header>
 
-        <h1> Event Details</h1>
-        <div>
-            <p><strong>Event Name:</strong> <span data-th-text="${event.getEventName()}"></span></p>
-            <p><strong>Location:</strong> <span data-th-text="${event.getLocation()}"></span></p>
-            <p><strong>Date:</strong> <span data-th-text="${event.getEventDate()}"></span></p>
-            <p><strong>Organization ID</strong> <span data-th-text="${event.getOrganizationId()}"></span></p>
-            <p><strong>Volunteer Hours:</strong> <span data-th-text="${event.getVolunteerHours()}"></span></p>
+        <div class="event-details-container">
+            <h1 th:text="${event.title}"></h1>
+            <p><strong>Location:</strong> <span th:text="${event.location}"></span></p>
+            <p><strong>Date:</strong> <span th:text="${event.eventDate}"></span></p>
+            <p><strong>Volunteer Hours:</strong> <span th:text="${event.volunteerHours}"></span></p>
+            <p><strong>Causes:</strong> <span th:text="${event.causeId}"></span></p>
+            <p><strong>Organization:</strong> <span th:text="${event.organization != null ? event.organization.organizationName : 'N/A'}"></span></p>
+
+            <!-- Sign Up Button -->
+            <a class="btn-signup" th:href="@{/events/signup/{eventId}(eventId=${event.eventId})}">Sign Up</a>
+
+            <!-- Back Button -->
+            <a class="btn-back" href="/events">Back to Events</a>
         </div>
-        <a href="edit-event.html">Edit Event</a>
     </body>
 </html>

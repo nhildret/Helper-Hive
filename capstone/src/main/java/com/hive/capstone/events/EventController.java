@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import com.hive.capstone.users.UserRepository;
 import com.hive.capstone.users.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 
@@ -18,6 +20,8 @@ public class EventController {
     
     @Autowired
     EventService eventService;
+    @Autowired
+    EventRepository eventRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -27,13 +31,17 @@ public class EventController {
     // Get All Events
     @GetMapping({"/all", "", "/"})
     public String getAllEvents(Model model) {
-        model.addAttribute("event_list", eventService.getAllEvents());
-        model.addAttribute("title", "All Events");
+        List<Event> eventList = eventRepository.findAll();
+        model.addAttribute("event_list", eventList);
+        
+        //model.addAttribute("event_list", eventService.getAllEvents());
+        //model.addAttribute("title", "All Events");
+
         return "/Event/event-page";
     }
 
     // Event By ID
-    @GetMapping("/{id}")
+    @GetMapping("/view/{event_id}")
     public String getEventsById(@PathVariable int id, Model model) {
         // getting authentication will be put here
 
@@ -45,7 +53,7 @@ public class EventController {
 
         // Set page title
         model.addAttribute("title", "Event # " + id + " Details");
-        return "Event/event-details";
+        return "/Event/event-details";
     }
 
     // Get a list of Events based on name

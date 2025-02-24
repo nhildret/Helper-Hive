@@ -29,25 +29,37 @@ public class Event {
 
     @Column(name = "cause_id")
     private int causeId;
+
+    @Column(name = "image_path")
+    private String imagePath;
    
     @ManyToOne
     @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
     // Links to an organization
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
 
     // Constructors
 
-    public Event(String title, String location, Date eventDate, Organization organization, int volunteerHours, int causeId) {
+    public Event(String title, String location, Date eventDate, Organization organization, int volunteerHours, int causeId, String imagePath) {
         this.title = title;
         this.location = location;
         this.eventDate = eventDate;
         this.organization = organization;
         this.volunteerHours = volunteerHours;
         this.causeId = causeId;
+        this.imagePath = imagePath;
     }
 
+            
     public Event(int id, String title, String location, Date eventDate, Organization organization,
-            int volunteerHours, int causeId) {
+            int volunteerHours, int causeId, String imagePath) {
         this.id = id;
         this.title = title;
         this.location = location;
@@ -55,6 +67,7 @@ public class Event {
         this.organization = organization;
         this.volunteerHours = volunteerHours;
         this.causeId = causeId;
+        this.imagePath = imagePath;
     }
 
     public Event() {
@@ -68,7 +81,7 @@ public class Event {
         return id;
     }
 
-    public String getEventName() {
+    public String getTitle() {
         return title;
     }
 
@@ -92,6 +105,10 @@ public class Event {
         return causeId;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
     // -----------------------
     // Setters
     // -----------------------
@@ -100,7 +117,7 @@ public class Event {
         this.id = id;
     }
 
-    public void setEventName(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -124,6 +141,10 @@ public class Event {
         this.causeId = causeId;
     }
 
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     // -----------------------
     // toString Method
     // -----------------------
@@ -137,6 +158,7 @@ public class Event {
                 ", eventDate=" + eventDate +
                 ", organization=" + (organization != null ? organization.getOrganizationName() : "null") +
                 ", causeId=" + causeId +
+                ", imagePath=" + imagePath +
                 ", volunteerHours=" + volunteerHours +
                 '}';
     }

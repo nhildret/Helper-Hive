@@ -1,4 +1,4 @@
-package com.hive.capstone.security;
+package com.hive.capstone.Security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
