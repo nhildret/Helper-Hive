@@ -63,7 +63,7 @@ h1 {
 /* This is for the yellow header that states "Leaderboard Standings"*/
 .ladder-nav h1, .bracket-title{
     font-size:20px;
-    color:/* This is comment for later since I need to find the hex code:)*/
+    color:var(--body);/* This is comment for later since I need to find the hex code:)*/
     font-weight:bold;
     text-transform:uppercase;
     letter-spacing: 2px;
@@ -72,8 +72,8 @@ h1 {
 .leaderboard-table{
     width:50%;
     border-collapse: collapse;
-    margin: 20px 0;
-    background color:
+    margin: 20px auto;
+    background-color:var(--body); /* This is comment for later since I need to find the hex code:)*/
     border-radius:10px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -104,7 +104,7 @@ h1 {
     font-weight: bold;
 }
 .leaderboard-table td:nth-child(2){
-    color #f59E02;
+    color: #f59E02;
 }
 .leaderboard-table td:nth-child(3){
     text-align: right;
@@ -126,7 +126,7 @@ h1 {
 }
 .badge{
     font-size:18px;
-    margin-left 8px;
+    margin-left: 8px;
 }
 
 

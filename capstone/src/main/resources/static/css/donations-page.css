@@ -63,7 +63,7 @@ h1 {
 /* This is for the yellow header that states "Donations Standings"*/
 .ladder-nav h1, .bracket-title{
     font-size:20px;
-    color:/* This is comment for later since I need to find the hex code:)*/
+    color: var(--body);/* This is comment for later since I need to find the hex code:)*/
     font-weight:bold;
     text-transform:uppercase;
     letter-spacing: 2px;
@@ -72,7 +72,7 @@ h1 {
 .donations-table{
     width:50%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 20px auto;
     background-color:#fdead1;
     border-radius:10px;
     overflow: hidden;
@@ -104,7 +104,7 @@ h1 {
     font-weight: bold;
 }
 .donations-table td:nth-child(2){
-    color #f59E02;
+    color: #f59E02;
 }
 .donations-table td:nth-child(3){
     text-align: right;

@@ -11,18 +11,18 @@
         <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" th:href="@{/css/events.css}">
         <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/donations-page.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/donate.css}"/>
         <script src = "/js/popup.js" defer></script>
     </head>
     <header th:replace="~{/fragments/header :: header}"></header>
-
+        <main>
+            <h1>Donate to a Good Cause</h1>
            <div class="event-container">
                <div class="event">
-                   <img class="event-img" src="/images/demo_images/event_demo.png"/> &lt;!&ndash; Either flyers/posters or organization's logo &ndash;&gt;
-                   <h2 onclick="document.getElementById('modal-space').style.display='block'">Event Name</h2>
+                   <img class="event-img" src="/images/demo_images/event_demo.png"/> <!-- organization's logo -->
+                   <h2 onclick="document.getElementById('modal-space').style.display='block'">Organization</h2>
                    <p>
-                       This is event detail text. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam,
+                       This is a description of the organization. Please donate to us! Sempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam,
                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
@@ -35,8 +35,8 @@
                <div id="modal">
                    <div class="event-details">
                        <h1>Title</h1>
-                      
-                       <p>
+                      <!-- create credit card/donation form on the right side of the modal -->
+                       <p class="left">
                            <img src="/images/demo_images/event_demo.png"/>
                            This is event detail text. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam,
@@ -60,8 +60,14 @@
                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
                            officia deserunt mollit anim id est laborum.
                        </p>
+                       <form class="right">
+                        Credit card info
+                        Amount donating
+                        submit form
+                        <button>Donate</button>
+                       </form>
                    </div>
-                   <button>Sign up</button>
+                   
                </div>
             </div>
         </main>

@@ -1,0 +1,138 @@
+body{
+    background-image:url('/images/static_background/bg_top.PNG'), url('/images/static_background/bg_middle.PNG'), url('/images/static_background/bg_bottom.PNG');
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main{
+    min-height: 62%;
+}
+
+/* holds cards */
+.event-container {
+    width: 80%;
+    margin-inline: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+/* p {
+    font-family: "Playpen Sans", sans-serif;
+    font-size: large;
+} */
+
+
+/* event cards */
+.event {
+    display:flex;
+    flex-direction: column;
+    align-content:center;
+    text-align: center;
+    margin-inline:auto;
+    margin-block: 1rem;
+    width: 300px;
+    height:fit-content;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 6px var(--shadow);
+    background-color: var(--card);
+}
+.event h2 {
+    font-family: "Cutive", serif;
+    font-size: 30px;
+}
+.event-img {
+    margin-inline: auto;
+    align-self: center;
+    border-radius: 10px;
+    width: 200px;
+    max-height: 200px;
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+}
+.event p {
+    font-size: larger;
+    display: block;
+    width: 100%;
+    padding-right:10px;
+    line-height: 20px;
+    max-height: 80px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+.message {
+overflow:visible;
+font-size: larger;
+}
+
+#modal-space {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+#modal {
+    /* positioning and sizing */
+    position: fixed;
+    z-index: 1;
+    left: 10%;
+    top: 5%;
+    width: 80%;
+    height: 90%;
+
+    /* layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+
+    /* aesthetic */
+    border-radius: 10px;
+    background-color: var(--body);
+    padding:1rem 3rem;
+    overflow: auto;
+}
+#modal h1 {
+    font-family: "Cutive", serif;
+    font-size: 40px;
+    text-align: center;
+}
+#modal img {
+    margin: auto;
+    align-self: center;
+    border-radius: 10px;
+    margin:0 18px 10px 0;
+    object-fit: cover;
+    object-position: center;
+    float:left;
+}
+#modal p {
+    width:50%;
+    font-size: larger;
+    /* font-size: 22px;
+    line-height: 32px; */
+}
+#modal form {
+    width:45%;
+    font-size:larger;
+    background-color: var(--header);
+}
+#modal button {
+    width: 120px;
+    height:50px;
+    font-size: large;
+    border-radius: 10px;
+    border-color: var(--header);
+    background-color: var(--header);
+    font-weight: bold;
+    padding:15px;
+    align-self: center;
+    font-family: "Cutive", serif;
+}
