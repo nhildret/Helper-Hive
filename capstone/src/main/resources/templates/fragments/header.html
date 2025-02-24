@@ -6,12 +6,18 @@
     <nav>
         <ul>
             <!-- Update links to use th:href for Thymeleaf resolution -->
-            <li><a th:href="@{/leaderboard}">Leaderboard</a></li>
+            <li class="dropdown">
+                <a class="dropdown-head">Leaderboard</a>
+                <div class="dropdown-content">
+                    <a th:href="@{/leaderboard/hours}">Volunteer Hours</a>
+                    <a th:href="@{/leaderboard/donations}">Donations</a>
+                </div>
+            </li>
             <li class="dropdown">
                 <a class="dropdown-head">Services</a>
                 <div class="dropdown-content">
                     <a th:href="@{/events/all}">Events</a>
-                    <a th:href="@{/donate}">Donations</a>
+                    <a th:href="@{/donate}">Donate</a>
                 </div>
             </li>
         </ul>
