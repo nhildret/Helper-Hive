@@ -31,15 +31,14 @@
         <li><a th:href="@{/admin}">Home</a></li>
         <li><a th:href="@{/admin/users/all}">Users</a></li>
         <li><a th:href="@{/admin/organizations/all}">Organizations</a></li>
-        <li><a th:href="@{/admin/events/all}">Events</a></li>
-        <li><a th:href="@{/admin/donations/all}">Donations</a></li>
+        <li><a th:href="@{/events/admin/events/all}">Events</a></li>
+        <li><a th:href="@{/donate/admin/donations/all}">Donations</a></li>
     </ul>
 </div>
 <!--header th:replace="~{fragments/sidebar :: sidebar}"></header-->
 <title>All Users</title>
 
 <div class="container">
-    <a href="profile.html"></a>
     <h1 data-th-text="${title}"></h1>
 
     <table class="table table-striped rounded-3 overflow-hidden">
