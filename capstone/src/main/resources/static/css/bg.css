@@ -1,0 +1,6 @@
+body{
+    background-image:url('/images/static_background/bg_bottom.PNG');
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
