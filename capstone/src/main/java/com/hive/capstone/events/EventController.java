@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.hive.capstone.organizations.Organization;
+import com.hive.capstone.organizations.OrganizationRepository;
 import com.hive.capstone.users.UserRepository;
 import com.hive.capstone.users.UserService;
 
@@ -22,6 +24,9 @@ public class EventController {
     EventService eventService;
     @Autowired
     EventRepository eventRepository;
+
+    @Autowired
+    OrganizationRepository organizationRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -41,18 +46,18 @@ public class EventController {
     }
 
     // Event By ID
-    @GetMapping("/view/{event_id}")
-    public String getEventsById(@PathVariable int id, Model model) {
+    @GetMapping("/view/{eventId}")
+    public String getEventsById(@PathVariable int eventId, Model model) {
         // getting authentication will be put here
 
         // Event event = eventService.getEventById(id);
         //model.addAttribute("isOwner", event.getOrganizationId().getId() == currentUserId);
 
         // Fetch Event Details
-        model.addAttribute("event", eventService.getEventById(id));
+        model.addAttribute("event", eventService.getEventById(eventId));
 
         // Set page title
-        model.addAttribute("title", "Event # " + id + " Details");
+        model.addAttribute("title", "Event # " + eventId + " Details");
         return "/Event/event-details";
     }
 
@@ -91,11 +96,27 @@ public class EventController {
         return "redirect:/event/all";
     }
 
-    // Create New Event
+    // Creating an Event:
+    // Display the "Create Event" form (GET request)
+    @GetMapping("/new")
+    public String showCreateEventForm(Model model) {
+        model.addAttribute("event", new Event());
+        // Fetch all organizations and pass them to the template
+        List<Organization> organizations = organizationRepository.findAll();
+        model.addAttribute("organizations", organizations);
+        return "Event/add-event";
+    }
+    // Handle form submission (POST request)
     @PostMapping("/new")
-    public String addNewEvent(Event event) {
-        eventService.saveEvent(event);
-        return "redirect:/event/all";
+    public String createEvent(@ModelAttribute Event event, @RequestParam("organizationId") int organizationId) {
+        // Fetch the Organization object based on the submitted organizationId
+        Organization organization = organizationRepository.findById(organizationId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid organization ID: " + organizationId));
+        // Set the Organization object in the Event
+        event.setOrganization(organization);
+
+        eventRepository.save(event);
+        return "redirect:/events/all";
     }
 
 }

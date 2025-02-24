@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Events</title>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
-            rel="stylesheet"
-        />
-        <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/events.css}">
-        <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>
-        <script src = "/js/popup.js" defer></script>
-    </head>
-    <body>
-        <!-- Header Fragment -->
-        <header th:replace="~{/fragments/header :: header}"></header>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/events.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}" />
+</head>
+<body>
+    <!-- Header Fragment -->
+    <header th:replace="~{/fragments/header :: header}"></header>
 
-        <div class="event-details-container">
-            <h1 th:text="${event.title}"></h1>
-            <p><strong>Location:</strong> <span th:text="${event.location}"></span></p>
-            <p><strong>Date:</strong> <span th:text="${event.eventDate}"></span></p>
-            <p><strong>Volunteer Hours:</strong> <span th:text="${event.volunteerHours}"></span></p>
-            <p><strong>Causes:</strong> <span th:text="${event.causeId}"></span></p>
-            <p><strong>Organization:</strong> <span th:text="${event.organization != null ? event.organization.organizationName : 'N/A'}"></span></p>
+    <main>
+        <div class="event-details-box">
+            <!-- Event Image or Placeholder -->
+            <div class="event-details-image-container">
+                <div th:if="${event.imagePath == null or event.imagePath.isEmpty()}" class="event-details-image-placeholder"></div>
+                <img th:unless="${event.imagePath == null or event.imagePath.isEmpty()}" 
+                     th:src="@{${event.imagePath}}" 
+                     th:alt="${event.title}" 
+                     class="event-details-img">
+            </div>
 
-            <!-- Sign Up Button -->
-            <a class="btn-signup" th:href="@{/events/signup/{eventId}(eventId=${event.eventId})}">Sign Up</a>
+            <!-- Event Title -->
+            <h1 class="event-details-title" th:text="${event.title}"></h1>
+
+            <!-- Event Details -->
+            <div class="event-details-info">
+                <p><strong>Location:</strong> <span th:text="${event.location}"></span></p>
+                <p><strong>Date:</strong> <span th:text="${event.eventDate}"></span></p>
+                <p><strong>Volunteer Hours:</strong> <span th:text="${event.volunteerHours}"></span></p>
+                <p><strong>Organization:</strong> <span th:text="${event.organization.organizationName}"></span></p>
+            </div>
 
             <!-- Back Button -->
-            <a class="btn-back" href="/events">Back to Events</a>
+            <a class="btn-back" th:href="@{/events/all}">Back to Events</a>
         </div>
-    </body>
+    </main>
+
+    <!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
+</body>
 </html>

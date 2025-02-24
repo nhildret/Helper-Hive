@@ -123,3 +123,142 @@ body {
 .btn-view-more:hover {
     background-color: #e0a042; /* Darker shade for hover effect */
 }
+
+/* ------ Styles for Event-Details ------ */
+
+/* Event Details Box */
+.event-details-box {
+    background-color: #fdead1; /* Same as the "view maps here" box */
+    padding: 2rem;
+    width: 60%; /* Adjust width as needed */
+    margin: 2rem auto; /* Center the box */
+    border-radius: 50px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    text-align: center; /* Center text */
+}
+
+/* Event Image Container */
+.event-details-image-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin-bottom: 20px; /* Space between image and title */
+}
+
+/* Event Image */
+.event-details-img {
+    width: 90%; /* Make the image wider */
+    height: 300px; /* Larger height for the image */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    border-radius: 10px; /* Match the box's border radius */
+}
+
+/* Placeholder Rectangle */
+.event-details-image-placeholder {
+    width: 90%; /* Match the image width */
+    height: 300px; /* Larger height for the placeholder */
+    background-color: #e0e0e0; /* Light gray background */
+    border-radius: 10px; /* Match the box's border radius */
+}
+
+/* Event Title */
+.event-details-title {
+    font-family: "Cutive", serif;
+    font-size: 32px; /* Larger font size for the title */
+    margin-bottom: 20px; /* Space below the title */
+}
+
+/* Event Details */
+.event-details-info {
+    font-family: "Playpen Sans", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px; /* Space above the back button */
+}
+
+.event-details-info p {
+    margin: 10px 0; /* Space between details */
+}
+
+/* Back Button */
+.btn-back {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #efa631;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-family: "Cutive", serif;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #a95e09;
+}
+
+/* ------ Styles for Adding an Event ------ */
+
+/* Create Event Container */
+.create-event-container {
+    background-color: #fdead1; /* Same as the "view maps here" box */
+    padding: 2rem;
+    width: 60%; /* Adjust width as needed */
+    margin: 2rem auto; /* Center the box */
+    border-radius: 50px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    text-align: center; /* Center text */
+}
+
+/* Create Event Form */
+.create-event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between form groups */
+}
+
+/* Form Group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align labels and inputs to the left */
+    margin-bottom: 1rem; /* Space between form groups */
+}
+
+/* Form Input */
+.form-input {
+    width: 100%; /* Make inputs fill the container */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Rounded corners */
+    font-family: "Playpen Sans", sans-serif;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #f6b852; /* Highlight input on focus */
+    outline: none;
+}
+
+/* Create Event Button */
+.btn-create-event {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f6b852; /* Match your theme color */
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-family: "Cutive", serif;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px; /* Space above the button */
+}
+
+.btn-create-event:hover {
+    background-color: #e0a042; /* Darker shade for hover effect */
+}

@@ -1,61 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Create Event</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/events.css}"/>
-  <link
-          href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
-          rel="stylesheet"
-  />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Event</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/events.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}" />
 </head>
 <body>
-<div class="form-container">
-    <a id="cancel_button" href="/events/all">X</a>
+    <!-- Header Fragment -->
+    <header th:replace="~{/fragments/header :: header}"></header>
 
-    <h1>Create a New Event</h1>
-
-    <form th:action="@{/events/new}" method="post" th:object="${event}">
-
-        <input type="hidden" name="creatorId" th:value="${userId}" />
-
-        <div class="form-group">
-            <label for="eventName">Event Name:</label>
-            <input type="text" id="eventName" name="eventName" th:field="*{event_name}" required>
+    <main>
+        <div class="create-event-container">
+            <h1>Create a New Event</h1>
+            <form th:action="@{/events/new}" method="post" class="create-event-form">
+                <div class="form-group">
+                    <label for="title">Event Title</label>
+                    <input type="text" id="title" name="title" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">Event Date</label>
+                    <input type="date" id="eventDate" name="eventDate" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="volunteerHours">Volunteer Hours</label>
+                    <input type="number" id="volunteerHours" name="volunteerHours" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="causeId">Cause ID</label>
+                    <input type="number" id="causeId" name="causeId" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="organizationId">Organization</label>
+                    <select id="organizationId" name="organizationId" class="form-input" required>
+                        <option value="">Select an organization</option>
+                        <!-- Loop through organizations and create dropdown options -->
+                        <option th:each="org : ${organizations}" 
+                                th:value="${org.organizationId}" 
+                                th:text="${org.organizationName}">
+                        </option>
+                    </select>                
+                </div>
+                <div class="form-group">
+                    <label for="imagePath">Image Path (optional)</label>
+                    <input type="text" id="imagePath" name="imagePath" class="form-input">
+                </div>
+                <button type="submit" class="btn-create-event">Create Event</button>
+            </form>
         </div>
+    </main>
 
-        <div class="form-group">
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" th:field="*{location}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="eventDate">Event Date:</label>
-            <input type="date" id="eventDate" name="eventDate" th:field="*{event_date}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="volunteerHours">Volunteer Hours:</label>
-            <input type="number" id="volunteerHours" name="volunteerHours" th:field="*{volunteer_hours}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="organization">Organization:</label>
-            <select id="organization" name="organization" th:field="*{organization}" required>
-                <option th:each="org : ${organizations}" th:value="${org.id}" th:text="${org.name}"></option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="imagePath">Image URL:</label>
-            <input type="url" id="imagePath" name="imagePath" th:field="*{imagePath}">
-        </div>
-
-        <div class="form-group">
-            <button type="submit">Create Event</button>
-        </div>
-    </form>
-</div>
+    <!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
 </body>
 </html>

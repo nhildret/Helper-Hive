@@ -17,7 +17,8 @@
         <!-- Header Fragment -->
         <header th:replace="~{/fragments/header :: header}"></header>
 
-        <main>
+        <main>            
+
             <section class="button-section">
                 <div class="text-container">
                     <p id="lat-lon"></p>
@@ -52,6 +53,16 @@
                     <a class="btn-view-more" th:href="@{/events/view/{event_id}(event_id=${event.eventId})}">View More</a>
                 </div>
             </div>
+
+            <!-- Create Event Button -->
+            <section class="button-section">
+                <div class="text-container">
+                    <p id="lat-lon"></p>
+                    <p class="message">
+                        Have a cause to share? Create a new event <a th:href="@{/events/new}">here</a>!
+                    </p>
+                </div>
+            </section>
 
             <!-- static page -->
             <!-- <div class="event-container">
