@@ -17,4 +17,14 @@ public class OrganizationService {
     public List<Organization> getAllOrganizations() {
         return organizationRepository.findAll();
     }
+
+    // Fetch an organization by id
+    public Organization getOrganizationById(int organization_id) {
+        return organizationRepository.findById(organization_id);// .orElse(null);
+    }
+
+    // public Organization getOrganizationById(int organizationId) {
+    //     return organizationRepository.findById(organizationId)
+    //             .orElseThrow(() -> new IllegalArgumentException("Invalid organization ID: " + organizationId));
+    // }
 }

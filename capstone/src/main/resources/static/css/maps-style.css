@@ -108,3 +108,33 @@ nav ul li a:hover::after {
 img {
     margin: 0 2rem;
 }
+
+/* Info Window Styles */
+.info-window {
+  font-family: 'Cutive', serif;
+  color: #000000;
+  padding: 10px;
+  text-align: center;
+}
+
+.info-window h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #3f3f3f;
+}
+
+.view-organization-btn {
+  background-color: #efa631; /* Orange color */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-family: 'Cutive', serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-organization-btn:hover {
+  background-color: #a95e09; /* Darker orange on hover */
+}

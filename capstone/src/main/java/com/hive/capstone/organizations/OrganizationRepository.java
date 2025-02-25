@@ -10,5 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 public interface OrganizationRepository extends JpaRepository<Organization, Integer> {
 
     List<Organization> findAll();
+
+    Organization findById(int organizationId);
+
     
 }

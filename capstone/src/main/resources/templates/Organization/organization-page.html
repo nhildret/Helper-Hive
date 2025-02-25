@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Organizations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/organization.css}">
+</head>
+<body>
+    <!-- Header Fragment -->
+    <header th:replace="~{/fragments/header :: header}"></header>
+
+    <main>
+        <section class="button-section">
+            <div class="text-container">
+                <p class="message">
+                    Need help locating organizations? Search using the map <a th:href="@{/maps}">here</a>!
+                </p>
+            </div>
+        </section>
+
+        <!-- Container for Organization cards -->
+        <div class="organization-container">
+            <div th:each="organization : ${organization_list}" class="organization">
+
+                <!-- Random Solid Color Image -->
+                <div class="organization-image"></div>
+
+                <!-- Organization Name -->
+                <h2 th:text="${organization.organizationName}"></h2>
+
+                <!-- Organization Details -->
+                <div class="organization-details">
+                    <p th:text="'ID: ' + ${organization.id}"></p>
+                    <p th:text="'Registered At: ' + ${organization.registeredAt}"></p>
+                    <p th:text="'Address: ' + ${organization.address}"></p>
+                </div>
+
+                <!-- View More Button -->
+                <a class="btn-view-more" th:href="@{/organizations/view/{organization_id}(organization_id=${organization.id})}">View More</a>
+            </div>
+        </div>
+
+        <!-- Create Organization Button -->
+        <section class="button-section">
+            <div class="text-container">
+                <p class="message">
+                    Have a cause to share? Create a new organization <a th:href="@{/organizations/new}">here</a>!
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Fragment -->
+    <footer th:replace="~{/fragments/footer :: footer}"></footer>
+
+    <!-- JavaScript for Random Card Colors -->
+    <script>
+        // Function to generate a random pastel color
+        function getRandomColor() {
+            const pastelColors = [
+                '#ba9058', '#dee4a3', '#e6b7be', '#9ebbc4', '#ffca7b',
+                '#ffedbf', '#F5C1CF', '#FFD9E5', '#F8FFDE', '#FFCFB0'
+            ];
+            return pastelColors[Math.floor(Math.random() * pastelColors.length)];
+        }
+
+        // Apply random solid color images to each organization card's image div
+        document.addEventListener('DOMContentLoaded', function () {
+            const organizationImages = document.querySelectorAll('.organization-image');
+            organizationImages.forEach(image => {
+                const randomColor = getRandomColor();
+                image.style.backgroundColor = randomColor; // Set the background color
+            });
+        });
+    </script>
+    
+</body>
+</html>
