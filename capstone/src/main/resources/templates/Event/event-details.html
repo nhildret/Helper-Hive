@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/events.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}" />
+    <script src="/js/popup.js" defer></script>
 </head>
 <body>
     <!-- Header Fragment -->
@@ -35,11 +36,154 @@
                 <p><strong>Organization:</strong> <span th:text="${event.organization.organizationName}"></span></p>
             </div>
 
-            <!-- Back Button -->
-            <a class="btn-back" th:href="@{/events/all}">Back to Events</a>
+            <!-- Buttons Section -->
+            <div class="buttons-container">
+                <!-- Sign Up Button -->
+                <button class="btn-sign-up">Sign Up</button>
+
+                <!-- Edit Event Button -->
+                <button class="btn-edit" onclick="openEditPopup()">Edit Event</button>
+
+                <!-- Delete Event Button -->
+                <button class="btn-delete" onclick="openDeletePopup()">Delete Event</button>
+
+                <!-- Back Button -->
+                <a class="btn-back" th:href="@{/events/all}">Back to Events</a>
+            </div>
+
+        <!-- Popup for Editing Event -->
+            <div id="edit-popup" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeEditPopup()">&times;</span>
+                    <h1>Edit Event</h1>
+                    <form th:action="@{/events/edit/{event_id}(event_id=${event.eventId})}" method="post" class="create-event-form">
+                        <div class="form-group">
+                            <label for="edit-title">Event Title</label>
+                            <input type="text" id="edit-title" name="title" class="form-input" th:value="${event.title}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-location">Location</label>
+                            <input type="text" id="edit-location" name="location" class="form-input" th:value="${event.location}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-eventDate">Event Date</label>
+                            <input type="date" id="edit-eventDate" name="eventDate" class="form-input" th:value="${event.eventDate}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-volunteerHours">Volunteer Hours</label>
+                            <input type="number" id="edit-volunteerHours" name="volunteerHours" class="form-input" th:value="${event.volunteerHours}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-causeId">Cause ID</label>
+                            <input type="number" id="edit-causeId" name="causeId" class="form-input" th:value="${event.causeId}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-organizationId">Organization</label>
+                            <select id="edit-organizationId" name="organizationId" class="form-input" required>
+                                <option value="">Select an organization</option>
+                                <!-- Loop through organizations and create dropdown options -->
+                                <option th:each="org : ${organizations}" 
+                                        th:value="${org.organizationId}" 
+                                        th:text="${org.organizationName}"
+                                        th:selected="${org.organizationId == event.organization.organizationId}">
+                                </option>
+                            </select>                
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-imagePath">Image Path (optional)</label>
+                            <input type="text" id="edit-imagePath" name="imagePath" class="form-input" th:value="${event.imagePath}">
+                        </div>
+                        <button type="submit" class="btn-create-event">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+        <section class="button-section">
+                <div class="text-container">
+                    <p id="lat-lon"></p>
+                    <p class="message">
+                        View More Events:
+                    </p>
+                </div>
+            </section>
+        <main>
+        <!-- Popup for Deleting Event -->
+        <div id="delete-popup" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeDeletePopup()">&times;</span>
+                <p>Are you sure you want to delete this event?</p>
+                <button class="btn-confirm-delete" th:onclick="|deleteEvent(${event.eventId})|">Yes, Delete</button>
+                <button class="btn-cancel-delete" onclick="closeDeletePopup()">Cancel</button>
+            </div>
         </div>
+
+        <!-- Section to Display All Event Cards -->
+        <section class="event-container">
+            <div th:each="event : ${event_list}" class="event">
+                <!-- Event Image or Placeholder -->
+                <div th:if="${event.imagePath == null or event.imagePath.isEmpty()}" class="image-placeholder"></div>
+                <img th:unless="${event.imagePath == null or event.imagePath.isEmpty()}" 
+                     th:src="@{${event.imagePath}}" 
+                     th:alt="${event.title}" 
+                     class="event-img">
+
+                <!-- Event Title -->
+                <h2 th:text="${event.title}"></h2>
+
+                <!-- Event Details -->
+                <div class="event-details">
+                    <p th:text="'Location: ' + ${event.location}"></p>
+                    <p th:text="'Date: ' + ${event.eventDate}"></p>
+                    <p th:text="'Volunteer Hours: ' + ${event.volunteerHours}"></p>
+                    <p class="Organization" th:text="'Organization: ' + ${event.organization.organizationName}"></p>
+                </div>
+
+                <!-- View More Button -->
+                <a class="btn-view-more" th:href="@{/events/view/{event_id}(event_id=${event.eventId})}">View More</a>
+            </div>
+        </section>
     </main>
 
     <!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
 </body>
+<script>
+    // Function to open the delete popup
+    function openDeletePopup() {
+        document.getElementById("delete-popup").style.display = "block";
+    }
+
+    // Function to close the delete popup
+    function closeDeletePopup() {
+        document.getElementById("delete-popup").style.display = "none";
+    }
+
+    // Function to delete the event
+    function deleteEvent(eventId) {
+        fetch(`/events/delete/${eventId}`, {
+            method: 'DELETE',
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = "/events/all"; // Redirect to the events page after deletion
+            } else {
+                alert("Failed to delete the event.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    }
+</script>
+<script>
+    // Function to open the edit popup
+    function openEditPopup() {
+        document.getElementById("edit-popup").style.display = "block";
+    }
+
+    // Function to close the edit popup
+    function closeEditPopup() {
+        document.getElementById("edit-popup").style.display = "none";
+    }
+</script>
 </html>

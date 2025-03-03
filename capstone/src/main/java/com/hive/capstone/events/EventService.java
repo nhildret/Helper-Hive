@@ -18,6 +18,11 @@ public class EventService {
         return eventRepository.findAll();
     }
 
+    public List<Event> getAllEventsAdmin() {
+
+        return eventRepository.findAll();
+    }
+
     // Fetch an event by id
     public Event getEventById(int id) {
         return eventRepository.findById(id);//.orElse(null);

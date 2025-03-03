@@ -24,4 +24,28 @@ public class OrganizationController {
         // where all orgs displayed
         return "admin-organizations";
     }
+
+    @GetMapping("/organizations/view/{organizationId}")
+    public String viewOrganization(@PathVariable int organizationId, Model model) {
+        // Fetch Organization Details
+        Organization organization = organizationService.getOrganizationById(organizationId);
+        model.addAttribute("organization", organization);
+
+        // Set page title
+        model.addAttribute("title", "Organization # " + organizationId + " Details");
+        return "/Organization/organization-details"; // Thymeleaf template for organization details
+    }
+
+    @GetMapping("/organizations/all")
+    public String viewAllOrganizations(Model model) {
+        // Fetch all organizations
+        List<Organization> organizationList = organizationService.getAllOrganizations();
+        model.addAttribute("organization_list", organizationList); // Pass the list to the template
+
+        // Set page title
+        model.addAttribute("title", "All Organizations");
+
+        // Return the template for displaying all organizations
+        return "/Organization/organization-page"; // Thymeleaf template for all organizations
+    }
 }
