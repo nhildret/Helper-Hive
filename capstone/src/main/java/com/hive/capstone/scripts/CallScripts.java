@@ -2,41 +2,67 @@ package com.hive.capstone.scripts;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import javax.script.*;
+import org.graalvm.polyglot.*;
+import org.graalvm.polyglot.proxy.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+
 
 
 public class CallScripts {
-    public static void main(String[] args) throws Exception{
-        // 1 - search by coords
-        // 2 - search by query
-        //getOrgs(1, String.valueOf(36.098104), String.valueOf(-79.784872), String.valueOf(91)); //example coord search
-        //getOrgs(2, "Red Cross");
+    // included for testing purposes
+    public static void main(String[] args) {
+        getOrgs(0);
     }
 
-    public static void getOrgs(int searchID, String... args) throws Exception {
+    public static JSONArray getOrgs(int searchID, String... args) {
+        try {
         String argString = "";
-        for (int i = 0; i < args.length - 1; i++) {
-            argString += args[i] + "; ";
+        if (args.length > 0) {
+            for (int i = 0; i < args.length - 2; i++) {
+                argString += args[i] + "; ";
+            }
+            argString += args[args.length - 1];
         }
-        argString += args[args.length - 1];
         ProcessBuilder pyProc = new ProcessBuilder(
             "python", 
-            "capstone/src/main/java/com/hive/capstone/scripts/PledgeAPI.py", 
+            "src/main/java/com/hive/capstone/scripts/PledgeAPI.py", 
             String.valueOf(searchID),
             argString
-        );
+        ); //in testing, add "capstone/" to the beginning of the URL string
 
         pyProc.redirectErrorStream(true);
 
         Process process = pyProc.start();
         BufferedReader resultReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         
-        System.out.println(resultReader.readLine());
+        String r = resultReader.readLine();
         while (resultReader.ready()) {
-            System.out.println(resultReader.readLine());
+                r += resultReader.readLine();
         }
+        
+        JSONArray results = new JSONArray(r);
+        
         int exitCode = process.waitFor();
         System.out.println("Exited with code " + exitCode);
         resultReader.close();
+            return results;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONArray("");
+        }
     }
 
     public static void getOrgByName(String name) throws Exception{

@@ -40,4 +40,5 @@ public class HiveController {
     public String login() {
         return "log-in"; // Serves log-in.html
     }
+
 }
