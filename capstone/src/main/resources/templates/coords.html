@@ -1,0 +1,12 @@
+<script>
+    window.onload = function (){
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(redirect);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    }
+    function redirect(position) {
+        window.location.replace(window.location.href + "/" + position.coords.latitude + "/" + position.coords.longitude);
+    }
+</script>

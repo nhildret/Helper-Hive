@@ -1,5 +1,7 @@
 package com.hive.capstone.donations;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.hive.capstone.donations.*;
+import com.hive.capstone.scripts.CallScripts;
 
 @Controller
 
@@ -26,10 +29,18 @@ public class DonationController {
     private DonationService donationService;
 
     @GetMapping({"", "/"})
-    public String donate(Model model) {
-        // filters: local, location (state/country), cause, query
-        //DonationService.getOrgs();
-        //model.addAttribute("orgs", orgsList);
+    public String donate() {
+        return "coords"; //middle-man method to get coords and pass to "/{lat}/{lon}" method
+    }
+
+    @GetMapping("/{lat}/{lon}")
+    public String donate(@PathVariable String lat, @PathVariable String lon, Model model) {
+        JSONArray orgs = CallScripts.getOrgs(0);
+        System.out.println(orgs);
+        model.addAttribute("orgs",orgs);
+        model.addAttribute("lat", lat);
+        model.addAttribute("lon", lon);
+
         return "donation-page";
     }
 
