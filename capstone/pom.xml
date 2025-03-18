@@ -87,6 +87,53 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<!-- using JSON objects in java -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20240303</version>
+		</dependency>
+
+		<!-- Java running Python -->
+		
+		<dependency>
+			<groupId>org.python</groupId>
+			<artifactId>jython-slim</artifactId>
+			<version>2.7.3b1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.graalvm.polyglot</groupId>
+			<artifactId>polyglot</artifactId>
+			<version>24.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.graalvm.polyglot</groupId>
+			<artifactId>python</artifactId>
+			<version>24.0.1</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.graalvm.js</groupId>
+			<artifactId>js</artifactId>
+			<version>24.1.1</version>
+			<type>pom</type>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.oracle.truffle/truffle-api -->
+<dependency>
+    <groupId>com.oracle.truffle</groupId>
+    <artifactId>truffle-api</artifactId>
+    <version>1.0.0-rc7</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.oracle.truffle/truffle-sl-launcher -->
+<dependency>
+    <groupId>com.oracle.truffle</groupId>
+    <artifactId>truffle-sl-launcher</artifactId>
+    <version>1.0.0-rc7</version>
+</dependency>
+
+
+
+
 	</dependencies>
 
 	<build>

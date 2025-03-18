@@ -18,20 +18,23 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // User Functions for User Controller
+
     // Create new User
     @PostMapping("/users/new")
-    public String addNewUser(@ModelAttribute User user) {
+    public String addNewUser(@ModelAttribute User user, Model model) {
         userService.addNewUser(user);
-        return "redirect:/users/all";
+        model.addAttribute("users", userService.getAllUsers());
+        return "redirect:/home";
+        // returns home-page.html
     }
-
     // Show user creation form
     @GetMapping("/users/createForm")
     public String showCreateForm() {
         return "signup";
     }
 
-    // User Self Edit Function
+    // User Self Edit Function that gets Current User Logged In
     
 
 
@@ -47,43 +50,43 @@ public class UserController {
     }
 
     // Get single user by ID
-    @GetMapping("/admin/{user_id}")
-    public String getUser(@PathVariable int user_id, Model model) {
-        User user = userService.getUserById(user_id);
+    @GetMapping("/admin/users/{id}")
+    public String getUser(@PathVariable int id, Model model) {
+        User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        return "User/user-details";
+        return "admin-users";
     }
 
     // Show delete confirmation
-    @GetMapping("/users/delete/{user_id}")
-    public String confirmDelete(@PathVariable int user_id, Model model) {
-        User user = userService.getUserById(user_id);
+    @GetMapping("/users/delete/{id}")
+    public String confirmDelete(@PathVariable int id, Model model) {
+        User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        return "User/user-delete";
+        return "admin-users";
     }
-
     // Delete user
-    @PostMapping("/users/delete/{user_id}")
-    public String deleteUser(@PathVariable int user_id) {
-        userService.deleteUser(user_id);
-        return "redirect:/users/all";
+    @PostMapping("/admin/users/delete/{id}")
+    public String deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
+        return "redirect:/admin/users/all";
     }
 
     // Show edit form
-    @GetMapping("/users/edit/{user_id}")
-    public String showEditForm(@PathVariable int user_id, Model model) {
-        User user = userService.getUserById(user_id);
+    @GetMapping("/admin/users/edit/{id}")
+    public String showEditForm(@PathVariable int id, Model model) {
+        User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        return "User/user-edit";
+        return "admin-users";
     }
     // Update user
-    @PostMapping("/update/{user_id}")
-    public String updateUser(@PathVariable int user_id, @ModelAttribute User user, Model model) {
-        userService.updateUser(user_id, user);
-        model.addAttribute("user", userService.getUserById(user_id));
-        return "User/user-details";
+    @PostMapping("/admin/update/{id}")
+    public String updateUser(@PathVariable int id, @ModelAttribute User user) {
+        userService.updateUser(id, user);
+        //model.addAttribute("user", userService.getUserById(id));
+        return "redirect:/admin/users/all";
     }
 
+    // Leaderboard controller mappings
 
    @GetMapping("/leaderboard/hours")
    public String showLeaderboardHours(Model model){

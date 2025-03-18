@@ -5,6 +5,8 @@ import lombok.Getter;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "users")
 @Getter
@@ -31,6 +33,7 @@ public class User {
     private String email;
 
     @Column(name = "registered_at")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date registeredAt;
     
     @Column(name = "total_hours")
