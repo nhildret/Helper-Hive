@@ -36,8 +36,7 @@ public class DonationController {
     @GetMapping("/{lat}/{lon}")
     public String donate(@PathVariable String lat, @PathVariable String lon, Model model) {
         JSONArray orgs = CallScripts.getOrgs(0);
-        System.out.println(orgs);
-        model.addAttribute("orgs",orgs);
+        model.addAttribute("orgs",orgs.toList());
         model.addAttribute("lat", lat);
         model.addAttribute("lon", lon);
 
