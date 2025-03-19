@@ -26,7 +26,7 @@ body > *:not(footer) {
 
 /* Footer styling */
 .footer-basic {
-  padding: 40px 0;
+  padding: 30px 0 20px 0;
   background-color: #000000;
   color: #fdead1;
 }
@@ -35,7 +35,7 @@ body > *:not(footer) {
   padding: 0;
   list-style: none;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.6;
   margin-bottom: 0;
   display: flex;
@@ -59,21 +59,29 @@ body > *:not(footer) {
 
 .footer-basic .social {
   text-align: center;
-  padding-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 .footer-basic .social > a {
-  font-size: 24px;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  font-size: 16px;
+  /* width: 40px;
+  height: 40px; */
+  line-height: 20px;
   display: inline-block;
   text-align: center;
-  border-radius: 50%;
-  border: 1px solid #ccc;
+  /* border-radius: 50%; */
+  /* border: 1px solid #ccc; */
   margin: 0 8px;
   color: inherit;
   opacity: 0.75;
+}
+.footer-basic .social .icon {
+  font-size: 40px;
+  display:block;
+  width: 40px;
+  height: 40px;
+  /* border: 1px solid #ccc; */
+  border-radius: 50%;
 }
 
 .footer-basic .social > a:hover {
