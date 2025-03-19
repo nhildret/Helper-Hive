@@ -30,16 +30,6 @@ public class DonationController {
 
     @GetMapping({"", "/"})
     public String donate() {
-        return "coords"; //middle-man method to get coords and pass to "/{lat}/{lon}" method
-    }
-
-    @GetMapping("/{lat}/{lon}")
-    public String donate(@PathVariable String lat, @PathVariable String lon, Model model) {
-        JSONArray orgs = CallScripts.getOrgs(0);
-        model.addAttribute("orgs",orgs.toList());
-        model.addAttribute("lat", lat);
-        model.addAttribute("lon", lon);
-
         return "donation-page";
     }
 

@@ -24,69 +24,46 @@ import java.nio.charset.StandardCharsets;
 public class CallScripts {
     // included for testing purposes
     public static void main(String[] args) {
-        getOrgs(0);
+        getOrgs("page=5");
     }
 
-    public static JSONArray getOrgs(int searchID, String... args) {
+    public static JSONArray getOrgs(String args) {
         try {
-        String argString = "";
-        if (args.length > 0) {
-            for (int i = 0; i < args.length - 2; i++) {
-                argString += args[i] + "; ";
+            ProcessBuilder pyProc = new ProcessBuilder(
+                "python", 
+                "src/main/java/com/hive/capstone/scripts/PledgeAPI.py", //use when server is running
+                // "capstone/src/main/java/com/hive/capstone/scripts/PledgeAPI.py", //use for testing this file
+                args
+            );
+
+            pyProc.redirectErrorStream(true);
+
+            Process process = pyProc.start();
+            BufferedReader resultReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            
+            // read results into a string
+            String r = resultReader.readLine();
+            while (resultReader.ready()) {
+                    r += resultReader.readLine();
             }
-            argString += args[args.length - 1];
-        }
-        ProcessBuilder pyProc = new ProcessBuilder(
-            "python", 
-            "src/main/java/com/hive/capstone/scripts/PledgeAPI.py", 
-            String.valueOf(searchID),
-            argString
-        ); //in testing, add "capstone/" to the beginning of the URL string
+            System.out.println(r);
 
-        pyProc.redirectErrorStream(true);
-
-        Process process = pyProc.start();
-        BufferedReader resultReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        
-        String r = resultReader.readLine();
-        while (resultReader.ready()) {
-                r += resultReader.readLine();
-        }
-        
-        JSONArray results = new JSONArray(r);
-        
-        int exitCode = process.waitFor();
-        System.out.println("Exited with code " + exitCode);
-        resultReader.close();
+            // create a JSONArray of the results
+            JSONArray results;
+            if (r!=null) {
+                results = new JSONArray(r);
+            } else {
+                results = new JSONArray("[]");
+            }
+            
+            // print exit code and return results
+            int exitCode = process.waitFor();
+            System.out.println("Exited with code " + exitCode);
+            resultReader.close();
             return results;
         } catch (Exception e) {
             e.printStackTrace();
-            return new JSONArray("");
+            return new JSONArray("[]");
         }
-    }
-
-    public static void getOrgByName(String name) throws Exception{
-        ProcessBuilder pyProc = new ProcessBuilder(
-            "python", 
-            "capstone/src/main/java/com/hive/capstone/scripts/PledgeAPI.py", 
-            name
-        );
-
-        pyProc.redirectErrorStream(true);
-
-        Process process = pyProc.start();
-        BufferedReader resultReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        
-        System.out.println(resultReader.readLine());
-        while (resultReader.ready()) {
-            System.out.println(resultReader.readLine());
-        }
-        int exitCode = process.waitFor();
-        System.out.println("Exited with code " + exitCode);
-        resultReader.close();
     }
 }
-
-
-
-

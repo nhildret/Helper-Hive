@@ -7,22 +7,25 @@ body{
 
 main{
     min-height: 62%;
+    overflow-y: scroll;
 }
 
 /* holds cards */
-.event-container {
+.card-container {
     width: 80%;
+    height:70vh;
     margin-inline: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 
-/* event cards */
-.event {
+/* donate cards */
+.card {
     display:flex;
     flex-direction: column;
-    align-content:center;
+    align-content:space-evenly;
     text-align: center;
     margin-inline:auto;
     margin-block: 1rem;
@@ -33,11 +36,12 @@ main{
     box-shadow: 4px 4px 6px var(--shadow);
     background-color: var(--card);
 }
-.event h2 {
-    font-family: "Cutive", serif;
-    font-size: 30px;
+.card h2 {
+    margin-top: 1rem;
+    font-family: "cutive", serif;
+    font-size: 18px;
 }
-.event-img {
+.card-img {
     margin-inline: auto;
     align-self: center;
     border-radius: 10px;
@@ -47,7 +51,7 @@ main{
     object-fit: cover;
     object-position: center;
 }
-.event p {
+.card p {
     font-size: larger;
     display: block;
     width: 100%;
@@ -120,7 +124,7 @@ font-family: "Cutive", serif;
     /* font-size: 22px;
     line-height: 32px; */
 }
-.event-details {
+.card-details {
     margin-inline: auto;
 }
 #modal form {
