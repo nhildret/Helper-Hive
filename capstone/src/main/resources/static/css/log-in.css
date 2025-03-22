@@ -1,0 +1,74 @@
+.login-main {
+    font-family: "American Typewriter", serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+}
+
+.login-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-container h1 {
+    font-family: "American Typewriter", serif;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.login-btn {
+    font-family: "American Typewriter", serif;
+    width: 100%;
+    padding: 1rem;
+    background-color: #f6b852;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    font-family: "American Typewriter", serif;
+    background-color: #e88d3d;
+}
+
+.additional-options {
+    font-family: "American Typewriter", serif;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.additional-options a {
+    font-family: "American Typewriter", serif;
+    color: #eb9721;
+    text-decoration: none;
+}
+
+.additional-options a:hover {
+    text-decoration: underline;
+}
+

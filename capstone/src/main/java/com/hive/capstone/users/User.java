@@ -3,14 +3,19 @@ package com.hive.capstone.users;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
 @Getter
-public class User {
+public class User implements UserDetails {
 
     @Id
     @Column(name = "userId")
@@ -38,6 +43,12 @@ public class User {
     
     @Column(name = "total_hours")
     private int totalHours;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Return role name exactly as stored in DB
+        return Collections.singletonList(new SimpleGrantedAuthority(this.role));
+    }
 
     // -----------------------
     // Constructors

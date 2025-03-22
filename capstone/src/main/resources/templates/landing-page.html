@@ -13,21 +13,6 @@
 
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
-<!--<header>
-  <nav>
-    <ul>
-      <li><a th:href="@{/leaderboard}">Leaderboards</a></li>
-      <li><a th:href="@{/event-page}">Events</a></li>
-    </ul>
-    <a href="https://www.youtube.com/watch?v=J7PFwHVYVUU">
-      <img th:src="@{/static/images/bee_logo.png}" alt="Placeholder Image" />
-    </a>
-    <ul>
-      <li><a th:href="@{/about-us}">Contact</a></li>
-      <li><a th:href="@{/user-page}">Account</a></li>
-    </ul>
-  </nav>
-</header>-->
 
 <main>
   <section class="button-section">
@@ -55,43 +40,99 @@
   &nbsp;
   &nbsp;
 </main>
-</body>
-<footer th:replace="~{/fragments/footer :: footer}"></footer>
 
 <div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">X</span>
-  <form class="modal-content" action="/register" method="GET">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+  <form class="modal-content" action="/users/new" method="POST">
     <div class="container">
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
       <hr>
+      
+      <label for="username"><b>Username</b></label>
+      <input type="text" id="username" name="username" required>
+      
+      <label for="name"><b>Full Name</b></label>
+      <input type="text" id="name" name="name" required>
+      
       <label for="email"><b>Email</b></label>
-      <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+      <input type="email" id="email" name="email" required>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+      <label for="role"><b>Account Type</b></label>
+      <select id="role" name="role" required>
+        <option value="Volunteer">Volunteer</option>
+        <option value="OrganizationRepresentative">Organization Representative</option>
+        <option value="Admin">Admin</option>
+      </select>
 
-      <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      <label for="password"><b>Password</b></label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="confirmPassword"><b>Confirm Password</b></label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required>
 
       <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" 
+                class="cancelbtn">Cancel</button>
         <button type="submit" class="signupbtn">Sign Up</button>
       </div>
     </div>
   </form>
 </div>
 
-
 <script>
-  // Get the modal
   var modal = document.getElementById('id01');
-
-  // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
+      if (event.target == modal) modal.style.display = "none";
   }
+
+  // Password validation
+  document.querySelector('form').addEventListener('submit', function(e) {
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      
+      if (password !== confirmPassword) {
+          alert('Passwords do not match!');
+          e.preventDefault();
+      }
+  });
 </script>
+
+<!-- <script>
+    function openModal() {
+        document.getElementById('id01').style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent body scrolling
+    }
+
+    function closeModal() {
+        document.getElementById('id01').style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore body scrolling
+    }
+
+    // Update your button to use openModal()
+    <button class="small-btn gold-btn" onclick="openModal()">Sign Up</button>
+
+    // Update window.onclick handler
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    // Update password validation to use new close function
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            e.preventDefault();
+        } else {
+            closeModal(); // Close modal on successful submission
+        }
+    });
+</script> -->
+
+</body>
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 </html>

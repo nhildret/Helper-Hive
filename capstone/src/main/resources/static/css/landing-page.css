@@ -291,56 +291,138 @@ input[type=text]:focus, input[type=password]:focus {
 
 }
 
-/* Add padding to container elements */
-.container {
-  padding: 16px;
-}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  /*background-color: #474e5d;*/
-  background-color: rgba(71, 78, 93, 0.8);
-  padding-top: 50px;
-
-
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 75%; /* Could be more or less, depending on screen size */
-}
-
 /* Style the horizontal ruler */
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
 
-/* The Close Button (x) */
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
+
+/* Modal Styles */
+
+.modal {
+    display: none;
+    overflow: auto;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(71, 78, 93, 0.8);
+    padding-top: 50px;
 }
 
-.close:hover,
-.close:focus {
-  color: #f44336;
-  cursor: pointer;
+.modal-content {
+    background-color: #fdead1;
+    margin: 5% auto;
+    border: 3px solid #e59b47;
+    border-radius: 50px;
+    width: 60%;
+    max-width: 600px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    max-height: 90vh; /* Limit modal height */
+    overflow-y: auto; /* Enable scrolling for modal content */
+}
+
+.container {
+    padding: 2rem;
+    font-family: "American Typewriter", serif;
+}
+
+/* Form Elements */
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="password"],
+.modal-content select {
+    width: 100%;
+    padding: 1rem;
+    margin: 0.5rem 0 1.5rem;
+    border: 2px solid #e59b47;
+    border-radius: 10px;
+    background: #fff9f0;
+    font-size: 1.1rem;
+    font-family: Arial, sans-serif;
+}
+
+.modal-content select {
+    appearance: none;
+    background: #fff9f0 url("data:image/svg+xml;utf8,<svg fill='%23c47d12' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>") no-repeat right 1rem center;
+}
+
+.modal-content label {
+    display: block;
+    margin: 0.5rem 0;
+    color: #736e68;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Buttons */
+.cancelbtn, .signupbtn {
+    float: left;
+    width: 48%;
+    padding: 1rem;
+    margin: 1%;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-family: "American Typewriter", serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancelbtn {
+    background: #fdead1;
+    color: #c47d12;
+    border: 3px solid #e59b47;
+}
+
+.signupbtn {
+    background: linear-gradient(180deg, #ffb84e, #c47d12);
+    color: white;
+}
+
+.cancelbtn:hover {
+    background: #e59b47;
+    color: white;
+}
+
+.signupbtn:hover {
+    background: linear-gradient(180deg, #ffa62b, #b36b0a);
+}
+
+/* Close Button */
+.close {
+    color: #c47d12;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.close:hover {
+    color: #b36b0a;
+}
+
+/* Error Message */
+.error-message {
+    color: #d9534f;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background: #ffe6e6;
+    border-radius: 5px;
+    display: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+        border-radius: 30px;
+    }
+    
+    .cancelbtn, .signupbtn {
+        width: 100%;
+        margin: 5px 0;
+    }
 }
 
 /* Clear floats */
@@ -356,3 +438,4 @@ hr {
     width: 100%;
   }
 }
+

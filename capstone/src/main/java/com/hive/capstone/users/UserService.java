@@ -12,8 +12,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-    //@Autowired
-    //private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -23,25 +24,15 @@ public class UserService {
         return userRepository.findById(user_id).orElse(null);
     }
 
-    public void saveUser(User user) {
-        // Encode password before saving
-        //user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public void addNewUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // Set registration date
+        user.setRegisteredAt(new Date()); // Use java.util.Data directly
         userRepository.save(user);
     }
 
-    public void deleteUser(int user_id) {
-        userRepository.deleteById(user_id);
-    }
-
-    public List<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-
-    public void addNewUser(User user) {
-        // Encode password before saving
-        //user.setPassword(passwordEncoder.encode(user.getPassword()));
-        // Set registration date
-        user.setRegisteredAt((java.sql.Date) new Date());
+    public void saveUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -57,11 +48,20 @@ public class UserService {
         existing.setTotalHours(user.getTotalHours());
         existing.setPassword(user.getPassword());
         // Only update password if a new one is provided
-        // if (user.getPassword() != null && !user.getPassword().isEmpty()) {
-        //     existing.setPassword(passwordEncoder.encode(user.getPassword()));
-        // }
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            existing.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         userRepository.save(existing);
     }
+
+    public void deleteUser(int user_id) {
+        userRepository.deleteById(user_id);
+    }
+
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
 
     public List<User> getUsersByRole(String role) {
         return userRepository.findByRole(role);

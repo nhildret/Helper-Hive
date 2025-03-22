@@ -1,50 +1,116 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Account</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/users.css}"/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
-            rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
 
-<header th:replace="~{/fragments/header :: header}"></header>
+    <header th:replace="~{/fragments/header :: header}"></header>
 
-    <!--<nav>
-        <ul>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-            <li><a href="#">Link 4</a></li>
-            <li><a href="#">Link 5</a></li>
-        </ul>
-    </nav>-->
+    <div th:if="${success}" class="alert alert-success" role="alert">
+        <span th:text="${success}"></span>
+    </div>
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+    </div>
 
-<main>
-    <section class="button-section">
-        <div class="text-container">
-            <h1>Welcome!</h1>
-            <!-- <p> Helper Hive is an application that makes connecting volunteers and organizations simple. </p> -->
-            <div class="user-card"> 
-                <img src="/images/demo_images/user-profile.jpg" alt="User Profile">
-                <h2>John Doe</h2>
-                <p>Volunteer since 2023</p>
-                <button class="button">Connect</button>
-            </div> 
-<!--            <div class="user-card">
-                <img src="/images/demo_images/user-profile2.jpg" alt="User Profile">
-                <h2>Bruce Wayne</h2>
-                <p>Volunteer since 2025</p>
-                <button class="button">Connect</button>
-            </div>-->
+    <main class="account-container">
+        <div class="account-header">
+            <h1>Account Details</h1>
         </div>
-    </section>
-</main>
-<footer th:replace="~{/fragments/footer :: footer}"></footer>
+        
+        <div class="user-details">
+            <dl>
+                <dt>Username:</dt>
+                <dd th:text="${user.username}">username</dd>
+
+                <dt>Name:</dt>
+                <dd th:text="${user.name}">John Doe</dd>
+
+                <dt>Email:</dt>
+                <dd th:text="${user.email}">john@example.com</dd>
+
+                <dt>Role:</dt>
+                <dd th:text="${user.role}">Volunteer</dd>
+
+                <dt>Registered:</dt>
+                <dd th:text="${#dates.format(user.registeredAt, 'yyyy-MM-dd HH:mm')}">2025-03-01 10:00</dd>
+
+                <dt>Total Hours:</dt>
+                <dd th:text="${user.totalHours}">50</dd>
+            </dl>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-edit" onclick="openEditModal()">Edit Profile</button>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn-logout">Log Out</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Edit Profile</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form th:action="@{/user/update}" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" th:value="${user.username}" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" th:value="${user.name}" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" th:value="${user.email}" name="email" required>
+                        </div>
+                        <input type="hidden" name="id" th:value="${user.id}">
+                        <!--Password -->
+                        <div class="mb-3">
+                            <label class="form-label">Current Password</label>
+                            <input type="password" class="form-control" name="currentPassword">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">New Password</label>
+                            <input type="password" class="form-control" name="newPassword">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm New Password</label>
+                            <input type="password" class="form-control" name="confirmPassword">
+                        </div>
+                        <div class="alert alert-info">
+                            <small>Leave password fields blank to keep current password</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-logout" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn-edit">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function openEditModal() {
+            new bootstrap.Modal(document.getElementById('editModal')).show();
+        }
+    </script>
+
 </body>
-<!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 </html>

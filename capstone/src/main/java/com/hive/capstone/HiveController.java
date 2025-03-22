@@ -16,10 +16,10 @@ public class HiveController {
         return "maps-page"; // Serves maps-page.html
     }
 
-    @GetMapping("/user")
-    public String user() {
-        return "user-page"; // Serves user-page.html
-    }
+    // @GetMapping("/user")
+    // public String user() {
+    //     return "user-page"; // Serves user-page.html
+    // }
 
     @GetMapping("/about")
     public String aboutus() {
@@ -39,6 +39,11 @@ public class HiveController {
     @GetMapping("/login")
     public String login() {
         return "log-in"; // Serves log-in.html
+    }
+
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "403";
     }
 
 }

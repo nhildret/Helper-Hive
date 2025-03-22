@@ -41,11 +41,15 @@
                 <!-- Sign Up Button -->
                 <button class="btn-sign-up">Sign Up</button>
 
+                <!-- Admin/Org Rep Controls -->
+                <div sec:authorize="hasAnyRole('Admin', 'OrganizationRepresentative')">
+
                 <!-- Edit Event Button -->
                 <button class="btn-edit" onclick="openEditPopup()">Edit Event</button>
-
                 <!-- Delete Event Button -->
                 <button class="btn-delete" onclick="openDeletePopup()">Delete Event</button>
+
+                </div>
 
                 <!-- Back Button -->
                 <a class="btn-back" th:href="@{/events/all}">Back to Events</a>
@@ -143,6 +147,7 @@
                 <a class="btn-view-more" th:href="@{/events/view/{event_id}(event_id=${event.eventId})}">View More</a>
             </div>
         </section>
+        &nbsp;
     </main>
 
     <!--<footer th:replace="~{/fragments/footer :: footer}"></footer>-->
@@ -186,4 +191,5 @@
         document.getElementById("edit-popup").style.display = "none";
     }
 </script>
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 </html>

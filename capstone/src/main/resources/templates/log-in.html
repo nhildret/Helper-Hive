@@ -3,17 +3,51 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Lag In</title>
+    <title>Login - Helper Hive</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/log-in.css}"/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
-            rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet"/>
 </head>
 
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
 
+&nbsp;
+
+<main class="login-main">
+    <div class="modal-content" style="display: block; margin: 5% auto; position: static;">
+    <div class="container">
+      <h1>Welcome Back!</h1>
+      <hr>
+    
+    <form th:action="@{/login}" method="POST">
+        <div class="form-group">
+          <label for="username"><b>Username</b></label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password"><b>Password</b></label>
+          <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="clearfix">
+          <button type="submit" class="signupbtn">Log In</button>
+        </div>
+        
+        <div class="additional-options">
+          <p>Don't have an account? 
+            <a href="/" onclick="document.getElementById('id01').style.display='block'">Sign Up</a>
+          </p>
+          <!-- <p><a href="#">Forgot Password?</a></p> -->
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+&nbsp;
+
 </body>
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 </html>
