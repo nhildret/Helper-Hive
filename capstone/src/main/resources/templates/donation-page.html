@@ -20,26 +20,23 @@
             <p class="message">Click an organization to learn more and donate!</p>
 
             <div class="card-container">
-               <!-- <div class="card">
-                    <img class="card-img" th:src="${orgs.get(0).logo_url}"/>
-                    <h2 onclick="document.getElementById('modal-space').style.display='block'" data-th-text="${orgs.get(0).name}"></h2>
-                   </p>
-               </div> -->
            </div>
            <div id="modal-space">
                <span onclick="document.getElementById('modal-space').style.display='none'" class="close" title="Close Modal">X</span>
                <div id="modal">
                    <div class="card-details">
-                        <!-- <h1 th:text="${orgs.get(0).name}"></h1>
-                        <p th:text="${orgs.get(0).mission}"></p> -->
+                        <div id="org-id"></div>
                         <h1 id="modal-title"></h1>
                         <p id="modal-description"></p>
                     </div>
-                    <form>
+                        <div class="plg-donate" data-partner-key="1c664ffa32752a5dd9cde6a339d4498a" data-item-id="9IEgDGbG9gMAEgFoKSvSpg">
                         Amount donating<br>
                         Credit card info<br>
                         <button>Donate</button>
-                    </form>
+                    
+</div>
+
+                        
                 </div>
             </div>
         </main>

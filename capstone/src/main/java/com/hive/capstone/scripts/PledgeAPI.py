@@ -7,12 +7,13 @@ headers = {
 }
 argstring = sys.argv[1]
 
-url = 'https://api.pledge.to/v1/organizations?' + argstring
+url = 'https://api.pledge.to/v1/organizations' + argstring
 response = requests.get(url, headers = headers)
 
 if response.status_code == 200:
     data = response.json()
-    data = data["results"]
+    if "results" in data :
+        data = data["results"]
     # print("Now showing " + str(len(data["results"])) + " results out of " + str(data["total_count"]) + "\n\n")
     # for i in range(len(data["results"])) :
     #     print(str(i) + " - " + data["results"][i]["name"])

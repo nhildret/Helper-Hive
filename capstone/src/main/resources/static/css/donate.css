@@ -10,6 +10,13 @@ main{
     overflow-y: scroll;
 }
 
+.message {
+    overflow:visible;
+    font-size: larger;
+    text-align: center;
+    font-family: "Cutive", serif;
+    }
+
 /* holds cards */
 .card-container {
     width: 80%;
@@ -19,7 +26,6 @@ main{
     flex-wrap: wrap;
     justify-content: center;
 }
-
 
 /* donate cards */
 .card {
@@ -37,7 +43,7 @@ main{
     background-color: var(--card);
 }
 .card h2 {
-    margin-top: 1rem;
+    margin-block: 1rem;
     font-family: "cutive", serif;
     font-size: 18px;
 }
@@ -61,14 +67,21 @@ main{
     overflow:hidden;
     text-overflow: ellipsis;
 }
-
-.message {
-overflow:visible;
-font-size: larger;
-text-align: center;
-font-family: "Cutive", serif;
+.card button {
+    margin-inline: auto;
+    width: fit-content;
+    height:fit-content;
+    font-size: medium;
+    border-radius: 10px;
+    border-color: var(--header);
+    background-color: var(--header);
+    font-weight: bold;
+    padding: 10px;
+  font-family: cutive;
 }
 
+
+/* modal */
 #modal-space {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -127,7 +140,7 @@ font-family: "Cutive", serif;
 .card-details {
     margin-inline: auto;
 }
-#modal form {
+#modal .plg-donate {
     width:45%;
     min-height: 40%;
     font-size:larger;
@@ -142,7 +155,7 @@ font-family: "Cutive", serif;
     margin-bottom:1.5rem;
     border-radius: 10px;
 }
-#modal form button {
+#modal .plg-donate button {
     width: 120px;
     height:50px;
     font-size: large;
@@ -152,4 +165,7 @@ font-family: "Cutive", serif;
     font-weight: bold;
     padding:15px;
     font-family: "Cutive", serif;
+}
+#org-id {
+    display: none;
 }

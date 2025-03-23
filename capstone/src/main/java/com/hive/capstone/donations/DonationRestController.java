@@ -21,7 +21,7 @@ public class DonationRestController {
                             @RequestParam(name = "state", required = false) String state, @RequestParam(name = "country", required = false) String country,
                             @RequestParam(name = "zip", required = false) String zip, @RequestParam(name = "q", required = false) String q,
                             @RequestParam(name = "pagenum", required = true) String pageNum, Model model) {
-        String argString = "page=" + pageNum;
+        String argString = "?page=" + pageNum;
         
         //location
         if (zip != null) {
@@ -47,4 +47,12 @@ public class DonationRestController {
         System.out.println("\n\n" + orgs[0] + "\n\n");
         return orgs;
     }
+
+    @GetMapping("/getById")
+    public String org(@RequestParam(name="id") String id){
+        String argString = "/" + id;
+        JSONObject org = CallScripts.getOrgDetails(argString);
+        return org.toString();
+    }
+
 }

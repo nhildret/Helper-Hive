@@ -60,10 +60,54 @@ public class CallScripts {
             int exitCode = process.waitFor();
             System.out.println("Exited with code " + exitCode);
             resultReader.close();
+            System.out.println("CallScripts finished");
             return results;
         } catch (Exception e) {
             e.printStackTrace();
             return new JSONArray("[]");
+        }
+    }
+
+    public static JSONObject getOrgDetails(String id) {
+        try {
+            ProcessBuilder pyProc = new ProcessBuilder(
+                "python", 
+                "src/main/java/com/hive/capstone/scripts/PledgeAPI.py", //use when server is running
+                // "capstone/src/main/java/com/hive/capstone/scripts/PledgeAPI.py", //use for testing this file
+                id
+            );
+
+            pyProc.redirectErrorStream(true);
+
+            Process process = pyProc.start();
+            BufferedReader resultReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            
+            // read results into a string
+            String r = resultReader.readLine();
+            while (resultReader.ready()) {
+                    r += resultReader.readLine();
+            }
+            System.out.println(r);
+            
+
+            // turn results into JSONObject
+            JSONObject results;
+            if (r!=null) {
+                System.out.println("r is not null");
+                
+                results = new JSONObject(r);
+            } else {
+                results = new JSONObject("{}");
+            }
+            
+            // print exit code and return results
+            int exitCode = process.waitFor();
+            System.out.println("Exited with code " + exitCode);
+            resultReader.close();
+            return results;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject("{}");
         }
     }
 }
