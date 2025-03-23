@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Leader Board</title>
+    <title> LeaderBoard</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/leaderboard.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bg.css}"/>
@@ -14,50 +14,48 @@
           rel="stylesheet"
     />
 </head>
+
 <body>
-    <!-- Header Fragment -->
-    <header th:replace="~{/fragments/header :: header}"></header>
+<!-- Header Fragment -->
+<header th:replace="~{/fragments/header :: header}"></header>
 
-    <main>
-        <section class="button-section">
-            <div class="text-container">
-                <p id="lat-lon"></p>
-                <h1> Our Donations Programs</h1>
-                <p class="message">
+<main>
+    <section class="button-section">
+        <div class="text-container">
+            <p id="lat-lon"></p>
+            <h1> Our Donations Programs</h1>
+            <p class="message">
                     We would like to thank everyone for such generous donations! With your help, we are able to
-                    make this service possible. Below you can find our donation leaderboard.
-                </p>
-            </div>
-        </section>
+                    make this service possible. Below you can find our donation leaderboard.</p>
+        </div>
+    </section>
+</main>
 
-        <!-- This will connect to the  users and display the donations ranking-->
-        <section id="scrims-ladder--container" class="scrimms-ladder">
-            <div class="ladder-nav">
-                <div class="ladder-nav--col ladder-title">
-                    <h1>Donations Standings</h1>
-                </div>
-<!--                    <div class='ladder-nav&#45;&#45;col'>-->
-<!--                        <input type="text" class="ladder-search" placeholder="search user..."/>-->
-<!--                    </div>-->
-            </div>
+<!-- This will connect to the  users and display the donations ranking-->
+<section id="scrims-ladder--container" class="scrimms-ladder">
+    <div class="ladder-nav">
+        <div class="ladder-nav--col ladder-title">
+            <h1>Donations Standings</h1>
+        </div>
+    </div>
 
-            <table class="donations-table">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Donation Name</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="i : ${#numbers.sequence(1, leaderboard.size())}">
-                        <td data-th-text="${i}"> </td>
-                        <td data-th-text="${leaderboard.get(i-1).donationName}"></td>
-                        <td data-th-text="${leaderboard.get(i-1).amount}"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
+    <table class="donations-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Donation Name</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="i : ${#numbers.sequence(1, leaderboard.size())}">
+                <td data-th-text="${i}"> </td>
+                <td data-th-text="${leaderboard.get(i-1).donationName}"></td>
+                <td data-th-text="${leaderboard.get(i-1).amount}"></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 </body>
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 </html>

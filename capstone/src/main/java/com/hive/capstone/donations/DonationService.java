@@ -33,13 +33,13 @@ public class DonationService {
     public List<Donation> getTopDonors(){
         return donationRepository.findAllByOrderByAmountDesc();
     }
-//    //Get donations by amount
-//    public List<Donation> getDonationsByAmount(double amount){
-//        return donationRepository.findByAmount(amount);
-//    }
-//    //Get donations by data
-//    public List<Donation> getDonationsByDate(Date donatedAt){
-//        return donationRepository.findByDonatedAt(donatedAt);
-//    }
+    //Get donations by amount
+    public List<Donation> getDonationsByAmount(double amount){
+        return donationRepository.findByAmount(amount);
+    }
+    //Get donations by data
+    public List<Donation> getDonationsByDate(Date donatedAt){
+        return donationRepository.findByDonatedAt(donatedAt);
+    }
 
 }

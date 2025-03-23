@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,28 +63,6 @@
             </tbody>
         </table>
     </section>
-
-<!--This is our static version of the leaderboards-->
-
-<!--        <div class="ladder-nav&#45;&#45;results-col"><label>Rank</label></div>-->
-<!--        <div class="ladder-nav&#45;&#45;results-col"><label> User's Name</label></div>-->
-<!--        <div class="ladder-nav&#45;&#45;results-col"><label> Volunteer Hours</label></div>-->
-<!--        </div>-->
-
-<!--        <div class = "ladder-nav&#45;&#45;results-users">-->
-<!--            <div th:each="user, iterStat : ${leaderboard}" class="results-row">-->
-<!--                <div class="results-col">-->
-<!--                    <span class="results-rank"><span class="positions">1</span></span>-->
-<!--                </div>-->
-<!--                <div class="results-col">-->
-<!--                    <span class="results-name" th:text="${user.name}"></span>-->
-<!--                </div>-->
-<!--                <div class="results-col">-->
-<!--                    <span class="results-hours" th:text="${user.hours}"></span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
 </body>
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 </html>
