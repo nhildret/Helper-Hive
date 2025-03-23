@@ -171,8 +171,8 @@ public class UserController {
 //This will most likely be moved to donations, instead of users
 //    @GetMapping("/leaderboard/donations")
 //    public String showLeaderboardDonations(Model model) {
-//        // List<User> leaderboard = userService.getLeaderboard();
-//        // model.addAttribute("leaderboard", leaderboard);
+//         List<User> leaderboard = userService.getLeaderboard();
+//         model.addAttribute("leaderboard", leaderboard);
 //        return "leaderboard-donations";
 //    }
 }

@@ -21,7 +21,7 @@ public interface DonationRepository extends JpaRepository <Donation, Integer> {
 
     List<Donation> findByDonatedAt(Date donatedAt);
 
-    @Query("SELECT d FROM Donation d ORDER BY d.amount DESC")
+    @Query("SELECT d FROM Donation d ORDER BY d.amount DESC LIMIT 5")
     List<Donation> findAllByOrderByAmountDesc();
 
     List<Donation> findAll();
