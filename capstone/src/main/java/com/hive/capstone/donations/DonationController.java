@@ -13,14 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import com.hive.capstone.donations.*;
 import com.hive.capstone.scripts.CallScripts;
 
-@Controller
+import java.util.List;
 
-//@GetMapping("/leaderboard-donations")
-//public String showDonationLeaderboard(Model model){
-//    List<Donation> leaderboard = donationService.getTopDonors();
-//    model.addAttribute("leaderboard", leaderboard);
-//    return "leaderboard-donations";
-//}
+@Controller
 
 @RequestMapping("/donate")
 public class DonationController {
@@ -32,6 +27,14 @@ public class DonationController {
     public String donate() {
         return "donation-page";
     }
+
+//    this will return the top donors for leaderboard-donations
+//    @GetMapping("/leaderboard/donations")
+//    public String showDonationLeaderboard(Model model){
+//        List<Donation> leaderboard = donationService.getTopDonors();
+//        model.addAttribute("leaderboard", leaderboard);
+//        return "leaderboard-donations";
+//    }
 
     @GetMapping("/admin/donations/all")
     public String getAllDonations(Model model) {

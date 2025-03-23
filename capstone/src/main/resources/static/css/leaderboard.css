@@ -109,22 +109,36 @@ h1 {
 .leaderboard-table td:nth-child(3){
     text-align: right;
 }
+/* Badge styling */
+.badge {
+    width: 30px; /* Adjust size as needed */
+    height: auto;
+    margin-left: 10px; /* Space between rank number and badge */
+    vertical-align: middle;
+}
+
+/* First place styling */
 .first-place {
-    background-color: #FFD700;
+    background-color: #FFD700; /* Gold */
     font-weight: bold;
     border: 3px solid #DAA520;
 }
-.second-place{
-    background-color: #C0C0C0;
+
+/* Second place styling */
+.second-place {
+    background-color: #C0C0C0; /* Silver */
     font-weight: bold;
     border: 3px solid #A9A9A9;
 }
-.third-place{
-    background-color: #CD7F32;
+
+/* Third place styling */
+.third-place {
+    background-color: #CD7F32; /* Bronze */
     font-weight: bold;
     border: 3px solid #8B5A2B;
 }
-.badge{
-    font-size:18px;
-    margin-left: 8px;
+
+/* Table row hover effect */
+.leaderboard-table tbody tr:hover {
+    background-color: #fdead1;
 }

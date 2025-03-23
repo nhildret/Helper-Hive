@@ -30,6 +30,9 @@ public class DonationService {
     public List<Donation> getDonationsByDonationName(String donationName){
         return donationRepository.findByDonationName(donationName);
     }
+    public List<Donation> getTopDonors(){
+        return donationRepository.findAllByOrderByAmountDesc();
+    }
     //Get donations by amount
     public List<Donation> getDonationsByAmount(double amount){
         return donationRepository.findByAmount(amount);
@@ -38,8 +41,5 @@ public class DonationService {
     public List<Donation> getDonationsByDate(Date donatedAt){
         return donationRepository.findByDonatedAt(donatedAt);
     }
-//     Donation Leaderboard Implementation to get Amount
-//    public List<Donation> getTopDonors(){
-//        return donationRepository.findAll(Sort.by(Sort.Direction.DESC, "amount"));
-//    }
+
 }
