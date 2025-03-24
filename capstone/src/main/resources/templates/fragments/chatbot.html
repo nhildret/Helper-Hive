@@ -1,0 +1,127 @@
+<chatbot th:fragment="chatbot" class="chatbot">
+
+<div id="chatbot-container">
+    <div id="chatbot-icon" onclick="toggleChatbox()">
+        <img th:src="@{/images/circleIcon.png}" alt="Placeholder Image"width="70" height="70">
+
+    </div>
+    <div id="chatbox" class="hidden">
+        <div id="chatbox-header">
+            Chatbot
+            <button onclick="toggleChatbox()">✖</button>
+        </div>
+        <div id="chatbox-body">
+            <p>Welcome! How can I help you?</p>
+        </div>
+        <div id="chatbox-footer">
+            <input type="text" id="chat-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    #chatbot-container {
+        position: fixed;
+        bottom: 30px;
+        right: 60px;
+        z-index: 1000;
+    }
+
+    #chatbot-icon {
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #chatbox {
+        width: 300px;
+        height: 400px;
+        background: white;
+        position: absolute;
+        bottom: 60px;
+        right: 0;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        display: none;
+        flex-direction: column;
+    }
+
+    #chatbox-header {
+        background: #6B6361;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    #chatbox-body {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+    }
+
+    #chatbox-footer {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+    }
+
+    #chatbox-footer input {
+        flex: 1;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    #chatbox-footer button {
+        margin-left: 5px;
+        background: #6B6361;
+        color: white;
+        border: none;
+        padding: 5px 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .hidden { display: none; }
+</style>
+
+<script>
+    function toggleChatbox() {
+        const chatbox = document.getElementById("chatbox");
+        chatbox.style.display = chatbox.style.display === "none" || chatbox.style.display === "" ? "flex" : "none";
+    }
+
+    function sendMessage() {
+        const input = document.getElementById("chat-input");
+        if (input.value.trim() !== "") {
+            const chatBody = document.getElementById("chatbox-body");   //msgs
+            const userMessage = document.createElement("p");
+            userMessage.textContent = "You: " + input.value;
+            chatBody.appendChild(userMessage);
+
+            fetch(`/chatbot/reply?message=${encodeURIComponent(input.value)}`)
+                .then(response => response.text())
+                .then(data => {
+                    const botMessage = document.createElement("p");
+                    botMessage.textContent = "Bot: " + data;
+                    chatBody.appendChild(botMessage);
+                    chatBody.scrollTop = chatBody.scrollHeight; // Autoscroll
+                })
+                .catch(error => {
+                    const botMessage = document.createElement("p");
+                    botMessage.textContent = "Bot: Error processing your request.";
+                    chatBody.appendChild(botMessage);
+                    chatBody.scrollTop = chatBody.scrollHeight; // Autoscroll
+                });
+
+            input.value = "";
+            chatBody.scrollTop = chatBody.scrollHeight; // Autoscroll
+        }
+    }
+</script>
+</chatbot>

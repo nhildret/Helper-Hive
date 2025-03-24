@@ -60,7 +60,7 @@
                 <td data-th-text="${organizations.address}"></td>
                 <!--<td data-th-text="${organizations.memberTotal}"></td>-->
 
-                <td><a data-th-href="@{/organizations/{id} (organizationId=${organizations.id})}"
+                <td><a data-th-href="@{/organizations/view/{id} (id=${organizations.id})}"
                        class="btn btn-sm btn-outline-secondary">View</a>
 <!--                    <a data-th-href="@{/organizations/edit/{id} (id=${organizations.id})}"
                        class="btn btn-sm btn-outline-warning">Edit</a>-->
@@ -72,6 +72,8 @@
                 </td>
             </tr>
             </tbody>
+
+
         </table>
     </div>
 </div>
