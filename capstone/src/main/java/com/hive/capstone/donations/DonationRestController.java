@@ -7,11 +7,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hive.capstone.scripts.CallScripts;
+import com.hive.capstone.users.User;
 
 @RestController
 @RequestMapping("/donate")
@@ -55,4 +58,8 @@ public class DonationRestController {
         return org.toString();
     }
 
+    @PostMapping("/new")
+    public void newDonation(@ModelAttribute User user, @RequestParam(name="amount") double amt) {
+
+    }
 }

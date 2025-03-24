@@ -9,6 +9,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link
             href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
             rel="stylesheet"
@@ -17,7 +18,7 @@
         <link rel="stylesheet" type="text/css" th:href="@{/css/events.css}">
         <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}"/>
         <link rel="stylesheet" type="text/css" th:href="@{/css/donate.css}"/>
-        <script th:src = "@{/js/coords.js}" defer></script>
+        <script th:src = "@{/js/donate.js}" defer></script>
     </head>
     <header th:replace="~{/fragments/header :: header}"></header>
         <main>
@@ -37,7 +38,7 @@
                     <input id="state" type="text" class="form-control form-control-sm" placeholder="state">
                 </div>
             </div> -->
-            
+
             <div class="card-container">
            </div>
            <div id="modal-space">
@@ -47,8 +48,14 @@
                         <div id="org-id"></div>
                         <h1 id="modal-title"></h1>
                         <p id="modal-description"></p>
+                        <h6>Visit their website <a id="modal-url" target="_blank">here</a>.</h6>
+                        <div id="modal-causes-container">
+                            <h5>Causes:</h5>
+                            <ul id="modal-causes"></ul>
+                        </div>
                     </div>
-                    <form class="plg-donate">
+
+                    <form class="donate-form">
                         <h4>Donate</h4>
                         <div id="donate-amt-container">
                             <div class="form-control-container">

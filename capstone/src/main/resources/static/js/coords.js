@@ -1,3 +1,10 @@
+
+
+
+
+// Pledge API calls & functions
+// Rework this for events instead of donations
+
 window.onload = function (){
     //document.getElementById("use-location").addEventListener("click", function() {
         if (navigator.geolocation) {
@@ -58,42 +65,14 @@ function showModal(id) {
             document.getElementById('org-id').innerText=entity.id;
             document.getElementById('modal-title').innerText=entity.name;
             document.getElementById('modal-description').innerText=entity.mission;
+            var causes = document.getElementById('modal-causes');
+            entity.causes.array.forEach(cause => {
+                var newCause = document.createElement("li");
+                newCause.classList.add(cause.id);
+            });
 
             //display modal
             document.getElementById('modal-space').style.display='block';
         }
     });
 }
-
-// function showModal(result) {
-
-//     //fill modal
-//     document.getElementById('org-id').innerText=entity.id;
-//     document.getElementById('modal-title').innerText=entity.name;
-//     document.getElementById('modal-description').innerText=entity.mission;
-
-//     //display modal
-//     document.getElementById('modal-space').style.display='block';
-// }
-
-// function showModal(id, name, mission) {
-//     //fill modal
-//     document.getElementById('org-id').innerText=id;
-//     document.getElementById('modal-title').innerText=name;
-//     document.getElementById('modal-description').innerText=mission;
-
-//     //display modal
-//     document.getElementById('modal-space').style.display='block';
-// }
-
-// function getEvents(position) {
-//     document.getElementById("lat-lon").innerHTML =  
-//     "Searching for organizations near lat: " + position.coords.latitude +
-//     " & lon: " + position.coords.longitude;
-// }
-
-
-/* 
-<h1 th:text="${orgs.get(0).name}"></h1>
-<p th:text="${orgs.get(0).mission}"></p>
-*/
