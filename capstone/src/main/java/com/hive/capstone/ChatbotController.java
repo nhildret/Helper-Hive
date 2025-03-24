@@ -31,7 +31,7 @@ public class ChatbotController {
             return "To find and use the map, navigate to the 'services' tab and click on the dropdown!";
         }
         if (message.contains("find")) {
-            return "To locate volunteer opportunites, please use the header to navigate our site.";
+            return "To locate volunteer opportunities, please use the header to navigate our site.";
         }
         if (message.contains("bye") || message.contains("goodbye") || message.contains("farewell")) {
             return "Goodbye! Have a great day!";
