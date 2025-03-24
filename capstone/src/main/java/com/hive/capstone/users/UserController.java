@@ -175,4 +175,17 @@ public class UserController {
 //         model.addAttribute("leaderboard", leaderboard);
 //        return "leaderboard-donations";
 //    }
+
+    @GetMapping("/admin/users/registration-data")
+    public List<Object[]> getUserRegistrationData() {
+        return userRepository.countUsersByRegistrationDate();
+    }
+
+
+    @GetMapping("/admin/users/statistics")
+    public String showUserStatistics() {
+        return "user-stats";
+    }
+
+
 }
