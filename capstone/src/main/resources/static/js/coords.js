@@ -1,9 +1,12 @@
 window.onload = function (){
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getEntities);
-    } else {
-        console.log("Geolocation is not supported by this browser.");
-    }
+    //document.getElementById("use-location").addEventListener("click", function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(getEntities);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    //});
+    
 }
 
 // ajax call to get orgs

@@ -142,7 +142,7 @@ main{
 }
 #modal .plg-donate {
     width:45%;
-    min-height: 40%;
+    height:fit-content;
     font-size:larger;
     background-color: var(--header);
     margin-inline: auto;
@@ -154,6 +154,7 @@ main{
     padding:15px;
     margin-bottom:1.5rem;
     border-radius: 10px;
+    font-family: "Cutive", serif;
 }
 #modal .plg-donate button {
     width: 120px;
@@ -168,4 +169,36 @@ main{
 }
 #org-id {
     display: none;
+}
+#donate-amt-container{
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.form-control-container {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+#recurring {
+    margin-top:0;
+    vertical-align: middle;
+} #recurring + label{
+    font-size: small;
+    margin-top: .5em;
+    margin-left: .5em;
+}
+#donate-amt{
+    margin-inline: 0.5rem 1rem;
+}
+.form-control {
+    font-family: "Cutive", serif;
+    margin-bottom: 0.5rem;
+}
+.filter-container {
+    display:flex;
+    flex-direction: row;
+}
+.filter > input {
+    max-width:20%;
 }
