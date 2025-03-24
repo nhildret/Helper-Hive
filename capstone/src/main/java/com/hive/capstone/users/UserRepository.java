@@ -24,8 +24,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("SELECT u FROM User u ORDER BY u.totalHours DESC LIMIT 5")
     List<User> findAllByOrderByTotalHoursDesc();
 
-    @Query("SELECT FUNCTION('DATE', u.registeredAt), COUNT(u) FROM User u GROUP BY FUNCTION('DATE', u.registeredAt) ORDER BY FUNCTION('DATE', u.registeredAt)")
-    List<Object[]> countUsersByRegistrationDate();  //this took forever
+//    @Query("SELECT FUNCTION('DATE', u.registeredAt), COUNT(u) FROM User u GROUP BY FUNCTION('DATE', u.registeredAt) ORDER BY FUNCTION('DATE', u.registeredAt)")
+//    List<Object[]> countUsersByRegistrationDate();  //this took forever
 
 
 }
