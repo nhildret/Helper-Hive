@@ -21,6 +21,12 @@ public class ChatbotController {
         if (message.contains("hello") || message.contains("hi") || message.contains("hiya") || message.contains("ciao") || message.contains("who are you")) {
             return "Hi! My name is Barry 🐝 and I'm a helper bee! How can I assist you?";
         }
+        if (message.contains("honey")) {
+            return "Making honey is my job, raising money is yours!";
+        }
+        if (message.contains("love you") || message.contains("you are cute") || message.contains("you are so cute") || message.contains("you're cute") || message.contains("you're so cute") || message.contains("you are adorable") || message.contains("you're adorable")) {
+            return "Thank you! I love you too 💐";
+        }
         if (message.contains("help")) {
             return "Sure, I'm here to help! What do you need?";
         }
