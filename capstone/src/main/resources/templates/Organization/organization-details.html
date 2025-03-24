@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/organization.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}">
 </head>
 <body>
     <!-- Header Fragment -->
     <header th:replace="~{/fragments/header :: header}"></header>
-
     <main>
         <div class="organization-details-box">
             <!-- Organization Name -->
@@ -31,6 +31,8 @@
             <a class="btn-back" th:href="@{/maps}">Back to Maps</a>
         </div>
     </main>
+
+    <div th:replace="~{/fragments/chatbot :: chatbot}"></div>
 
     <!-- Footer Fragment -->
     <footer th:replace="~{/fragments/footer :: footer}"></footer>
