@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Stats</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h2>User Registration Stats</h2>
+<canvas id="userChart"></canvas>
+
+<script>
+    async function fetchUserData() {
+        const response = await fetch('/api/users/registration-trend');
+        const data = await response.json();
+
+        const labels = data.map(item => item[0]); // Dates
+        const counts = data.map(item => item[1]); // User count
+
+        const ctx = document.getElementById('userChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Users Registered',
+                    data: counts,
+                    borderColor: 'blue',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: { title: { display: true, text: 'Date' } },
+                    y: { title: { display: true, text: 'Users' }, beginAtZero: true }
+                }
+            }
+        });
+    }
+
+    fetchUserData();
+</script>
+</body>
+</html>
