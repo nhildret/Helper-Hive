@@ -168,7 +168,7 @@ public class UserController {
         model.addAttribute("leaderboard", leaderboard);
         return "leaderboard-hours";
     }
-    
+
 //    @GetMapping("/admin/users/registration-data")
 //    public List<Object[]> getUserRegistrationData() {
 //        return userRepository.countUsersByRegistrationDate();
