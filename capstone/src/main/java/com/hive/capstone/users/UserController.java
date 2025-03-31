@@ -168,14 +168,7 @@ public class UserController {
         model.addAttribute("leaderboard", leaderboard);
         return "leaderboard-hours";
     }
-//This will most likely be moved to donations, instead of users
-//    @GetMapping("/leaderboard/donations")
-//    public String showLeaderboardDonations(Model model) {
-//         List<User> leaderboard = userService.getLeaderboard();
-//         model.addAttribute("leaderboard", leaderboard);
-//        return "leaderboard-donations";
-//    }
-
+    
 //    @GetMapping("/admin/users/registration-data")
 //    public List<Object[]> getUserRegistrationData() {
 //        return userRepository.countUsersByRegistrationDate();
