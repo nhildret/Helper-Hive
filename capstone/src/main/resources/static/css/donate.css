@@ -40,7 +40,7 @@ main{
     padding: 20px;
     border-radius: 10px;
     box-shadow: 4px 4px 6px var(--shadow);
-    background-color: var(--card);
+    background-color: #F6D8A8;
 }
 .card h2 {
     margin-block: 1rem;
@@ -73,8 +73,8 @@ main{
     height:fit-content;
     font-size: medium;
     border-radius: 10px;
-    border-color: var(--header);
-    background-color: var(--header);
+    border-color: #F4CA8B;
+    background-color: #F4CA8B;
     font-weight: bold;
     padding: 10px;
   font-family: cutive;

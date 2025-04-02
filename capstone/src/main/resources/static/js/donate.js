@@ -2,7 +2,7 @@ const api_key = 'pk_live_8e240e290c82f229069e4b7e67f2b278';
 const cause = 'animals'
 window.onload = function (){
     $.ajax({
-        url: 'https://partners.every.org/v0.2/browse/'+ cause +'?apiKey=' + api_key,
+        url: 'https://partners.every.org/v0.2/browse/'+ cause +'?take=20&apiKey=' + api_key,
         method: 'GET',
         success: function(result) {
             displayCards(result);
@@ -44,12 +44,12 @@ function showModal(id) {
             document.getElementById('modal-description').innerText=org.description;
             document.getElementById('modal-url').href = org.websiteUrl;
             var causes = document.getElementById('modal-causes');
+            causes.innerHTML = "";
             for (var i = 0; i < tags.length; i++) {
                 var cause = document.createElement("li");
                 cause.classList.add(tags[i].tagName);
                 cause.innerText = tags[i].title;
                 causes.appendChild(cause);
-
             }
 
             //display modal
