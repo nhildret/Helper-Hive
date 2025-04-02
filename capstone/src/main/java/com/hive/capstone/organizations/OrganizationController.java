@@ -1,5 +1,6 @@
 package com.hive.capstone.organizations;
 
+import com.hive.capstone.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,13 @@ public class OrganizationController {
 
     @Autowired
     private OrganizationService organizationService;
+
+//    @PostMapping("/organizations/new")
+//    public String addNewOrganization(@ModelAttribute User user, Model model) {
+//        organizationService.addNewOrganization(user);
+//        model.addAttribute("users", userService.getAllUsers());
+//        return "create-organization.html";
+//    }
 
     @GetMapping("/admin/organizations/all")
     public String getAllOrganizations(Model model) {

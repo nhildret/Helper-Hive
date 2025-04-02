@@ -28,14 +28,6 @@ public class DonationController {
         return "donation-page";
     }
 
-//    this will return the top donors for leaderboard-donations
-//    @GetMapping("/leaderboard/donations")
-//    public String showDonationLeaderboard(Model model){
-//        List<Donation> leaderboard = donationService.getTopDonors();
-//        model.addAttribute("leaderboard", leaderboard);
-//        return "leaderboard-donations";
-//    }
-
     @GetMapping("/admin/donations/all")
     public String getAllDonations(Model model) {
         model.addAttribute("donationList", donationService.getAllDonations());
