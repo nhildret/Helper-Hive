@@ -11,7 +11,7 @@
 
 <body>
 
-    <header th:replace="~{/fragments/header :: header}"></header>
+    <header th:replace="~{fragments/header :: header}"></header>
 
     <div th:if="${success}" class="alert alert-success" role="alert">
         <span th:text="${success}"></span>
@@ -110,8 +110,8 @@
             new bootstrap.Modal(document.getElementById('editModal')).show();
         }
     </script>
-    <div th:replace="~{/fragments/chatbot :: chatbot}"></div>
+    <div th:replace="~{fragments/chatbot :: chatbot}"></div>
 
 </body>
-<footer th:replace="~{/fragments/footer :: footer}"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </html>

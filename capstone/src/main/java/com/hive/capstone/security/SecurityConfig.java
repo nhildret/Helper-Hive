@@ -30,7 +30,7 @@ public class SecurityConfig {
                         .requestMatchers("/user/**").authenticated()
                         .requestMatchers("/static/**", "/images/**", "/js/**", "/css/**").permitAll()
                         .requestMatchers("/", "/login", "/about", "/users/createForm", "/users/new").permitAll()
-                        .requestMatchers("/images/**", "css/**").permitAll()// Allow access to static files
+                        .requestMatchers("/images/**", "/css/**").permitAll()// Allow access to static files
                         .requestMatchers("/admin/**").hasAuthority("Admin")
                         .requestMatchers("/OrganizationRepresentative/**").hasAuthority("OrganizationRepresentative")
 
