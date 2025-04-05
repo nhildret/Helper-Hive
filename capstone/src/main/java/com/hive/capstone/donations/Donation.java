@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.hive.capstone.causes.Cause;
 
 @Entity
 @Getter
@@ -12,7 +16,8 @@ public class Donation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int donorId;
+    @Column(name = "donation_id")
+    public int donationId;
 
     @Column(name = "user_id")
     private int userId; // links to User table
@@ -23,8 +28,11 @@ public class Donation {
     @Column(name = "organization_name")
     private String organizationName;
 
-    @Column(name = "cause_id")
-    private int causeId;
+    @ManyToMany(fetch = FetchType.LAZY,
+                cascade = CascadeType.ALL)
+    @JoinTable(name = "donationcauses", joinColumns = @JoinColumn(name = "donation_id"), 
+                                        inverseJoinColumns = @JoinColumn(name = "cause_id"))
+    private List<Cause> causes = new ArrayList<>();
 
     @Column(name = "amount")
     private double amount;
@@ -34,24 +42,23 @@ public class Donation {
 
     // Constructors
 
-    public Donation(String donationName, String organizationName, double amount, int userId, Date donatedAt, int causeId) {
+    public Donation(String donationName, String organizationName, double amount, int userId, Date donatedAt) {
         this.donationName = donationName;
         this.organizationName = organizationName;
         this.amount = amount;
         this.userId = userId;
         this.donatedAt = donatedAt;
-        this.causeId = causeId;
     }
 
-    public Donation(int donorId, String donationName, String organizationName, double amount, int userId,
-            Date donatedAt, int causeId) {
-        this.donorId = donorId;
+    public Donation(int donationId, String donationName, String organizationName, double amount, int userId,
+            Date donatedAt, List<Cause> causes) {
+        this.donationId = donationId;
         this.donationName = donationName;
         this.organizationName = organizationName;
         this.amount = amount;
         this.userId = userId;
         this.donatedAt = donatedAt;
-        this.causeId = causeId;
+        this.causes = causes;
     }
 
     public Donation() {
@@ -61,11 +68,11 @@ public class Donation {
     // Getters
     // -----------------------
 
-    public int getDonorId() {
-        return donorId;
+    public int getDonationId() {
+        return donationId;
     }
 
-    public int getuserId() {
+    public int getUserId() {
         return userId;
     }
 
@@ -85,16 +92,16 @@ public class Donation {
         return donatedAt;
     }
 
-    public int getCauseId() {
-        return causeId;
+    public List<Cause> getCauses() {
+        return causes;
     }
 
     // -----------------------
     // Setters
     // -----------------------
 
-    public void setDonorId(int donorId) {
-        this.donorId = donorId;
+    public void setDonationId(int donationId) {
+        this.donationId = donationId;
     }
 
     public void setUserId(int userId) {
@@ -117,8 +124,8 @@ public class Donation {
         this.donatedAt = donatedAt;
     }
 
-    public void setCauseId(int causeId) {
-        this.causeId = causeId;
+    public void setCauses(List<Cause> causes) {
+        this.causes = causes;
     }
 
     // -----------------------
@@ -128,11 +135,11 @@ public class Donation {
     @Override
     public String toString() {
         return "Donation{" +
-                "donorId=" + donorId +
+                "donationId=" + donationId +
                 ", userId=" + userId +
                 ", donationName='" + donationName + '\'' +
                 ", organizationName='" + organizationName + '\'' +
-                ", causeId=" + causeId +
+                ", causes=" + causes +
                 ", amount=" + amount +
                 ", donatedAt=" + donatedAt +
                 '}';
