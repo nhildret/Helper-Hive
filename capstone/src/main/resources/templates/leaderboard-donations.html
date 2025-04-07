@@ -26,7 +26,8 @@
             <h1> Our Donations Programs</h1>
             <p class="message">
                     We would like to thank everyone for such generous donations! With your help, we are able to
-                    make this service possible. Below you can find our donation leaderboard.</p>
+                    make this service possible. Below you can find our donation leaderboard. If you would like to
+                    donate, click <a th:href="@{/donate}">here</a>!</p>
         </div>
     </section>
 </main>
@@ -64,7 +65,7 @@
 
                 <!--<td data-th-text="${i}"> </td>-->
                 <td data-th-text="${leaderboard.get(i-1).donationName}"></td>
-                <td data-th-text="${leaderboard.get(i-1).amount}"></td>
+                <td data-th-text= "'$' + ${#numbers.formatDecimal(leaderboard.get(i-1).amount, 0, '2')}"></td>
             </tr>
         </tbody>
     </table>

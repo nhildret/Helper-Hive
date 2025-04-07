@@ -38,11 +38,15 @@
 
             <!-- Buttons Section -->
             <div class="buttons-container">
+                
                 <!-- Sign Up Button -->
                 <button class="btn-sign-up">Sign Up</button>
 
+                <!-- Back Button -->
+                <a class="btn-back" th:href="@{/events/all}">Back to Events</a>
+
                 <!-- Admin/Org Rep Controls -->
-                <div sec:authorize="hasAnyRole('Admin', 'OrganizationRepresentative')">
+                <div sec:authorize="hasAnyAuthority('Admin', 'OrganizationRepresentative')">
 
                 <!-- Edit Event Button -->
                 <button class="btn-edit" onclick="openEditPopup()">Edit Event</button>
@@ -50,9 +54,7 @@
                 <button class="btn-delete" onclick="openDeletePopup()">Delete Event</button>
 
                 </div>
-
-                <!-- Back Button -->
-                <a class="btn-back" th:href="@{/events/all}">Back to Events</a>
+                
             </div>
 
         <!-- Popup for Editing Event -->
