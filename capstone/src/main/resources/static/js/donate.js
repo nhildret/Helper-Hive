@@ -1,5 +1,9 @@
 const api_key = 'pk_live_8e240e290c82f229069e4b7e67f2b278';
-const cause = 'animals'
+const webhook = 'b2e68cd35c62cdfd105643be';
+const page_url = "https%3A%2F%2fhelper-hive.onrender.com%2fdonate";
+const cause = 'animals';
+
+
 window.onload = function (){
     $.ajax({
         url: 'https://partners.every.org/v0.2/browse/'+ cause +'?take=20&apiKey=' + api_key,
@@ -43,6 +47,7 @@ function showModal(id) {
             document.getElementById('modal-title').innerText=org.name;
             document.getElementById('modal-description').innerText=org.description;
             document.getElementById('modal-url').href = org.websiteUrl;
+            
             var causes = document.getElementById('modal-causes');
             causes.innerHTML = "";
             for (var i = 0; i < tags.length; i++) {
@@ -51,6 +56,14 @@ function showModal(id) {
                 cause.innerText = tags[i].title;
                 causes.appendChild(cause);
             }
+            document.getElementById('donate').addEventListener('click', function() {
+                window.open("https://www.every.org/" + org.primarySlug 
+                                + "?success_url=" + page_url
+                                + "&exit_url=" + page_url
+                                + "&webhook_token=" + webhook
+                                + "#donate"
+                            , '_blank', 'noopener,noreferrer');
+            });
 
             //display modal
             document.getElementById('modal-space').style.display='block';

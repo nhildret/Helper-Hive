@@ -6,11 +6,6 @@ body {
     font-family: 'Cutive', serif !important;
 }
 
-/* For header elements */
-header {
-    font-family: 'Cutive', serif !important;
-}
-
 /* For modal headers to match */
 .modal-header h2 {
     font-family: 'Cutive', serif !important;

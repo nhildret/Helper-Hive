@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>About Us</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/about_us.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+    <!-- <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/> -->
     <link
             href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
             rel="stylesheet"
@@ -15,9 +15,10 @@
 
 <header th:replace="~{fragments/header :: header}"></header>
 <!--<body style="background-color: #fdead1">-->
-
+<main>
 
 <h1>About Us</h1>
+
 
 <div class="info-container">
     <div class="info-text">
@@ -71,6 +72,7 @@
     <p>Hi :) I am a comp sci major and when I'm not working at the esports arena on campus, I'm on tumblr and playing ZZZ.</p>
     </div>
 </div>
+</main>
 
 <div th:replace="~{fragments/chatbot :: chatbot}"></div>
 

@@ -97,10 +97,11 @@ main{
     /* positioning and sizing */
     position: fixed;
     z-index: 1;
-    left: 20%;
-    top: 5%;
-    width: 60%;
-    height: 85%;
+    left: 25%;
+    top: 10%;
+    width:50%;
+    min-height:40%;
+    max-height: 85%;
 
     /* layout */
     display: flex;
@@ -116,8 +117,12 @@ main{
 }
 #modal h1 {
     font-family: "Cutive", serif;
+    color: #000;
+    text-shadow: none;
+    font-weight: bold;
     font-size: 40px;
     text-align: center;
+
 }
 #modal img {
     margin: auto;
@@ -143,32 +148,19 @@ main{
     flex-direction: column;
     align-items: center;
 }
-#modal .donate-form {
-    width:45%;
-    height:fit-content;
-    font-size:larger;
-    background-color: var(--header);
-    margin-inline: auto;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    padding:15px;
-    margin-bottom:1.5rem;
-    border-radius: 10px;
-    font-family: "Cutive", serif;
-}
-#modal .donate-form button {
-    width: 120px;
-    height:50px;
-    font-size: large;
+#modal button {
+    align-self: center;
+    line-height: 0;
+    width: fit-content;
+    min-height:4rem;
+    font-size: 2rem;
     border-radius: 10px;
     border-color: var(--header);
     background-color: var(--header);
     font-weight: bold;
-    padding:15px;
+    padding:20px 15px 10px 15px;
     font-family: "Cutive", serif;
+    margin-bottom:1.5rem;
 }
 #org-id {
     display: none;
