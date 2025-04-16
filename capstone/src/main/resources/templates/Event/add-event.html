@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/events.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}" />
+    <script th:src="@{/js/events.js}" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZjUdpI48aTp9oQbMHfHEVdG1ih8ghyo0&callback=initGeo&libraries=geocoding&loading=async" crossorigin="anonymous" defer></script>
+
 </head>
 <body>
     <!-- Header Fragment -->
@@ -16,7 +19,7 @@
     <main>
         <div class="create-event-container">
             <h1>Create a New Event</h1>
-            <form th:action="@{/events/new}" method="post" class="create-event-form">
+            <form method="post" class="create-event-form">
                 <div class="form-group">
                     <label for="title">Event Title</label>
                     <input type="text" id="title" name="title" class="form-input" required>
@@ -52,7 +55,7 @@
                     <label for="imagePath">Image Path (optional)</label>
                     <input type="text" id="imagePath" name="imagePath" class="form-input">
                 </div>
-                <button type="submit" class="btn-create-event">Create Event</button>
+                <button type="submit" onsubmit="newEvent(this)" class="btn-create-event">Create Event</button>
             </form>
         </div>
     </main>
@@ -60,4 +63,6 @@
 
 </body>
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
+
+
 </html>

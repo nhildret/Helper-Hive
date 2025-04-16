@@ -27,5 +27,8 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     // Finding events by id
     Event findById(int id);
+
+    // @Query("SELECT e FROM Event e WHERE ABS(e.x - userX) < 10 AND ABS(e.y - userY) < 10 ORDER BY ABS(e.x - userX), ABS(e.y - userY)")
+    // List<Event> getEventsByCoords(double userX, double userY);
     
 }

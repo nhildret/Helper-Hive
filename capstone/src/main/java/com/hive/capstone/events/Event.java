@@ -4,13 +4,17 @@ import java.sql.Date;
 
 import com.hive.capstone.organizations.Organization;
 
+import jakarta.annotation.Nullable;
+
 //import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "events")
 public class Event {
 
@@ -24,6 +28,8 @@ public class Event {
 
     @Column(name = "location")
     private String location;
+
+    private double x, y;
 
     @Column(name = "event_date")
     private Date eventDate;
@@ -49,11 +55,18 @@ public class Event {
         this.organization = organization;
     }
 
+    public void setCoords(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
     // Constructors
 
-    public Event(String title, String location, Date eventDate, Organization organization, int volunteerHours, int causeId, String imagePath) {
+    public Event(String title, String location, double x, double y, Date eventDate, Organization organization, int volunteerHours, int causeId, String imagePath) {
         this.title = title;
         this.location = location;
+        this.x = x;
+        this.y = y;
         this.eventDate = eventDate;
         this.organization = organization;
         this.volunteerHours = volunteerHours;
@@ -159,6 +172,7 @@ public class Event {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", location='" + location + '\'' +
+                ", coords={'" + x + "," + y + "'}" +
                 ", eventDate=" + eventDate +
                 ", organization=" + (organization != null ? organization.getOrganizationName() : "null") +
                 ", causeId=" + causeId +

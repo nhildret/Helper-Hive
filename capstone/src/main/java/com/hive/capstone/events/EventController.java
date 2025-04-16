@@ -135,17 +135,6 @@ public class EventController {
         model.addAttribute("organizations", organizations);
         return "Event/add-event";
     }
-    // Handle form submission (POST request)
-    @PostMapping("/new")
-    public String createEvent(@ModelAttribute Event event, @RequestParam("organizationId") int organizationId) {
-        // Fetch the Organization object based on the submitted organizationId
-        Organization organization = organizationRepository.findById(organizationId);
-                //.orElseThrow(() -> new IllegalArgumentException("Invalid organization ID: " + organizationId));
-        // Set the Organization object in the Event
-        event.setOrganization(organization);
-
-        eventRepository.save(event);
-        return "redirect:/events/all";
-    }
+    
 
 }
