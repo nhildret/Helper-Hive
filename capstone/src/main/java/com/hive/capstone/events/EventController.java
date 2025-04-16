@@ -64,7 +64,9 @@ public class EventController {
     // Event By ID
     @GetMapping("/view/{eventId}")
     public String getEventsById(@PathVariable int eventId, Model model) {
-        // getting authentication will be put here
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByUsername(auth.getName()).orElse(null);
+        model.addAttribute("user", user);
 
         // Event event = eventService.getEventById(id);
         //model.addAttribute("isOwner", event.getOrganizationId().getId() == currentUserId);
@@ -155,24 +157,21 @@ public class EventController {
     
     @PostMapping("/signup/{eventId}")
     public String signUpForEvent(@PathVariable int eventId, RedirectAttributes redirectAttributes) {
-        // Get authenticated user
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findByUsername(auth.getName())
-            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        
-        // Get event
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
         Event event = eventService.getEventById(eventId);
-        // Check existing signup
+
         if (user.getEvents().contains(event)) {
             redirectAttributes.addFlashAttribute("error", "You're already signed up for this event!");
             return "redirect:/events/view/" + eventId;
         }
 
-        // Update relationships
         user.getEvents().add(event);
         user.setTotalHours(user.getTotalHours() + event.getVolunteerHours());
         userRepository.save(user);
-        
+
         redirectAttributes.addFlashAttribute("success", "Successfully signed up!");
         return "redirect:/events/view/" + eventId;
     }

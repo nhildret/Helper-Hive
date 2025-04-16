@@ -14,6 +14,14 @@
     <!-- Header Fragment -->
     <header th:replace="~{/fragments/header :: header}"></header>
 
+    <!-- Add flash messages -->
+    <div th:if="${success}" class="alert alert-success" role="alert">
+        <span th:text="${success}"></span>
+    </div>
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+    </div>
+
     <main>
         <div class="event-details-box">
             <!-- Event Image or Placeholder -->
@@ -40,7 +48,15 @@
             <div class="buttons-container">
                 
                 <!-- Sign Up Button -->
-                <button class="btn-sign-up">Sign Up</button>
+                <div class="buttons-container">
+                <!-- Sign Up Button with Status -->
+                <button class="btn-sign-up" 
+                        sec:authorize="hasAuthority('Volunteer')"
+                        th:disabled="${user?.events?.contains(event)}"
+                        onclick="openSignupPopup()">
+                    <span th:if="${user?.events?.contains(event)}">Already Signed Up</span>
+                    <span th:unless="${user?.events?.contains(event)}">Sign Up</span>
+                </button>
 
                 <!-- Back Button -->
                 <a class="btn-back" th:href="@{/events/all}">Back to Events</a>
@@ -54,7 +70,16 @@
                 <button class="btn-delete" onclick="openDeletePopup()">Delete Event</button>
 
                 </div>
-                
+            </div>
+
+            <!-- Sign Up Confirmation Modal -->
+            <div id="signup-popup" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeSignupPopup()">&times;</span>
+                    <p>Are you sure you want to sign up for this event?</p>
+                    <button class="btn-confirm" onclick="confirmSignup()">Yes, Sign Up</button>
+                    <button class="btn-cancel" onclick="closeSignupPopup()">Cancel</button>
+                </div>
             </div>
 
         <!-- Popup for Editing Event -->
@@ -151,6 +176,40 @@
         </section>
         &nbsp;
     </main>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const eventId = /*[[${event.eventId}]]*/ 0;
+        
+        function openSignupPopup() {
+            document.getElementById("signup-popup").style.display = "block";
+        }
+        
+        function closeSignupPopup() {
+            document.getElementById("signup-popup").style.display = "none";
+        }
+        
+        function confirmSignup() {
+            fetch(`/events/signup/${eventId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload(); // Refresh to update status
+                } else {
+                    alert('Sign up failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred during sign up.');
+            });
+        }
+        /*]]>*/
+    </script>
 
     <div th:replace="~{/fragments/chatbot :: chatbot}"></div>
 

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.hive.capstone.security.SecurityConfig;
 import com.hive.capstone.events.Event;
+import com.hive.capstone.events.EventRepository;
+import com.hive.capstone.events.EventService;
 
 import org.springframework.util.StringUtils;
 import java.util.regex.Pattern;
@@ -34,6 +36,12 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private EventService eventService;
+    
+    @Autowired
+    private EventRepository eventRepository;
+
     // Getting User Profile
     @GetMapping("/user")
     public String getAccount(Model model) {
@@ -41,8 +49,9 @@ public class UserController {
         User user = userRepository.findByUsername(authentication.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        // Load events with the user
-        user = userRepository.findById(user.getId()).get(); // Refresh entity
+        // Force load events relationship
+        user = userRepository.findById(user.getId())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         model.addAttribute("user", user);
         model.addAttribute("events", user.getEvents());
@@ -85,18 +94,26 @@ public class UserController {
         return "redirect:/user";
     }
 
-    // @PostMapping("/user/update")
-    // public String updateAccount(@ModelAttribute User updatedUser) {
-    // User existingUser = userRepository.findById(updatedUser.getId())
-    // .orElseThrow(() -> new IllegalArgumentException("Invalid user Id"));
-    // // Update allowed fields
-    // existingUser.setUsername(updatedUser.getUsername());
-    // existingUser.setName(updatedUser.getName());
-    // existingUser.setEmail(updatedUser.getEmail());
-
-    // userRepository.save(existingUser);
-    // return "redirect:/user";
-    // }
+    // Remove event
+    @PostMapping("/user/events/remove/{eventId}")
+    public String removeEvent(@PathVariable int eventId, RedirectAttributes redirectAttributes) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByUsername(auth.getName())
+            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        
+        Event event = eventRepository.findById(eventId);
+        
+        if (event != null && user.getEvents().contains(event)) {
+            user.getEvents().remove(event);
+            user.setTotalHours(Math.max(0, user.getTotalHours() - event.getVolunteerHours()));
+            userRepository.save(user);
+            redirectAttributes.addFlashAttribute("success", "Event removed successfully");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Event not found in your registrations");
+        }
+        
+        return "redirect:/user";
+    }
 
     // Create new User
     @PostMapping("/users/new")

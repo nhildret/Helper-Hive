@@ -1,6 +1,6 @@
 package com.hive.capstone.events;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
 

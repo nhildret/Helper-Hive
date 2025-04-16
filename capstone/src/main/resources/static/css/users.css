@@ -150,3 +150,292 @@ body {
         text-align: center;
     }
 }
+
+/* Signed-Up Events Section */
+.signed-events {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e59b47;
+}
+
+.signed-events h2 {
+    color: #736e68;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Reuse events-page styling */
+.event-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.event-card {
+    background: #fff9f0;
+    border: 2px solid #e59b47;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-image {
+    height: 200px;
+    background: #fdead1;
+    overflow: hidden;
+}
+
+.event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-placeholder {
+    height: 100%;
+    background: #e59b47;
+    opacity: 0.1;
+}
+
+.event-info {
+    padding: 1.5rem;
+}
+
+.event-info h3 {
+    color: #c47d12;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.event-details p {
+    margin: 0.5rem 0;
+    color: #736e68;
+    font-size: 1rem;
+}
+
+.organization {
+    color: #c47d12 !important;
+    font-weight: bold;
+    margin-top: 1rem !important;
+}
+
+.no-events {
+    text-align: center;
+    padding: 2rem;
+    background: #fff9f0;
+    border-radius: 15px;
+    margin-top: 2rem;
+    border: 2px dashed #e59b47;
+}
+
+.no-events p {
+    color: #736e68;
+    margin-bottom: 0;
+}
+
+.no-events a {
+    color: #c47d12;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .event-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .event-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .signed-events {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+    }
+}
+
+/* Remove Button Styling */
+/* Remove Event Button - Styled like Add Event Button */
+.btn-remove-event {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #efa631; /* Golden orange like add event */
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-family: "Cutive", serif;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin: 5px 0;
+    width: 100%; /* Same full width look */
+}
+
+.btn-remove-event:hover {
+    background-color: #a95e09; /* Darker orange on hover */
+}
+
+/* Overlay background */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* subtle dark backdrop */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* Pop-up box */
+.popup-box {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-family: "Cutive", serif;
+    max-width: 400px;
+    width: 90%;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Optional animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Buttons inside the popup */
+.popup-box button {
+    margin: 10px 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Cutive", serif;
+}
+
+/* Confirm button */
+.popup-box .confirm-btn {
+    background-color: #efa631;
+    color: white;
+}
+
+.popup-box .confirm-btn:hover {
+    background-color: #a95e09;
+}
+
+/* Cancel button */
+.popup-box .cancel-btn {
+    background-color: #ccc;
+    color: #333;
+}
+
+.popup-box .cancel-btn:hover {
+    background-color: #999;
+}
+
+/* Modal styling */
+#remove-modal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#remove-modal .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#remove-modal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    cursor: pointer;
+}
+
+#remove-modal .close:hover,
+#remove-modal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Center and style all buttons in modal */
+#remove-modal button {
+    display: block;
+    width: 60%;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Confirm button - gold */
+#remove-modal .btn-confirm {
+    background-color: #FFD700; /* gold */
+    color: black;
+    font-weight: bold;
+}
+
+/* Cancel button - gray */
+#remove-modal .btn-cancel {
+    background-color: #ddd;
+    color: #333;
+}
+
+/* Button hover effects */
+#remove-modal .btn-confirm:hover {
+    background-color: #e6be00;
+}
+
+#remove-modal .btn-cancel:hover {
+    background-color: #bbb;
+}
+
+/* Event info inside modal if needed */
+#remove-modal .event-details {
+    margin-top: 15px;
+    text-align: left;
+}
+
+#remove-modal .event-details p {
+    margin: 5px 0;
+}
