@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.hive.capstone.security.SecurityConfig;
+import com.hive.capstone.events.Event;
 
 import org.springframework.util.StringUtils;
 import java.util.regex.Pattern;
@@ -37,12 +38,14 @@ public class UserController {
     @GetMapping("/user")
     public String getAccount(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-
-        User user = userRepository.findByUsername(username)
+        User user = userRepository.findByUsername(authentication.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
+        // Load events with the user
+        user = userRepository.findById(user.getId()).get(); // Refresh entity
+
         model.addAttribute("user", user);
+        model.addAttribute("events", user.getEvents());
         return "user-page";
     }
 

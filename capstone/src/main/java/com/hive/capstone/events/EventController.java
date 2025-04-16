@@ -3,6 +3,7 @@ package com.hive.capstone.events;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,10 @@ import com.hive.capstone.organizations.OrganizationRepository;
 import com.hive.capstone.organizations.OrganizationService;
 import com.hive.capstone.users.UserRepository;
 import com.hive.capstone.users.UserService;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.hive.capstone.users.User;
+import com.hive.capstone.users.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,12 +145,37 @@ public class EventController {
     public String createEvent(@ModelAttribute Event event, @RequestParam("organizationId") int organizationId) {
         // Fetch the Organization object based on the submitted organizationId
         Organization organization = organizationRepository.findById(organizationId);
-                //.orElseThrow(() -> new IllegalArgumentException("Invalid organization ID: " + organizationId));
+        //.orElseThrow(() -> new IllegalArgumentException("Invalid organization ID: " + organizationId));
         // Set the Organization object in the Event
         event.setOrganization(organization);
 
         eventRepository.save(event);
         return "redirect:/events/all";
     }
+    
+    @PostMapping("/signup/{eventId}")
+    public String signUpForEvent(@PathVariable int eventId, RedirectAttributes redirectAttributes) {
+        // Get authenticated user
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByUsername(auth.getName())
+            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        
+        // Get event
+        Event event = eventService.getEventById(eventId);
+        // Check existing signup
+        if (user.getEvents().contains(event)) {
+            redirectAttributes.addFlashAttribute("error", "You're already signed up for this event!");
+            return "redirect:/events/view/" + eventId;
+        }
+
+        // Update relationships
+        user.getEvents().add(event);
+        user.setTotalHours(user.getTotalHours() + event.getVolunteerHours());
+        userRepository.save(user);
+        
+        redirectAttributes.addFlashAttribute("success", "Successfully signed up!");
+        return "redirect:/events/view/" + eventId;
+    }
+
 
 }

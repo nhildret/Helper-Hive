@@ -1,10 +1,11 @@
 package com.hive.capstone.events;
 
 import java.sql.Date;
+import java.util.Set;
+import java.util.HashSet;
 
 import com.hive.capstone.organizations.Organization;
-
-//import java.util.List;
+import com.hive.capstone.users.User;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -36,6 +37,9 @@ public class Event {
 
     @Column(name = "image_path")
     private String imagePath;
+
+    @ManyToMany(mappedBy = "events")
+    private Set<User> users = new HashSet<>();
    
     @ManyToOne
     @JoinColumn(name = "organization_id", nullable = false)
@@ -112,6 +116,10 @@ public class Event {
     public String getImagePath() {
         return imagePath;
     }
+    
+    public Set<User> getUsers() {
+        return users;
+    }
 
     // -----------------------
     // Setters
@@ -147,6 +155,10 @@ public class Event {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+    
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     // -----------------------
