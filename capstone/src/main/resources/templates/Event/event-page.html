@@ -5,14 +5,21 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Events</title>
+        
         <link
             href="https://fonts.googleapis.com/css2?family=Cutive&display=swap"
             rel="stylesheet"
         />
+        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
-        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" th:href="@{/css/events.css}">
-        <script src = "/js/popup.js" defer></script>
+        <script th:src="@{/js/coords.js}" defer></script>
+        <script th:src="@{/js/events.js}" defer></script>
     </head>
     <body>
         <!-- Header Fragment -->
@@ -26,6 +33,32 @@
                     <p class="message">
                         Need help locating events? Search using the map <a th:href="@{/maps}">here</a>!
                     </p>
+                </div>
+                <div class="text-container form-check">
+                    <div>
+                        <div class="sortBy">
+                            <div class="form-check">
+                                <input type="checkbox" id="nearMe"/>
+                                <label for="nearMe">Find events near me</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="comingUp"/>
+                                <label for="comingUp" >Find events coming up</label>
+                            </div>
+                        </div>
+                        <div class="dropdown filters">
+                            <button id="causesFilter" type="button" class="dropdown-toggle allow-focus" data-toggle="dropdown" >Causes</button>
+                            <ul class="dropdown-menu checkbox-menu allow-focus focus" aria-labelledby="causesFilter">
+                                <li th:each="cause : ${causes}">
+                                    <label th:for="${cause.id}">
+                                        <input type="checkbox" class="form-check-input filterCheckbox" th:id="${cause.id}" th:text="${cause.title}" />
+                                    </label>
+                                </li>
+                            </ul>
+                            <button id="filterBtn">Filter</button>
+                        </div>
+                    </div>
+                    
                 </div>
             </section>
 
@@ -71,7 +104,7 @@
         <div th:replace="~{/fragments/chatbot :: chatbot}"></div>
 
     </body>
-    <script>
+    <!-- <script>
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(getEvents);
         } else {
@@ -86,7 +119,7 @@
             //call controller function that calls python method for pledgeAPI
         } 
         
-    </script>
+    </script> -->
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 </html>

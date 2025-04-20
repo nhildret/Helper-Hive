@@ -62,5 +62,9 @@ public class EventService {
         return eventRepository.findByOrganization_Id(organization.getOrganizationId());
     }
 
+    public List<Event> getEventsByCoords(double userX, double userY) {
+        return eventRepository.getEventsByCoords(userX, userY);
+    }
+
 
 }

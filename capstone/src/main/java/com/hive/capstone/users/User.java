@@ -1,6 +1,9 @@
 package com.hive.capstone.users;
 
 import jakarta.persistence.*;
+
+import java.util.Set;
+import java.util.HashSet;
 import lombok.Getter;
 
 import java.util.Collection;
@@ -11,6 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import com.hive.capstone.events.Event;
 
 @Entity
 @Table(name = "users")
@@ -18,7 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class User implements UserDetails {
 
     @Id
-    @Column(name = "userId")
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
@@ -43,6 +47,14 @@ public class User implements UserDetails {
     
     @Column(name = "total_hours")
     private int totalHours;
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_events",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "event_id")
+    )
+    private Set<Event> events = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -122,6 +134,10 @@ public class User implements UserDetails {
     public int getTotalHours() {
         return totalHours;
     }
+    
+    public Set<Event> getEvents() {
+        return events;
+    }
 
     // -----------------------
     // Setters
@@ -157,6 +173,10 @@ public class User implements UserDetails {
 
     public void setTotalHours(int totalHours) {
         this.totalHours = totalHours;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
     }
 
 }

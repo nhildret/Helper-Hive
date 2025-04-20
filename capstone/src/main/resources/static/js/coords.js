@@ -5,16 +5,7 @@
 // Pledge API calls & functions
 // Rework this for events instead of donations
 
-window.onload = function (){
-    //document.getElementById("use-location").addEventListener("click", function() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getEntities);
-        } else {
-            console.log("Geolocation is not supported by this browser.");
-        }
-    //});
-    
-}
+
 
 // ajax call to get orgs
 function getEntities(position) {
@@ -49,30 +40,4 @@ function displayCards(results) {
                     +   '</div>';
         document.getElementsByClassName("card-container")[0].innerHTML += newCard;
     }
-}
-// id + '\',\'' + name + '\',\'' + mission
-function showModal(id) {
-    $.ajax({
-        url: window.location.href + "/getById",
-        method: 'GET',
-        data: {
-            id: id
-        },
-        success: function(result) {
-            const entity = JSON.parse(result);
-
-            //fill modal
-            document.getElementById('org-id').innerText=entity.id;
-            document.getElementById('modal-title').innerText=entity.name;
-            document.getElementById('modal-description').innerText=entity.mission;
-            var causes = document.getElementById('modal-causes');
-            entity.causes.array.forEach(cause => {
-                var newCause = document.createElement("li");
-                newCause.classList.add(cause.id);
-            });
-
-            //display modal
-            document.getElementById('modal-space').style.display='block';
-        }
-    });
 }

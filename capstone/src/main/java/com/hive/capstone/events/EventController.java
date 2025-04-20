@@ -3,15 +3,22 @@ package com.hive.capstone.events;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.hive.capstone.causes.Cause;
+import com.hive.capstone.causes.CauseRepository;
 import com.hive.capstone.organizations.Organization;
 import com.hive.capstone.organizations.OrganizationRepository;
 import com.hive.capstone.organizations.OrganizationService;
 import com.hive.capstone.users.UserRepository;
 import com.hive.capstone.users.UserService;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.hive.capstone.users.User;
+import com.hive.capstone.users.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +44,16 @@ public class EventController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    CauseRepository causeRepository;
+
     // Get All Events
     @GetMapping({"/all", "", "/"})
     public String getAllEvents(Model model) {
         List<Event> eventList = eventRepository.findAll();
         model.addAttribute("event_list", eventList);
+        model.addAttribute("causes", causeRepository.findAll());
+
         
         //model.addAttribute("event_list", eventService.getAllEvents());
         //model.addAttribute("title", "All Events");
@@ -59,7 +71,9 @@ public class EventController {
     // Event By ID
     @GetMapping("/view/{eventId}")
     public String getEventsById(@PathVariable int eventId, Model model) {
-        // getting authentication will be put here
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByUsername(auth.getName()).orElse(null);
+        model.addAttribute("user", user);
 
         // Event event = eventService.getEventById(id);
         //model.addAttribute("isOwner", event.getOrganizationId().getId() == currentUserId);
@@ -93,6 +107,8 @@ public class EventController {
     public String getEventsByTitleContains(@RequestParam(name = "title", required = false) String title, Model model) {
         model.addAttribute("eventList", eventService.getEventsByTitleContains(title));
         model.addAttribute("title", "Event Name: " + title);
+        model.addAttribute("causes", causeRepository.findAll());
+
         return "Event/event-page";
     }
 
@@ -135,6 +151,39 @@ public class EventController {
         model.addAttribute("organizations", organizations);
         return "Event/add-event";
     }
+    // Handle form submission (POST request)
+    // @PostMapping("/new")
+    // public String createEvent(@ModelAttribute Event event, @RequestParam("organizationId") int organizationId) {
+    //     // Fetch the Organization object based on the submitted organizationId
+    //     Organization organization = organizationRepository.findById(organizationId);
+    //     //.orElseThrow(() -> new IllegalArgumentException("Invalid organization ID: " + organizationId));
+    //     // Set the Organization object in the Event
+    //     event.setOrganization(organization);
+
+    //     eventRepository.save(event);
+    //     return "redirect:/events/all";
+    // }
     
+    @PostMapping("/signup/{eventId}")
+    public String signUpForEvent(@PathVariable int eventId, RedirectAttributes redirectAttributes) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByUsername(auth.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        Event event = eventService.getEventById(eventId);
+
+        if (user.getEvents().contains(event)) {
+            redirectAttributes.addFlashAttribute("error", "You're already signed up for this event!");
+            return "redirect:/events/view/" + eventId;
+        }
+
+        user.getEvents().add(event);
+        user.setTotalHours(user.getTotalHours() + event.getVolunteerHours());
+        userRepository.save(user);
+
+        redirectAttributes.addFlashAttribute("success", "Successfully signed up!");
+        return "redirect:/events/view/" + eventId;
+    }
+
 
 }

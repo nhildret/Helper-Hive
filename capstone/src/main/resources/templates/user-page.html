@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <header th:replace="~{fragments/header :: header}"></header>
 
     <div th:if="${success}" class="alert alert-success" role="alert">
@@ -24,7 +23,7 @@
         <div class="account-header">
             <h1>Account Details</h1>
         </div>
-        
+
         <div class="user-details">
             <dl>
                 <dt>Username:</dt>
@@ -45,6 +44,39 @@
                 <dt>Total Hours:</dt>
                 <dd th:text="${user.totalHours}">50</dd>
             </dl>
+        </div>
+
+        <!-- Signed-Up Events Section -->
+        <section class="signed-events" th:unless="${#lists.isEmpty(events)}">
+            <h2>Your Signed-Up Events</h2>
+            <div class="event-container">
+                <div th:each="event : ${events}" class="event-card">
+                    <div class="event-image">
+                        <img th:if="${event.imagePath}" th:src="@{${event.imagePath}}" th:alt="${event.title}">
+                        <div th:unless="${event.imagePath}" class="image-placeholder"></div>
+                    </div>
+                    <div class="event-info">
+                        <h3 th:text="${event.title}"></h3>
+                        <div class="event-details">
+                            <p th:text="'Location: ' + ${event.location}"></p>
+                            <p th:text="'Date: ' + ${#dates.format(event.eventDate, 'MMM dd, yyyy')}"></p>
+                            <p th:text="'Hours: ' + ${event.volunteerHours}"></p>
+                            <p class="organization" th:text="'Organization: ' + ${event.organization.organizationName}"></p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn-remove-event"
+                                    th:onclick="'showRemoveModal(' + ${event.eventId} + ')'">
+                                Remove Event
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- No Events Message -->
+        <div th:if="${#lists.isEmpty(events)}" class="no-events">
+            <p>You haven't signed up for any events yet. <a th:href="@{/events/all}">Browse events</a> to get started!</p>
         </div>
 
         <div class="action-buttons">
@@ -78,7 +110,6 @@
                             <input type="email" class="form-control" th:value="${user.email}" name="email" required>
                         </div>
                         <input type="hidden" name="id" th:value="${user.id}">
-                        <!--Password -->
                         <div class="mb-3">
                             <label class="form-label">Current Password</label>
                             <input type="password" class="form-control" name="currentPassword">
@@ -104,14 +135,44 @@
         </div>
     </div>
 
+    <!-- Remove Event Modal -->
+    <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="removeModalLabel">Remove Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to remove this event from your profile?</p>
+                    <form method="post" id="remove-form">
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Yes, Remove</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function openEditModal() {
             new bootstrap.Modal(document.getElementById('editModal')).show();
         }
-    </script>
-    <div th:replace="~{fragments/chatbot :: chatbot}"></div>
 
+        let currentRemoveEventId = null;
+
+        function showRemoveModal(eventId) {
+            currentRemoveEventId = eventId;
+            const form = document.getElementById('remove-form');
+            form.action = `/user/events/remove/${eventId}`;
+            new bootstrap.Modal(document.getElementById('removeModal')).show();
+        }
+    </script>
+
+    <div th:replace="~{fragments/chatbot :: chatbot}"></div>
 </body>
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 </html>

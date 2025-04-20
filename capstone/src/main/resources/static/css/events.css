@@ -15,6 +15,38 @@
     font-family: "American Typewriter", serif;
 }
 
+
+/* Filter container & filters */
+
+.text-container.form-check {
+    width:30%;
+}
+
+.text-container.form-check > div {
+    display:flex;
+    flex-direction: row;
+}
+.sortBy {
+    display:block;
+    width: fit-content;
+    text-align: left;
+    margin-right: 1rem;
+}
+.filters {
+    display: block;
+    width:25%;
+}
+#causesFilter {
+    background-color: inherit !important;
+    color:#000 !important;
+}
+#causesFilter+ul {
+    padding-inline: 30px 5px
+}
+
+
+
+
 h1 {
     font-family: "American Typewriter", serif;
     color: #f6b852; /* Text color */
@@ -101,8 +133,7 @@ body {
     margin: 5px 0; /* Space between details */
 }
 
-/* View More Button */
-.btn-view-more {
+button, .btn-view-more {
     display: inline-block;
     padding: 8px 16px;
     background-color: #f6b852; /* Match your theme color */
@@ -112,6 +143,12 @@ body {
     font-family: "Cutive", serif;
     font-size: 16px;
     text-align: center;
+    border: none;
+}
+
+
+/* View More Button */
+.btn-view-more {
     transition: background-color 0.3s ease;
     position: absolute; /* Position at the bottom */
     bottom: 20px; /* Distance from the bottom */
@@ -300,6 +337,7 @@ body {
     max-width: 500px;
     text-align: center;
     border-radius: 10px;
+    margin-top: 100px;
 }
 
 .close {
@@ -366,37 +404,10 @@ body {
     background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
 }
 
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    max-width: 500px;
-    text-align: center;
-    border-radius: 10px;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover {
-    color: #000;
-}
-
 /* Modal overlay styling for admin */
 .modal {
     z-index: 1050;
     background-color: rgba(0,0,0,0.5);
-}
-        
-.modal-content {
-    margin-top: 100px;
 }
         
 /* Button spacing in table */
@@ -405,3 +416,75 @@ body {
     width: auto;
     padding: 8px 15px;
 }
+
+
+/* Sign Up Button Styling */
+.btn-sign-up {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+}
+
+.btn-sign-up:hover:not(:disabled) {
+    background-color: #45a049;
+}
+
+.btn-sign-up:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 25px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.modal-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.btn-confirm, .btn-cancel {
+    padding: 10px 25px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-confirm {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-cancel {
+    background-color: #f44336;
+    color: white;
+}
+
+
