@@ -32,6 +32,12 @@ public class OrganizationController {
         // where all orgs displayed
         return "admin-organizations";
     }
+    @GetMapping("/organizations/new")
+    public String showCreateOrganizationForm(Model model){
+        model.addAttribute("organization", new Organization());
+        model.addAttribute("title", "Create New Organization");
+        return "create-organization";
+    }
 
     @GetMapping("/organizations/view/{organizationId}")
     public String viewOrganization(@PathVariable int organizationId, Model model) {
@@ -56,4 +62,9 @@ public class OrganizationController {
         // Return the template for displaying all organizations
         return "/Organization/organization-page"; // Thymeleaf template for all organizations
     }
+//    @PostMapping("/organizations/new")
+//    public String addNewOrganization(@ModelAttribute("organization") Organization organization, Model model)
+//        organizationService.addNewOrganization(organization);
+//        return "redirect:/organizations/all";
+//    }
 }
