@@ -105,7 +105,7 @@ public class EventService {
                         Event event = new Event();
                         // 1, 2 and 3 are the indices of the data present
                         // in the database respectively 
-                        event.setId(rs.getInt(1));
+                        event.setEventId(rs.getInt(1));
                         event.setTitle(rs.getString(2));
                         event.setLocation(rs.getString(3));
                         event.setEventDate(rs.getDate(4));

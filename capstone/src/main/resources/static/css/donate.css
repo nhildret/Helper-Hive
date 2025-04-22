@@ -94,8 +94,7 @@ body{
     height:fit-content;
     font-size: medium;
     border-radius: 10px;
-    border-color: #F4CA8B;
-    background-color: #F4CA8B;
+    background-color: #f6b852;
     font-weight: bold;
     padding: 10px;
   font-family: cutive;
@@ -176,8 +175,7 @@ body{
     min-height:4rem;
     font-size: 2rem;
     border-radius: 10px;
-    border-color: var(--header);
-    background-color: var(--header);
+    background-color: #f6b852;
     font-weight: bold;
     padding:20px 15px 10px 15px;
     font-family: "Cutive", serif;

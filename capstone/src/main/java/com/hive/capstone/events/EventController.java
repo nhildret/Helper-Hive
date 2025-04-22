@@ -54,7 +54,6 @@ public class EventController {
         model.addAttribute("event_list", eventList);
         List<Cause> causes = causeRepository.findAll();
         model.addAttribute("causes", causes);
-        System.out.println(causes.get(3).toString());
         //model.addAttribute("event_list", eventService.getAllEvents());
         //model.addAttribute("title", "All Events");
 

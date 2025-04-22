@@ -39,17 +39,24 @@ body {
 
 .text-container.form-check {
     width:30%;
+    
 }
 
 .text-container.form-check > div {
     display:flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 .sortBy {
     display:block;
     width: fit-content;
     text-align: left;
     margin-right: 1rem;
+    padding-block: auto;
+}
+.sortBy > .form-check {
+    margin-left: 0;
+    padding-left: 0;
 }
 .filters {
     display: block;
@@ -58,6 +65,7 @@ body {
 #causesFilter {
     background-color: inherit !important;
     color:#000 !important;
+    margin-inline: auto;
 }
 #causesFilter+ul {
     padding-inline: 30px 5px
@@ -69,6 +77,7 @@ body {
     margin-inline: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px; /* Space between cards */
 }
 
