@@ -62,9 +62,9 @@ public class OrganizationController {
         // Return the template for displaying all organizations
         return "/Organization/organization-page"; // Thymeleaf template for all organizations
     }
-    @PostMapping("/organizations/new")
-    public String addNewOrganization(@ModelAttribute("organization") Organization organization, Model model)
-        organizationService.addNewOrganization(organization);
-        return "redirect:/organizations/all";
-    }
+//    @PostMapping("/organizations/new")
+//    public String addNewOrganization(@ModelAttribute("organization") Organization organization, Model model)
+//        organizationService.addNewOrganization(organization);
+//        return "redirect:/organizations/all";
+//    }
 }
