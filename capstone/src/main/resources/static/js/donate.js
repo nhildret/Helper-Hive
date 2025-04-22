@@ -1,21 +1,39 @@
 const api_key = 'pk_live_8e240e290c82f229069e4b7e67f2b278';
 const webhook = 'b2e68cd35c62cdfd105643be';
 const page_url = "https%3A%2F%2fhelper-hive.onrender.com%2fdonate";
-const cause = 'animals';
+const cardContainer = document.getElementsByClassName("card-container")[0];
+const filterBtn = document.getElementById("filterBtn");
+var causes = document.getElementsByClassName("filterCheckbox");
+var orgs = new Map();
 
+filterBtn.addEventListener("click", async function (){
+    orgs.clear();
+    orgs = await getOrgs();
+    console.log(orgs);
+    displayCards();
+});
 
-window.onload = function (){
-    $.ajax({
-        url: 'https://partners.every.org/v0.2/browse/'+ cause +'?take=20&apiKey=' + api_key,
+async function getOrgs() {
+    let newOrgs = new Map();
+    for (let i = 0; i < causes.length; i++) {
+        if (causes[i].checked) {
+            await $.ajax({
+                url: 'https://partners.every.org/v0.2/browse/'+ causes[i].id +'?take=20&apiKey=' + api_key,
         method: 'GET',
         success: function(result) {
-            displayCards(result);
+                    for (var org of result.nonprofits) {
+                        newOrgs.set(org.slug, org);
+                    }
         }
     });
 }
+    }
+    return newOrgs;
+}
 
-function displayCards(results) {
-    for (var org of results.nonprofits) {
+async function displayCards() {
+    cardContainer.innerHTML = "";
+    orgs.forEach((org, key) => {
         let newCard =   '<div class="card">'
                     +       '<img class="card-img" src="'+ org.coverImageUrl +'"/>' //org's logo
                     +       '<h2>'+ org.name +'</h2>'
@@ -24,11 +42,11 @@ function displayCards(results) {
             newCard +=          org.tags[i]+', '
         }
         newCard     +=      org.tags[org.tags.length-1] + '</p>'
-                    +       '<button onclick="showModal(\''+ org.slug +'\')">View Details</button>'
+                    +       '<button onclick="showModal(\''+ key +'\')">View Details</button>'
                     +   '</div>';
 
-        document.getElementsByClassName("card-container")[0].innerHTML += newCard;
-    }
+        cardContainer.innerHTML += newCard;
+    });
 }
 
 function showModal(id) {

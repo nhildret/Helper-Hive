@@ -102,10 +102,10 @@ public class Organization {
 
     @Override
     public String toString() {
-        return "Organization{" +
-                "id=" + id +
-                ", organizationName='" + organizationName + '\'' +
-                ", address='" + address + '\'' +
+        return "{" +
+                "id:" + id +
+                ", organizationName:'" + organizationName + "'" +
+                ", address:'" + address + "'" +
                 '}';
     }
 }

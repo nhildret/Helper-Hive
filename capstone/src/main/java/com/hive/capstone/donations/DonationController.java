@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.hive.capstone.causes.CauseRepository;
+import com.hive.capstone.causes.CauseService;
 import com.hive.capstone.donations.*;
 import com.hive.capstone.scripts.CallScripts;
 
@@ -23,8 +25,12 @@ public class DonationController {
     @Autowired
     private DonationService donationService;
 
+    @Autowired
+    private CauseRepository causeRepository;
+
     @GetMapping({"", "/"})
-    public String donate() {
+    public String donate(Model model) {
+        model.addAttribute("causes", causeRepository.findAll());
         return "donation-page";
     }
 

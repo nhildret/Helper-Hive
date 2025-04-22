@@ -22,24 +22,24 @@
     </head>
     <header th:replace="~{fragments/header :: header}"></header>
         <main>
-            <h1>Donate to a Good Cause</h1>
-            <p class="message">Click an organization to learn more and donate!</p>
-
-            <!-- <div class="filter-container">
-                <button id="use-location" type="button" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Use my location">
-                    <i class="fa-solid fa-location-dot"></i>
-                </button>
-                <div class="form-control-container filter">
-                    <label for="zip">Search by ZIP: </label>
-                    <input id="zip" type="text" class="form-control form-control-sm" placeholder="zip">
+            <section class="button-section">
+                <div class="text-container">
+                    <p class="message">
+                        Pick your preferred causes from the drop-down below.<br/>
+                        Click an organization to learn more and donate!
+                    </p>
                 </div>
-                <div class="form-control-container filter">
-                    <label for="state">Search by state: </label>
-                    <input id="state" type="text" class="form-control form-control-sm" placeholder="state">
+                <div class="text-container filter-container">
+                    <div class="cause-container">
+                        <label th:each="cause : ${causes}" th:for="${cause.id}">
+                        <input type="checkbox" class="form-check-input filterCheckbox" th:id="${cause.id}" th:text="${cause.title}" />
+                        </label>
+                    </div>
+                    <button id="filterBtn">Filter</button>
                 </div>
-            </div> -->
+            </section>
 
-            <div class="card-container">
+            <div class="card-container event-container">
            </div>
            <div id="modal-space">
                <span onclick="document.getElementById('modal-space').style.display='none'" class="close" title="Close Modal">X</span>
@@ -60,6 +60,6 @@
         </main>
     <div th:replace="~{fragments/chatbot :: chatbot}"></div>
 
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
     </body>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
 </html>

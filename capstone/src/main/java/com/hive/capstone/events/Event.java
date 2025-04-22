@@ -1,9 +1,12 @@
 package com.hive.capstone.events;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
 
+import com.hive.capstone.causes.Cause;
 import com.hive.capstone.organizations.Organization;
 import com.hive.capstone.users.User;
 
@@ -36,8 +39,11 @@ public class Event {
     @Column(name = "volunteer_hours")
     private int volunteerHours; // Hours earned
 
-    @Column(name = "cause_id")
-    private int causeId;
+    @ManyToMany(fetch = FetchType.LAZY,
+                cascade = CascadeType.ALL)
+    @JoinTable(name = "eventcauses", joinColumns = @JoinColumn(name = "event_id"), 
+                                        inverseJoinColumns = @JoinColumn(name = "cause_id"))
+    private List<Cause> causes = new ArrayList<>();
 
     @Column(name = "image_path")
     private String imagePath;
@@ -64,7 +70,7 @@ public class Event {
 
     // Constructors
 
-    public Event(String title, String location, double x, double y, Date eventDate, Organization organization, int volunteerHours, int causeId, String imagePath) {
+    public Event(String title, String location, double x, double y, Date eventDate, Organization organization, int volunteerHours, String imagePath) {
         this.title = title;
         this.location = location;
         this.x = x;
@@ -72,20 +78,18 @@ public class Event {
         this.eventDate = eventDate;
         this.organization = organization;
         this.volunteerHours = volunteerHours;
-        this.causeId = causeId;
         this.imagePath = imagePath;
     }
 
             
     public Event(int id, String title, String location, Date eventDate, Organization organization,
-            int volunteerHours, int causeId, String imagePath) {
+            int volunteerHours, String imagePath) {
         this.id = id;
         this.title = title;
         this.location = location;
         this.eventDate = eventDate;
         this.organization = organization;
         this.volunteerHours = volunteerHours;
-        this.causeId = causeId;
         this.imagePath = imagePath;
     }
 
@@ -120,8 +124,8 @@ public class Event {
         return volunteerHours;
     }
 
-    public int getCauseId() {
-        return causeId;
+    public List<Cause> getCauses() {
+        return causes;
     }
 
     public String getImagePath() {
@@ -160,8 +164,8 @@ public class Event {
         this.volunteerHours = volunteerHours;
     }
 
-    public void setCauseId(int causeId) {
-        this.causeId = causeId;
+    public void setCauses(List<Cause> causes) {
+        this.causes = causes;
     }
 
     public void setImagePath(String imagePath) {
@@ -178,16 +182,16 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", location='" + location + '\'' +
-                ", coords={'" + x + "," + y + "'}" +
-                ", eventDate=" + eventDate +
-                ", organization=" + (organization != null ? organization.getOrganizationName() : "null") +
-                ", causeId=" + causeId +
-                ", imagePath=" + imagePath +
-                ", volunteerHours=" + volunteerHours +
+        return "{" +
+                "id:" + id +
+                ", title:'" + title + "'" +
+                ", location:'" + location + "'" +
+                ", coords:{x:" + x + ",y:" + y + "}" +
+                ", eventDate:" + eventDate +
+                ", organization:" + (organization != null ? organization.toString() : "null") +
+                ", causes:" + causes +
+                ", imagePath:'" + imagePath + "'" +
+                ", volunteerHours:" + volunteerHours +
                 '}';
     }
 }

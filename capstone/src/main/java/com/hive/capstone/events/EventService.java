@@ -1,17 +1,42 @@
 package com.hive.capstone.events;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Service;
 import com.hive.capstone.users.User;
-import com.hive.capstone.organizations.Organization;
 
+import lombok.Value;
+
+import com.hive.capstone.organizations.Organization;
+import com.hive.capstone.organizations.OrganizationRepository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import com.hive.capstone.beans.DBConfig;
+import com.hive.capstone.causes.Cause;
 
 @Service
 public class EventService {
     
     @Autowired
     EventRepository eventRepository;
+
+    @Autowired
+    OrganizationRepository organizationRepository;
+    
+    @Autowired
+    DBConfig dbConfig;
 
     // Fetch all events
     public List<Event> getAllEvents() {
@@ -62,9 +87,49 @@ public class EventService {
         return eventRepository.findByOrganization_Id(organization.getOrganizationId());
     }
 
-    public List<Event> getEventsByCoords(double userX, double userY) {
-        return eventRepository.getEventsByCoords(userX, userY);
-    }
 
+    public List<Event> getEventsByQuery(String query) {
+        System.out.println();
+        System.out.println(query);
+
+        try {
+            
+            JdbcTemplate jdbc = new JdbcTemplate(dbConfig.getDataSource());
+
+            List<Event> returnList = jdbc.query(query, new ResultSetExtractor<List<Event>>() {
+                // extractData() is ResultSetExtractor 
+                // interface's method
+                public List<Event> extractData(ResultSet rs) throws SQLException, DataAccessException {
+                    List<Event> eventsList = new ArrayList<Event>();
+                    while(rs.next()) {
+                        Event event = new Event();
+                        // 1, 2 and 3 are the indices of the data present
+                        // in the database respectively 
+                        event.setId(rs.getInt(1));
+                        event.setTitle(rs.getString(2));
+                        event.setLocation(rs.getString(3));
+                        event.setEventDate(rs.getDate(4));
+                        event.setOrganization(organizationRepository.findById(rs.getInt(5)));
+                        event.setVolunteerHours(rs.getInt(6));
+                        event.setImagePath(rs.getString(7));
+                        event.setCoords(rs.getDouble(8), rs.getDouble(9));
+
+                        // add causes
+                        // Cause[] causes = (Cause[])rs.getArray(10).getArray();
+                        // event.setCauses(Arrays.asList(causes));
+
+                        eventsList.add(event);
+                    }
+                    return eventsList;
+                }
+            });
+            System.out.println("\n\n" + returnList + "\n");
+            return returnList;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<Event>();
+        }
+    }
 
 }

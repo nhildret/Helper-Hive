@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.hive.capstone.donations.Donation;
+import com.hive.capstone.events.Event;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -20,4 +21,12 @@ public class Cause {
 
     @ManyToMany(mappedBy = "causes")
     List<Donation> donations;
+
+    @ManyToMany(mappedBy = "causes")
+    List<Event> events;
+
+    @Override
+    public String toString() {
+        return "id = " + id + ", title = " + title;
+    }
 }

@@ -3,44 +3,62 @@ body{
     background-attachment:fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 100vh !important;
 }
 
-main{
-    min-height: 62%;
-    overflow-y: scroll;
-}
+/* main{
+    min-height: 80%;
+} */
 
-.message {
-    overflow:visible;
-    font-size: larger;
-    text-align: center;
-    font-family: "Cutive", serif;
+/* causes */
+.filter-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column !important;
+}
+.cause-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-size: large;
+}
+.cause-container > label {
+    width: max-content;
+    margin-left: 20px;
+}
+#filterBtn {
+    width: fit-content !important;
+    padding: 10px 20px 5px 20px;
+    align-self: center;
     }
 
 /* holds cards */
 .card-container {
     width: 80%;
-    height:70vh;
     margin-inline: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 1rem;
 }
 
 /* donate cards */
 .card {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    align-content:space-evenly;
-    text-align: center;
-    margin-inline:auto;
-    margin-block: 1rem;
-    width: 300px;
-    height:fit-content;
+    width: 325px;
+    height: fit-content;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 4px 4px 6px var(--shadow);
-    background-color: #F6D8A8;
+    background-color: var(--card);
+    position: relative; /* For positioning the button */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+.card:hover {
+    transform: translateY(-10px); /* Move the card up slightly */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a stronger shadow */
 }
 .card h2 {
     margin-block: 1rem;
@@ -50,12 +68,15 @@ main{
 .card-img {
     margin-inline: auto;
     align-self: center;
-    border-radius: 10px;
-    width: 200px;
+    width: 100%; /* Make the image fill the card width */
+    min-height: 150px;
     max-height: 200px;
     padding: 0;
     object-fit: cover;
     object-position: center;
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    border-radius: 10px; /* Match the card's border radius */
+    margin-bottom: 15px; /* Space between image and title */
 }
 .card p {
     font-size: larger;

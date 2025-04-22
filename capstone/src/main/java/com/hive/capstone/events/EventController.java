@@ -52,9 +52,9 @@ public class EventController {
     public String getAllEvents(Model model) {
         List<Event> eventList = eventRepository.findAll();
         model.addAttribute("event_list", eventList);
-        model.addAttribute("causes", causeRepository.findAll());
-
-        
+        List<Cause> causes = causeRepository.findAll();
+        model.addAttribute("causes", causes);
+        System.out.println(causes.get(3).toString());
         //model.addAttribute("event_list", eventService.getAllEvents());
         //model.addAttribute("title", "All Events");
 
@@ -126,7 +126,7 @@ public class EventController {
         event.setLocation(updatedEvent.getLocation());
         event.setEventDate(updatedEvent.getEventDate());
         event.setVolunteerHours(updatedEvent.getVolunteerHours());
-        event.setCauseId(updatedEvent.getCauseId());
+        event.setCauses(updatedEvent.getCauses());
         event.setImagePath(updatedEvent.getImagePath());
         event.setOrganization(updatedEvent.getOrganization());
 
