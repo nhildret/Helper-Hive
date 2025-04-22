@@ -25,6 +25,16 @@ public class Cause {
     @ManyToMany(mappedBy = "causes")
     List<Event> events;
 
+    //Getter
+
+    public String getId() {
+        return this.id;
+    }
+    public String getTitle() {
+        return this.title;
+    }
+
+
     @Override
     public String toString() {
         return "id = " + id + ", title = " + title;

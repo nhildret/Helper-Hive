@@ -57,7 +57,7 @@ public class EventController {
         //model.addAttribute("event_list", eventService.getAllEvents());
         //model.addAttribute("title", "All Events");
 
-        return "/Event/event-page";
+        return "Event/event-page";
     }
 
     @GetMapping("/admin/events/all")
@@ -91,7 +91,7 @@ public class EventController {
 
         // Set page title
         model.addAttribute("title", "Event # " + eventId + " Details");
-        return "/Event/event-details";
+        return "Event/event-details";
     }
 
     // Get a list of Events based on name

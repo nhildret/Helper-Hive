@@ -58,6 +58,8 @@ public class DonationRestController {
             causes.add(causeService.getById(causesJSON.getJSONObject(i).getString("tagName")));
         }
 
+        System.out.println(causes);
+
         // get donation Date
         String donationDate = donation.getString("donationDate");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);

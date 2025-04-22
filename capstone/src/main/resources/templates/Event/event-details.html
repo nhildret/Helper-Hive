@@ -12,7 +12,7 @@
 </head>
 <body>
     <!-- Header Fragment -->
-    <header th:replace="~{/fragments/header :: header}"></header>
+    <header th:replace="~{fragments/header :: header}"></header>
 
     <!-- Add flash messages -->
     <div th:if="${success}" class="alert alert-success" role="alert">
@@ -212,7 +212,7 @@
         /*]]>*/
     </script>
 
-    <div th:replace="~{/fragments/chatbot :: chatbot}"></div>
+    <div th:replace="~{fragments/chatbot :: chatbot}"></div>
 
 </body>
 <script>
@@ -254,5 +254,5 @@
         document.getElementById("edit-popup").style.display = "none";
     }
 </script>
-<footer th:replace="~{/fragments/footer :: footer}"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </html>

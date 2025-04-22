@@ -31,8 +31,8 @@
                 </div>
                 <div class="text-container filter-container">
                     <div class="cause-container">
-                        <label th:each="cause : ${causes}" th:for="${cause.id}">
-                        <input type="checkbox" class="form-check-input filterCheckbox" th:id="${cause.id}" th:text="${cause.title}" />
+                        <label th:each="cause : ${causes}" th:for="${cause.getId()}">
+                        <input type="checkbox" class="form-check-input filterCheckbox" th:id="${cause.getId()}" th:text="${cause.getTitle()}" />
                         </label>
                     </div>
                     <button id="filterBtn">Filter</button>

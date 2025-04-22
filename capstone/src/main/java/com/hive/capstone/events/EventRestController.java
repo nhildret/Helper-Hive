@@ -72,7 +72,7 @@ public class EventRestController {
 
         service.getEventsByQuery(query);
         //return a list of events for events.js to populate the container with
-        return "/Event/event-page";
+        return "Event/event-page";
     }
 
     //without coords
@@ -106,7 +106,7 @@ public class EventRestController {
         service.getEventsByQuery(query);
         
         //return a list of events.toString() for events.js to populate the container with
-        return "/Event/event-page";
+        return "Event/event-page";
     }
 
     // Handle form submission (POST request)

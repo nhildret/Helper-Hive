@@ -47,7 +47,7 @@ public class OrganizationController {
 
         // Set page title
         model.addAttribute("title", "Organization # " + organizationId + " Details");
-        return "/Organization/organization-details"; // Thymeleaf template for organization details
+        return "Organization/organization-details"; // Thymeleaf template for organization details
     }
 
     @GetMapping("/organizations/all")
@@ -60,7 +60,7 @@ public class OrganizationController {
         model.addAttribute("title", "All Organizations");
 
         // Return the template for displaying all organizations
-        return "/Organization/organization-page"; // Thymeleaf template for all organizations
+        return "Organization/organization-page"; // Thymeleaf template for all organizations
     }
 //    @PostMapping("/organizations/new")
 //    public String addNewOrganization(@ModelAttribute("organization") Organization organization, Model model)
