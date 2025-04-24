@@ -88,7 +88,7 @@ public class Organization {
         this.password = password;
     }
 
-    public void setRegisteredAt(Date registeredAt) {
+    public void setRegisteredAt(java.sql.Date registeredAt) {
         this.registeredAt = registeredAt;
     }
 

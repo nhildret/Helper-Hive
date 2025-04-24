@@ -65,7 +65,7 @@ function displayCards(result) {
                                 + '<!-- Event Details -->'
                                 + '<div class="event-details">'
                                 +     '<p>Location: ' + events[i].location + '</p>'
-                                +     '<p>Date: ' + events[i].eventDate + '</p>'
+                                +     '<p>Date: ' + events[i].eventDate.toString().substring(0,10) + '</p>'
                                 +     '<p>Volunteer Hours: ' + events[i].volunteerHours + '</p>'
                                 +     '<p class="Organization">Organization: ' + events[i].organization.organizationName + '</p>'
                                 + '</div>'

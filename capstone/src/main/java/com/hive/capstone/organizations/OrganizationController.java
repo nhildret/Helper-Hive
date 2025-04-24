@@ -18,13 +18,6 @@ public class OrganizationController {
     @Autowired
     private OrganizationService organizationService;
 
-//    @PostMapping("/organizations/new")
-//    public String addNewOrganization(@ModelAttribute User user, Model model) {
-//        organizationService.addNewOrganization(user);
-//        model.addAttribute("users", userService.getAllUsers());
-//        return "create-organization.html";
-//    }
-
     @GetMapping("/admin/organizations/all")
     public String getAllOrganizations(Model model) {
         model.addAttribute("organizationList", organizationService.getAllOrganizations());
@@ -32,11 +25,18 @@ public class OrganizationController {
         // where all orgs displayed
         return "admin-organizations";
     }
+
     @GetMapping("/organizations/new")
-    public String showCreateOrganizationForm(Model model){
+    public String showCreateOrganizationForm(Model model) {
         model.addAttribute("organization", new Organization());
         model.addAttribute("title", "Create New Organization");
-        return "create-organization";
+        return "Organization/create-organization";
+    }
+    
+    @PostMapping("/organizations/new")
+    public String addNewOrganization(@ModelAttribute("organization") Organization organization) {
+        organizationService.createOrganization(organization);
+        return "redirect:/organizations/all";
     }
 
     @GetMapping("/organizations/view/{organizationId}")

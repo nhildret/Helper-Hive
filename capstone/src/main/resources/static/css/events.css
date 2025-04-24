@@ -302,6 +302,10 @@ button, .btn-view-more {
     outline: none;
 }
 
+.dropdown {
+    align-self:flex-start;
+}
+
 /* Create Event Button */
 .btn-create-event {
     display: inline-block;
@@ -351,10 +355,21 @@ button, .btn-view-more {
 
 .close {
     color: #aaa;
+    align-self: end;
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.checkbox-menu {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+.checkbox-menu label {
+    font: Arial, sans-serif;
+    font-size: 16px !important;
+    font-weight: normal !important;
 }
 
 .close:hover {
@@ -411,6 +426,7 @@ button, .btn-view-more {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    align-items: start;
 }
 
 /* Modal overlay styling for admin */

@@ -81,6 +81,10 @@ public class EventController {
         Event event = eventService.getEventById(eventId);
         model.addAttribute("event", event);
 
+        //Fetch Causes for edit form
+        List<Cause> causes = causeRepository.findAll();
+        model.addAttribute("causes", causes);
+
         // Fetch All Events for the "All Event Cards" section
         List<Event> eventList = eventService.getAllEvents();
         model.addAttribute("event_list", eventList);
@@ -130,23 +134,13 @@ public class EventController {
     @GetMapping("/new")
     public String showCreateEventForm(Model model) {
         model.addAttribute("event", new Event());
+        List<Cause> causes = causeRepository.findAll();
+        model.addAttribute("causes", causes);
         // Fetch all organizations and pass them to the template
         List<Organization> organizations = organizationRepository.findAll();
         model.addAttribute("organizations", organizations);
         return "Event/add-event";
     }
-    // Handle form submission (POST request)
-    // @PostMapping("/new")
-    // public String createEvent(@ModelAttribute Event event, @RequestParam("organizationId") int organizationId) {
-    //     // Fetch the Organization object based on the submitted organizationId
-    //     Organization organization = organizationRepository.findById(organizationId);
-    //     //.orElseThrow(() -> new IllegalArgumentException("Invalid organization ID: " + organizationId));
-    //     // Set the Organization object in the Event
-    //     event.setOrganization(organization);
-
-    //     eventRepository.save(event);
-    //     return "redirect:/events/all";
-    // }
     
     @PostMapping("/signup/{eventId}")
     public String signUpForEvent(@PathVariable int eventId, RedirectAttributes redirectAttributes) {
