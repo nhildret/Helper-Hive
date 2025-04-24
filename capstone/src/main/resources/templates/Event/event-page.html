@@ -82,7 +82,7 @@
                     <!-- Event Details -->
                     <div class="event-details">
                         <p th:text="'Location: ' + ${event.location}"></p>
-                        <p th:text="'Date: ' + ${event.eventDate}"></p>
+                        <p th:text="'Date: ' + ${event.eventDate.toString().substring(0,10)}"></p>
                         <p th:text="'Volunteer Hours: ' + ${event.volunteerHours}"></p>
                         <p class="Organization" th:text="'Organization: ' + ${event.organization.organizationName}"></p>
                     </div>

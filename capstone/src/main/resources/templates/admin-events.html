@@ -62,7 +62,13 @@
             <td data-th-text="${events.location}"></td>
             <td data-th-text="${events.eventDate}"></td>
             <td data-th-text="${events.organizationId}"></td>
-            <td data-th-text="${events.causeId}"></td>
+            <td>
+                <ul>
+                    <li data-th-each="cause : ${events.causes}">
+                        <div th:text="${cause.id}"></div>
+                    </li>
+                </ul>
+            </td>
             <td data-th-text="${events.volunteerHours}"></td>
 
             <td><a data-th-href="@{/events/view/{eventId} (eventId=${events.id})}"

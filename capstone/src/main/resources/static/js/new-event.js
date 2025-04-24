@@ -26,16 +26,19 @@ async function initGeo() {
                 event['x'] = x;
                 event['y'] = y;
 
+                let excludedKeys = ["eventDate", "imagePath", "organizationId", "location", "x", "y", "title", "volunteerHours"];
+                let causes = Object.keys(event).filter(key => !excludedKeys.includes(key));
+
                 
                 if (window.location.href.startsWith(currentURL + "/view")){ //update existing Event
                     let eventId = window.location.href.substring((currentURL+"/view").length + 1);
-                    alert(eventId);
+                    
                     $.ajax({
                         url: currentURL + '/edit',
                         method: 'PUT',
                         data: { 
                             eventId: eventId,
-                            causeId: event["causeId"], 
+                            causeId: causes, 
                             eventDate: event["eventDate"], 
                             imagePath: event["imagePath"], 
                             organizationId: event['organizationId'],
@@ -52,7 +55,7 @@ async function initGeo() {
                         url: currentURL + '/new',
                         method: 'POST',
                         data: { 
-                            causeId: event["causeId"], 
+                            causeId: causes, 
                             eventDate: event["eventDate"], 
                             imagePath: event["imagePath"], 
                             organizationId: event['organizationId'],

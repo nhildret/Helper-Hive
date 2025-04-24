@@ -51,9 +51,13 @@ public class EventRestController {
     @GetMapping("/withCoords") 
     public String[] filterEvents(@RequestParam("comingUp") boolean comingUp, @RequestParam("causes") String causes,
                             @RequestParam("x") double x, @RequestParam("y") double y) {
+        String xformula = "(e.x - ("+x+"))";
+        String yformula = "(e.y - ("+y+"))";
+        String coordsFormula = "SQRT(("+xformula+" * "+xformula+") + ("+yformula+" * "+yformula+"))";
+        System.out.println(coordsFormula);
         //build query
         String query = "SELECT * from events e"
-                        + " WHERE ABS(e.x - CAST('"+x+"' as double precision)) < 10 AND ABS(e.y - CAST('"+y+"' as double precision)) < 10";
+                        + " WHERE " + coordsFormula + " < 1";
         if (comingUp) {
          query += " AND e.event_date >= CURRENT_DATE";
         }
@@ -65,11 +69,11 @@ public class EventRestController {
             }
             query += "'))";
         }
-        query += " ORDER BY";
+        query += " ORDER BY ";
         if (comingUp) {
-            query += " event_date,";
+            query += "event_date, ";
         }
-        query += " ABS(e.x - CAST('"+x+"' as double precision)), ABS(e.y - CAST('"+y+"' as double precision))";
+        query += coordsFormula + ";";
 
         //Get list of Events and create JSON string
         List<Event> eventsList = eventService.getEventsByQuery(query);
