@@ -1,8 +1,16 @@
 package com.hive.capstone;
 
+import com.hive.capstone.users.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class HiveController {
@@ -45,5 +53,27 @@ public class HiveController {
     public String accessDenied() {
         return "403";
     }
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/admin/users/registration-data")
+    @ResponseBody
+    public List<Map<String, Object>> getUserRegistrationData() {
+        List<Object[]> rawData = userService.getUserRegistrationStats();
+        List<Map<String, Object>> formattedData = new ArrayList<>();
+
+        for (Object[] row : rawData) {
+            Map<String, Object> dataPoint = new HashMap<>();
+            dataPoint.put("date", row[0].toString());
+            dataPoint.put("count", row[1]);
+            formattedData.add(dataPoint);
+        }
+
+        return formattedData;
+    }
+
+
+
 
 }

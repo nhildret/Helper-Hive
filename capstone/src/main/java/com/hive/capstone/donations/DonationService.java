@@ -55,4 +55,11 @@ public class DonationService {
         return new JSONObject(rt.getForObject("https://partners.every.org/v0.2/nonprofit/" + id, String.class));
     }
 
+
+    //Tracker!! Info!!
+    public List<Object[]> getDonationsByDate() {
+        return donationRepository.getDonationsByDate();
+    }
+
+
 }

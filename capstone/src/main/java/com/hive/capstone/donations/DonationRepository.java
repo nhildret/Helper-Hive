@@ -25,4 +25,10 @@ public interface DonationRepository extends JpaRepository <Donation, Integer> {
     List<Donation> findAllByOrderByAmountDesc();
 
     List<Donation> findAll();
+
+
+    //Tracker!!
+    @Query("SELECT d.donatedAt, SUM(d.amount) FROM Donation d GROUP BY d.donatedAt ORDER BY d.donatedAt ASC")
+    List<Object[]> getDonationsByDate();
+
 }

@@ -80,4 +80,9 @@ public class UserService {
         return userRepository.findAllByOrderByTotalHoursDesc();
     }
 
+
+    //Chart.js info
+    public List<Object[]> getUserRegistrationStats() { return userRepository.countUsersByRegistrationDate();}
+
+
 }
