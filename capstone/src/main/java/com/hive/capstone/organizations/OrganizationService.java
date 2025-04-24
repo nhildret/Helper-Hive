@@ -1,6 +1,6 @@
 package com.hive.capstone.organizations;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +23,8 @@ public class OrganizationService {
         return organizationRepository.findById(organization_id);// .orElse(null);
     }
 
-    // public Organization getOrganizationById(int organizationId) {
-    //     return organizationRepository.findById(organizationId)
-    //             .orElseThrow(() -> new IllegalArgumentException("Invalid organization ID: " + organizationId));
-    // }
+    public Organization createOrganization(Organization organization) {
+        organization.setRegisteredAt(new java.sql.Date(System.currentTimeMillis()));
+        return organizationRepository.save(organization);
+    }
 }
