@@ -56,11 +56,17 @@
             </thead>
             <tbody>
             <tr data-th-each="donations : ${donationList}">
-                <td data-th-text="${donations.donorId}"></td>
+                <td data-th-text="${donations.donationId}"></td>
                 <!--<td data-th-text="${donations.userId}"></td>-->
                 <td data-th-text="${donations.donationName}"></td>
                 <td data-th-text="${donations.organizationName}"></td>
-                <td data-th-text="${donations.causeId}"></td>
+                <td>
+                    <ul>
+                        <li data-th-each="cause : ${donations.causes}">
+                            <div th:text="${cause.id}"></div>
+                        </li>
+                    </ul>
+                </td>
                 <td data-th-text="${donations.amount}"></td>
                 <td data-th-text="${donations.donatedAt}"></td>
 
