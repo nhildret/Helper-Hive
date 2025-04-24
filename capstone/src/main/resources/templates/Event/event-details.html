@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/events.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/landing-page.css}" />
-    <script src="/js/popup.js" defer></script>
+    <script th:src="@{/js/new-event.js}" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZjUdpI48aTp9oQbMHfHEVdG1ih8ghyo0&callback=initGeo&libraries=geocoding&loading=async" crossorigin="anonymous" defer></script>
+
 </head>
 <body>
     <!-- Header Fragment -->
@@ -87,7 +89,7 @@
                 <div class="modal-content">
                     <span class="close" onclick="closeEditPopup()">&times;</span>
                     <h1>Edit Event</h1>
-                    <form th:action="@{/events/edit/{event_id}(event_id=${event.eventId})}" method="post" class="create-event-form">
+                    <form class="create-event-form">
                         <div class="form-group">
                             <label for="edit-title">Event Title</label>
                             <input type="text" id="edit-title" name="title" class="form-input" th:value="${event.title}" required>
@@ -106,7 +108,7 @@
                         </div>
                         <div class="form-group">
                             <label for="edit-causeId">Cause ID</label>
-                            <input type="number" id="edit-causeId" name="causeId" class="form-input" value="causeId" required>
+                            <input type="number" id="edit-causeId" name="causeId" class="form-input" value="causeId">
                             <!-- th:value="${event.causeId}"" -->
                         </div>
                         <div class="form-group">

@@ -89,8 +89,6 @@ public class EventService {
 
 
     public List<Event> getEventsByQuery(String query) {
-        System.out.println();
-        System.out.println(query);
 
         try {
             
@@ -123,7 +121,6 @@ public class EventService {
                     return eventsList;
                 }
             });
-            System.out.println("\n\n" + returnList + "\n");
             return returnList;
 
         } catch (Exception e) {

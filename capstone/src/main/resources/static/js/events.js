@@ -21,8 +21,8 @@ function queryWithCoords(position) {
     $.ajax({
         url: currentURL + "/withCoords",
         data: {comingUp, causes, x, y},
-        success: function(){
-            displayCards();
+        success: function(result){
+            displayCards(result);
         },
         error: function() {
             alert("oh no");
@@ -33,39 +33,48 @@ function queryWithoutCoords() {
     $.ajax({
         url: currentURL + "/withoutCoords",
         data: {comingUp, causes},
-        success: displayCards()
+        success: function(result){
+            displayCards(result);
+        },
+        error: function() {
+            alert("oh no");
+        }
     })
 }
 
+function displayCards(result) {
+    var events = [];
 
-function displayCards(results) {
-    alert(results);
+    for (let i = 0; i < result.length; i++) {
+        events[i] = JSON.parse(result[i]);
+    }
 
+    //clear and repopulate event container
     eventContainer.innerHTML = "";
-    //for result in results
+    for (let i = 0; i < events.length; i ++) {
+        let eventHTML = "";
+        eventHTML+= '<div class="event">';
+        if (events[i].imagePath == null || events[i].imagePath == "") {
+            eventHTML += '<div class="image-placeholder"></div>';
+        } else {
+            eventHTML += '<img src="' + events[i].imagePath + '"' 
+                                        + 'alt="' + events[i].title + '"' 
+                                        + 'class="event-img">';
+        }
+        eventHTML +=              '<h2>'+events[i].title+'</h2>'
+                                + '<!-- Event Details -->'
+                                + '<div class="event-details">'
+                                +     '<p>Location: ' + events[i].location + '</p>'
+                                +     '<p>Date: ' + events[i].eventDate + '</p>'
+                                +     '<p>Volunteer Hours: ' + events[i].volunteerHours + '</p>'
+                                +     '<p class="Organization">Organization: ' + events[i].organization.organizationName + '</p>'
+                                + '</div>'
 
-    // eventContainer.innerHTML+= '<div th:each="event : ${event_list}" class="event">' 
-    //                             + '<!-- Event Image or Placeholder -->'
-    //                             + '<div th:if="${event.imagePath == null or event.imagePath.isEmpty()}" class="image-placeholder"></div>'
-    //                             + '<img th:unless="${event.imagePath == null or event.imagePath.isEmpty()}"' 
-    //                             + 'th:src="@{${event.imagePath}}"' 
-    //                             + 'th:alt="${event.title}"' 
-    //                             + 'class="event-img">'
-
-    //                             + '<!-- Event Title -->'
-    //                             + '<h2 th:text="${event.title}"></h2>'
-
-    //                             + '<!-- Event Details -->'
-    //                             + '<div class="event-details">'
-    //                             +     '<p th:text="\'Location: \' + ${event.location}"></p>'
-    //                             +     '<p th:text="\'Date: \' + ${event.eventDate}"></p>'
-    //                             +     '<p th:text="\'Volunteer Hours: \' + ${event.volunteerHours}"></p>'
-    //                             +     '<p class="Organization" th:text="\'Organization: \' + ${event.organization.organizationName}"></p>'
-    //                             + '</div>'
-
-    //                             + '<!-- View More Button -->'
-    //                             + '<a class="btn-view-more" th:href="@{/events/view/{event_id}(event_id=${event.eventId})}">View More</a>'
-    //                         + '</div>';
+                                + '<!-- View More Button -->'
+                                + '<a class="btn-view-more" href="/events/view/' + events[i].eventId + '">View More</a>'
+                            + '</div>';
+        eventContainer.innerHTML += eventHTML;
+    }
 
 }
 

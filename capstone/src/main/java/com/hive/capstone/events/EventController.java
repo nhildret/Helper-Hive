@@ -117,21 +117,6 @@ public class EventController {
         model.addAttribute("event", eventService.getEventById(eventId));
         return "Event/event-update";
     }
-    // Post Updated Event
-    @PostMapping("/edit/{eventId}")
-    public String editEvent(@PathVariable int eventId, @ModelAttribute Event updatedEvent) {
-        Event event = eventService.getEventById(eventId);
-        event.setTitle(updatedEvent.getTitle());
-        event.setLocation(updatedEvent.getLocation());
-        event.setEventDate(updatedEvent.getEventDate());
-        event.setVolunteerHours(updatedEvent.getVolunteerHours());
-        event.setCauses(updatedEvent.getCauses());
-        event.setImagePath(updatedEvent.getImagePath());
-        event.setOrganization(updatedEvent.getOrganization());
-
-        eventService.saveEvent(event);
-        return "redirect:/events/view/" + eventId;
-    }
 
     // Delete Event
     @DeleteMapping("/delete/{eventId}")

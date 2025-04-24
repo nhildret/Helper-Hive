@@ -43,6 +43,7 @@ public class DonationRestController {
     public void newDonation(RequestEntity<String> donationString) {
         // parse JSON
         JSONObject donation = new JSONObject(donationString.getBody());
+        System.out.println("New Donation:\n" + donation + "\n\n");
 
         // get organization details
         String orgId = donation.getJSONObject("toNonprofit").getString("slug");
@@ -58,7 +59,7 @@ public class DonationRestController {
             causes.add(causeService.getById(causesJSON.getJSONObject(i).getString("tagName")));
         }
 
-        System.out.println(causes);
+        System.out.println("Causes:\n" + causes + "\n\n");
 
         // get donation Date
         String donationDate = donation.getString("donationDate");

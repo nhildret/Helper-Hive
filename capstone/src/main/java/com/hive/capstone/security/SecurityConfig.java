@@ -29,7 +29,7 @@ public class SecurityConfig {
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
                         .requestMatchers("/user/**").authenticated()
                         .requestMatchers("/static/**", "/images/**", "/js/**", "/css/**").permitAll()
-                        .requestMatchers("/", "/login", "/about", "/users/createForm", "/users/new").permitAll()
+                        .requestMatchers("/", "/login", "/about", "/users/createForm", "/users/new", "/donate/new").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("Admin")
                         .requestMatchers("/OrganizationRepresentative/**").hasAuthority("OrganizationRepresentative")
 

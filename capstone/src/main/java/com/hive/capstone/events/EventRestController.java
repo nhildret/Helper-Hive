@@ -12,11 +12,15 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,72 +45,81 @@ public class EventRestController {
     CauseRepository causeRepository;
 
     @Autowired
-    EventService service;
+    EventService eventService;
 
     //with coords
     @GetMapping("/withCoords") 
-    public String filterEvents(@RequestParam("comingUp") boolean comingUp, @RequestParam("causes") String causes,
+    public String[] filterEvents(@RequestParam("comingUp") boolean comingUp, @RequestParam("causes") String causes,
                             @RequestParam("x") double x, @RequestParam("y") double y) {
         //build query
-        String query = "SELECT e, ec.cause_id from events e"
-                        + " JOIN eventcauses ec on ec.event_id = e.event_id"
-                        + " WHERE ABS(e.x - ("+x+")) < 10 AND ABS(e.y - ("+y+")) < 10";
-
+        String query = "SELECT * from events e"
+                        + " WHERE ABS(e.x - CAST('"+x+"' as double precision)) < 10 AND ABS(e.y - CAST('"+y+"' as double precision)) < 10";
         if (comingUp) {
-         query += " AND e.eventDate >= CURRENT_DATE";
+         query += " AND e.event_date >= CURRENT_DATE";
         }
         if (causes.length() != 0) {
             String[] cause = causes.split(",");
-            query += " AND ec.cause_id IN ('" + cause[0];
+            query += " AND event_id IN (SELECT event_Id from eventcauses where cause_id IN ('" + cause[0];
             for (int i = 1; i < cause.length; i++) {
                 query += "','" + cause[i];
             }
-            query += "')";
+            query += "'))";
         }
-        //sort
         query += " ORDER BY";
         if (comingUp) {
-            query += " eventDate,";
+            query += " event_date,";
         }
-        query += " ABS(e.x - ("+x+")), ABS(e.y - ("+y+"))";
+        query += " ABS(e.x - CAST('"+x+"' as double precision)), ABS(e.y - CAST('"+y+"' as double precision))";
 
-        service.getEventsByQuery(query);
+        //Get list of Events and create JSON string
+        List<Event> eventsList = eventService.getEventsByQuery(query);
+        String[] eventsString = new String[eventsList.size()];
+        int i = 0;
+        for (Event event : eventsList) {
+            eventsString[i] = new JSONObject(event).toString();
+            i++;
+        }
+
         //return a list of events for events.js to populate the container with
-        return "Event/event-page";
+        return eventsString;
     }
 
     //without coords
     @GetMapping("/withoutCoords") 
-    public String filterEvents(@RequestParam("comingUp") boolean comingUp, @RequestParam("causes") String causes) {
+    public String[] filterEvents(@RequestParam("comingUp") boolean comingUp, @RequestParam("causes") String causes) {
         //build query
-        String query = "SELECT e.*";
+        String query = "SELECT * from events e";
         if (causes.length() > 0) {
             String[] cause = causes.split(",");
 
-            query += ", ec.cause_id from events e";
-            query += " JOIN eventcauses ec on ec.event_id = e.event_id";
-            query += " WHERE ec.cause_id IN ('" + cause[0];
+            query += " WHERE event_id IN (SELECT event_Id from eventcauses where cause_id IN ('" + cause[0];
             for (int i = 1; i < cause.length; i++) {
                 query += "','" + cause[i];
             }
-            query += "')";
+            query += "'))";
 
             if (comingUp) {
                 query += " AND e.event_date >= CURRENT_DATE";
                 query += " ORDER BY event_date";
             }
         } else {
-            query += " from events e";
             if (comingUp) {
                 query += " WHERE e.event_date >= CURRENT_DATE";
                 query += " ORDER BY event_date";
             }
         }
 
-        service.getEventsByQuery(query);
-        
-        //return a list of events.toString() for events.js to populate the container with
-        return "Event/event-page";
+        //Get list of Events and create JSON string
+        List<Event> eventsList = eventService.getEventsByQuery(query);
+        String[] eventsString = new String[eventsList.size()];
+        int i = 0;
+        for (Event event : eventsList) {
+            eventsString[i] = new JSONObject(event).toString();
+            i++;
+        }
+
+        //return a list of events for events.js to populate the container with
+        return eventsString;
     }
 
     // Handle form submission (POST request)
@@ -136,5 +149,41 @@ public class EventRestController {
         event.setCauses(causes);
 
         eventRepository.save(event);
+    }
+
+    // Post Updated Event
+    @PutMapping("/edit")
+    public void editEvent(@RequestParam("eventId") int eventId, 
+                            @RequestParam("title") String title, 
+                            @RequestParam("location") String location,
+                            @RequestParam("x") double x,
+                            @RequestParam("y") double y,
+                            @RequestParam("eventDate") String eventDate,
+                            @RequestParam("volunteerHours") int volunteerHours, 
+                            @RequestParam("causeId") String[] causeId,
+                            @RequestParam("imagePath") String imagePath, 
+                            @RequestParam("organizationId") int organizationId) {
+        //parse date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Date eDate = sdf.parse(eventDate, new ParsePosition(0));
+
+        //get causes from id, put them into List
+        List<Cause> causes = new ArrayList<Cause>();
+        for (int i = 0; i < causeId.length; i++) {
+            causes.add(causeRepository.findById(causeId[i]));
+        }
+        //get existing Event
+        Event event = eventService.getEventById(eventId);
+
+        event.setTitle(title);
+        event.setLocation(location);
+        event.setCoords(x, y);
+        event.setVolunteerHours(volunteerHours);
+        event.setEventDate(eDate);
+        event.setCauses(causes);
+        event.setImagePath(imagePath);
+        event.setOrganization(organizationRepository.findById(organizationId));
+
+        eventService.saveEvent(event);
     }
 }
