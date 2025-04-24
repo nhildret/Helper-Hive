@@ -21,13 +21,13 @@
     <!-- Header Fragment -->
     <header th:replace="~{fragments/header :: header}"></header>
 
-    <!-- Add flash messages -->
+    <!-- Add flash messages
     <div th:if="${success}" class="alert alert-success" role="alert">
         <span th:text="${success}"></span>
     </div>
     <div th:if="${error}" class="alert alert-danger" role="alert">
         <span th:text="${error}"></span>
-    </div>
+    </div> -->
 
     <main>
         <div class="event-details-box">
@@ -145,10 +145,9 @@
         </main>
         <section class="button-section">
                 <div class="text-container">
-                    <p id="lat-lon"></p>
-                    <p class="message">
+                    <h4 class="message">
                         View More Events:
-                    </p>
+                    </h4>
                 </div>
             </section>
         <main>
