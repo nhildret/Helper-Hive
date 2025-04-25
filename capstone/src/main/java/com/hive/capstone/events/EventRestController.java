@@ -54,7 +54,6 @@ public class EventRestController {
         String xformula = "(e.x - ("+x+"))";
         String yformula = "(e.y - ("+y+"))";
         String coordsFormula = "SQRT(("+xformula+" * "+xformula+") + ("+yformula+" * "+yformula+"))";
-        System.out.println(coordsFormula);
         //build query
         String query = "SELECT * from events e"
                         + " WHERE " + coordsFormula + " < 1";

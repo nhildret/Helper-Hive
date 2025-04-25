@@ -75,9 +75,14 @@ public class DonationRestController {
             User user = userByEmail.get();
             System.out.println(user.getName());
 
-
+            Donation d;
             //create Donation object
-            Donation d = new Donation(donation.getString("publicTestimony"), orgName, amount, user.getId(), donated_at);
+            if (donation.has("publicTestimony")) {
+                d = new Donation(donation.getString("publicTestimony"), orgName, amount, user.getId(), donated_at);
+            } else {
+                d = new Donation(orgName, amount, user.getId(), donated_at);
+            }
+            
             d.setCauses(causes);
             service.save(d);
 

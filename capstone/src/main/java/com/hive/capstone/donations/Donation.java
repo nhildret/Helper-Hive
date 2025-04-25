@@ -50,6 +50,13 @@ public class Donation {
         this.donatedAt = donatedAt;
     }
 
+    public Donation(String organizationName, double amount, int userId, Date donatedAt) {
+        this.organizationName = organizationName;
+        this.amount = amount;
+        this.userId = userId;
+        this.donatedAt = donatedAt;
+    }
+
     public Donation(int donationId, String donationName, String organizationName, double amount, int userId,
             Date donatedAt, List<Cause> causes) {
         this.donationId = donationId;

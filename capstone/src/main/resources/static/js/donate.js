@@ -75,7 +75,7 @@ function showModal(id) {
                 causes.appendChild(cause);
             }
             document.getElementById('donate').addEventListener('click', function() {
-                window.open("https://staging.every.org/" + org.primarySlug 
+                window.open("https://www.every.org/" + org.primarySlug 
                                 + "?success_url=" + page_url
                                 + "&exit_url=" + page_url
                                 + "&webhook_token=" + webhook
