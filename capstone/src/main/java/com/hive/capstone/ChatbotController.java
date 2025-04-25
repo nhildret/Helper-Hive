@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 public class ChatbotController {
 
     @GetMapping("/reply")
-    public String getReply(@RequestParam String message) {
+    public String getReply(@RequestParam("message") String message) {
         if (containsProfanity(message)) {
             return "Please keep the conversation respectful or I'll sting you.";
         }

@@ -104,8 +104,11 @@
             userMessage.textContent = "You: " + input.value;
             chatBody.appendChild(userMessage);
 
-            fetch(`/chatbot/reply?message=${encodeURIComponent(input.value)}`)
-                .then(response => response.text())
+            fetch(window.location.origin + `/chatbot/reply?message=${encodeURIComponent(input.value)}`)
+                .then(response => {
+                    let r = response.text();
+                    return r;
+                })
                 .then(data => {
                     const botMessage = document.createElement("p");
                     botMessage.textContent = "Bot: " + data;
