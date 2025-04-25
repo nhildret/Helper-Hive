@@ -104,7 +104,7 @@
             userMessage.textContent = "You: " + input.value;
             chatBody.appendChild(userMessage);
 
-            fetch(window.location.origin + `/chatbot/reply?message=${encodeURIComponent(input.value)}`)
+            fetch(`/chatbot/reply?message=${encodeURIComponent(input.value)}`)
                 .then(response => {
                     let r = response.text();
                     return r;
