@@ -120,8 +120,8 @@ public class UserController {
     public String addNewUser(@ModelAttribute User user, Model model) {
         userService.addNewUser(user);
         model.addAttribute("users", userService.getAllUsers());
-        return "redirect:/home";
-        // returns home-page.html
+        return "redirect:/events/all";
+        // returns event-page.html
     }
 
     // Show user creation form
@@ -199,6 +199,7 @@ public class UserController {
 //    public String showUserStatistics() {
 //        return "user-stats";
 //    }
+
 
 
 

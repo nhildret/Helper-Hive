@@ -24,7 +24,7 @@ public class CustomAuthenticationSuccessHandler implements org.springframework.s
         } else if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("OrganizationRepresentative"))) {
             redirectURL = "/organizations/all";
         } else {
-            redirectURL = "/";
+            redirectURL = "/events/all";
         }
 
         response.sendRedirect(redirectURL);
